@@ -7,67 +7,166 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     *{margin:0;padding:0;box-sizing:border-box;}
-    body{min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:'Georgia',serif;overflow:hidden;background:#000;}
+    body{min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:'Georgia',serif;overflow:hidden;background:#4a0a0a;}
 
     .bg{
       position:fixed;inset:0;
-      background:url('images/landing/landing-bg.jpg') center center/contain no-repeat;
-      background-color:#1a0a00;
+      background:url('images/landing/landing-bg.jpg') center center/cover no-repeat;
       opacity:0;
-      animation:bgFade 1.5s ease-out 0.3s forwards;
+      transform:scale(1.1);
+      animation:bgZoom 2.5s ease-out 0.3s forwards;
     }
-    @keyframes bgFade{0%{opacity:0;}100%{opacity:1;}}
+    @keyframes bgZoom{
+      0%{opacity:0;transform:scale(1.1);}
+      100%{opacity:1;transform:scale(1);}
+    }
 
     .overlay{
       position:fixed;inset:0;
-      background:linear-gradient(to bottom,rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.75) 100%);
+      background:linear-gradient(
+        135deg,
+        rgba(74,10,10,0.85) 0%,
+        rgba(74,10,10,0.6) 40%,
+        rgba(0,0,0,0.7) 100%
+      );
     }
 
     .content{
       position:relative;z-index:10;
-      text-align:center;color:#fff;
-      padding:40px 24px;max-width:700px;
+      text-align:center;
+      color:#fff;
+      padding:40px 24px;
+      max-width:750px;
+      width:100%;
       opacity:0;
-      animation:contentUp 1s ease-out 1.8s forwards;
+      transform:translateY(40px);
+      animation:contentUp 1.2s ease-out 2s forwards;
     }
     @keyframes contentUp{
-      0%{opacity:0;transform:translateY(30px);}
+      0%{opacity:0;transform:translateY(40px);}
       100%{opacity:1;transform:translateY(0);}
     }
 
     .om{
-      font-size:3rem;color:#C9A84C;margin-bottom:8px;
-      animation:glow 2s ease-in-out infinite 2.8s;
+      font-size:2.8rem;
+      color:#C9A84C;
+      margin-bottom:10px;
+      display:block;
+      animation:glow 2.5s ease-in-out infinite;
     }
-    @keyframes glow{0%,100%{text-shadow:0 0 10px #C9A84C;}50%{text-shadow:0 0 30px #C9A84C,0 0 60px #C9A84C;}}
+    @keyframes glow{
+      0%,100%{text-shadow:0 0 10px #C9A84C,0 0 20px rgba(201,168,76,0.3);}
+      50%{text-shadow:0 0 25px #C9A84C,0 0 50px rgba(201,168,76,0.6);}
+    }
 
-    .tagline{font-size:0.85rem;letter-spacing:4px;color:#C9A84C;text-transform:uppercase;margin-bottom:16px;}
-    h1{font-size:clamp(2rem,6vw,3.5rem);font-weight:400;line-height:1.2;margin-bottom:8px;text-shadow:0 2px 8px rgba(0,0,0,0.5);}
+    .top-line{
+      display:flex;align-items:center;justify-content:center;gap:12px;
+      margin-bottom:16px;
+    }
+    .top-line::before,.top-line::after{
+      content:'';display:block;width:60px;height:1px;background:#C9A84C;opacity:0.6;
+    }
+    .tagline{
+      font-size:0.78rem;letter-spacing:4px;color:#C9A84C;text-transform:uppercase;
+    }
+
+    h1{
+      font-size:clamp(2.2rem,6vw,3.8rem);
+      font-weight:400;line-height:1.2;
+      margin-bottom:10px;
+      text-shadow:0 2px 12px rgba(0,0,0,0.6);
+    }
     h1 span{color:#C9A84C;}
-    .subtitle{font-size:1rem;color:rgba(255,255,255,0.85);margin-bottom:8px;letter-spacing:1px;}
-    .divider{width:80px;height:2px;background:#C9A84C;margin:20px auto;opacity:0.7;}
-    .desc{font-size:0.95rem;color:rgba(255,255,255,0.75);line-height:1.8;margin-bottom:32px;font-style:italic;}
-    .buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:28px;}
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:4px;font-size:0.95rem;font-family:Georgia,serif;cursor:pointer;text-decoration:none;transition:all 0.3s;border:none;}
-    .btn-enter{background:#7B1B1B;color:#fff;}
-    .btn-enter:hover{background:#9B2B2B;transform:translateY(-2px);}
-    .btn-wa{background:#25D366;color:#fff;}
-    .btn-wa:hover{background:#1ebe5a;transform:translateY(-2px);}
-    .btn-call{background:transparent;color:#C9A84C;border:1px solid #C9A84C;}
-    .btn-call:hover{background:#C9A84C;color:#000;transform:translateY(-2px);}
-    .footer-text{font-size:0.75rem;color:rgba(255,255,255,0.4);letter-spacing:2px;text-transform:uppercase;}
+
+    .subtitle{
+      font-size:1.05rem;
+      color:rgba(255,255,255,0.9);
+      margin-bottom:6px;
+      letter-spacing:1px;
+    }
+
+    .divider{
+      width:80px;height:2px;
+      background:linear-gradient(to right,transparent,#C9A84C,transparent);
+      margin:18px auto;
+    }
+
+    .desc{
+      font-size:0.95rem;
+      color:rgba(255,255,255,0.8);
+      line-height:1.9;
+      margin-bottom:36px;
+      font-style:italic;
+      max-width:550px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    .buttons{
+      display:flex;gap:16px;justify-content:center;
+      flex-wrap:wrap;margin-bottom:32px;
+    }
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:14px 30px;border-radius:3px;
+      font-size:0.9rem;font-family:Georgia,serif;
+      cursor:pointer;text-decoration:none;
+      transition:all 0.3s;border:none;
+      letter-spacing:1px;text-transform:uppercase;
+    }
+    .btn-enter{
+      background:#7B1B1B;color:#C9A84C;
+      border:1px solid #C9A84C;
+    }
+    .btn-enter:hover{background:#9B2B2B;transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,0.4);}
+    .btn-wa{
+      background:#25D366;color:#fff;
+    }
+    .btn-wa:hover{background:#1ebe5a;transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,0.4);}
+    .btn-call{
+      background:transparent;color:#C9A84C;
+      border:1px solid #C9A84C;
+    }
+    .btn-call:hover{background:#C9A84C;color:#4a0a0a;transform:translateY(-3px);}
+
+    .footer-text{
+      font-size:0.72rem;color:rgba(255,255,255,0.35);
+      letter-spacing:3px;text-transform:uppercase;
+    }
+
+    .particles{
+      position:fixed;inset:0;pointer-events:none;z-index:5;
+      overflow:hidden;
+    }
+    .particle{
+      position:absolute;width:3px;height:3px;
+      background:#C9A84C;border-radius:50%;opacity:0;
+      animation:float linear infinite;
+    }
+    @keyframes float{
+      0%{transform:translateY(100vh) translateX(0);opacity:0;}
+      10%{opacity:0.6;}
+      90%{opacity:0.2;}
+      100%{transform:translateY(-100px) translateX(40px);opacity:0;}
+    }
   </style>
 </head>
 <body>
   <div class="bg"></div>
   <div class="overlay"></div>
+
+  <!-- Floating particles -->
+  <div class="particles" id="particles"></div>
+
   <div class="content">
-    <div class="om">ॐ</div>
-    <div class="tagline">Tirunelveli's Premier Wedding Venue</div>
+    <span class="om">ॐ</span>
+    <div class="top-line">
+      <span class="tagline">Tirunelveli's Premier Wedding Venue</span>
+    </div>
     <h1>Welcome to<br><span>Sree Ganesha Mahal</span></h1>
     <div class="subtitle">Where Celebrations Become Sacred Memories</div>
     <div class="divider"></div>
-    <p class="desc">An elegant air-conditioned banquet hall crafted for weddings,<br>receptions & celebrations in the heart of Tirunelveli.</p>
+    <p class="desc">An elegant air-conditioned banquet hall in Tirunelveli crafted for weddings, receptions and celebrations, where spacious design, modern amenities and timeless traditions come together.</p>
     <div class="buttons">
       <a href="index.html" class="btn btn-enter">
         <i class="fas fa-door-open"></i> Enter Website
@@ -81,10 +180,25 @@
     </div>
     <div class="footer-text">© 2026 Sree Ganesha Mahal, Tirunelveli</div>
   </div>
+
+  <script>
+    // Floating gold particles
+    const container = document.getElementById('particles');
+    for(let i = 0; i < 20; i++){
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.left = Math.random()*100 + '%';
+      p.style.width = p.style.height = (Math.random()*3+1) + 'px';
+      p.style.animationDuration = (Math.random()*8+6) + 's';
+      p.style.animationDelay = (Math.random()*8) + 's';
+      p.style.opacity = Math.random()*0.5;
+      container.appendChild(p);
+    }
+  </script>
 </body>
 </html>
 ```
 
 **Ctrl+S** → Push:
 ```
-cd "C:\Users\Welcome\Desktop\SGM" && git add . && git commit -m "fix landing page animation" && git push origin main
+cd "C:\Users\Welcome\Desktop\SGM" && git add . && git commit -m "redesign landing page" && git push origin main
