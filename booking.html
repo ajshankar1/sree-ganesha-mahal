@@ -211,12 +211,34 @@
             <textarea id="contact-message" name="message" placeholder="Any special requirements, preferred decoration theme, or questions..." rows="4"></textarea>
           </div>
           <!-- Booking Summary -->
-          <div style="background:var(--ivory-dark);border:1px solid var(--ivory-deeper);border-left:4px solid var(--gold);border-radius:var(--radius);padding:20px;margin-bottom:24px;">
-            <h4 style="font-family:var(--font-heading);color:var(--crimson);margin-bottom:12px;font-size:1rem;">Booking Summary</h4>
-            <div style="font-family:var(--font-ui);font-size:0.85rem;color:var(--text-mid);">
-              Your enquiry will be reviewed and confirmed by our team. An advance of ₹25,000 is required to confirm the booking.
-            </div>
-          </div>
+<div style="background:var(--ivory-dark);border:1px solid var(--ivory-deeper);border-left:4px solid var(--gold);border-radius:var(--radius);padding:20px;margin-bottom:24px;">
+  <h4 style="font-family:var(--font-heading);color:var(--crimson);margin-bottom:16px;font-size:1rem;">📋 Tentative Quote</h4>
+  <div style="font-family:var(--font-ui);font-size:0.9rem;color:var(--text-mid);">
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--ivory-deeper);">
+      <span>Hall Rental</span><span id="summary-hall" style="color:var(--crimson);font-weight:600;">₹0</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--ivory-deeper);">
+      <span>GST (18%)</span><span id="summary-gst" style="color:var(--crimson);font-weight:600;">₹0</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--ivory-deeper);font-weight:600;">
+      <span>Hall Total (with GST)</span><span id="summary-hall-total" style="color:var(--crimson);">₹0</span>
+    </div>
+    <div id="summary-addons-wrap" style="padding:8px 0;border-bottom:1px solid var(--ivory-deeper);display:none;">
+      <div style="margin-bottom:6px;font-weight:600;">Add-on Services (Optional — your choice):</div>
+      <div id="summary-addons-list" style="color:var(--text-mid);font-size:0.85rem;"></div>
+      <div style="display:flex;justify-content:space-between;margin-top:8px;">
+        <span>Add-ons Total</span><span id="summary-addons-total" style="color:var(--crimson);font-weight:600;">₹0</span>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;padding:10px 0;font-size:1rem;font-weight:700;">
+      <span style="color:var(--crimson);">Estimated Grand Total</span>
+      <span id="summary-grand-total" style="color:var(--crimson);font-size:1.1rem;">₹0</span>
+    </div>
+    <div style="background:#fff8e1;border-radius:4px;padding:10px;margin-top:8px;font-size:0.8rem;color:#7a6000;">
+      ⚠️ <strong>Note:</strong> Yeh ek tentative estimate hai. Final amount confirmation ke baad team batayegi. Add-on services aap khud arrange kar sakte hain ya humse le sakte hain. Booking confirm karne ke liye ₹25,000 advance required hai.
+    </div>
+  </div>
+</div>
           <p class="form-error" id="step5-error" style="display:none;"></p>
           <div class="form-nav">
             <button class="btn btn-outline" style="color:var(--text-mid);border-color:var(--ivory-deeper);" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Back</button>
@@ -319,17 +341,59 @@
 document.addEventListener('DOMContentLoaded', () => {
   const guestInput = document.getElementById('guest-count');
   const priceDisplay = document.getElementById('step4-price');
-  if (guestInput && priceDisplay) {
-    guestInput.addEventListener('input', () => {
-      const guests = parseInt(guestInput.value) || 0;
-      let price;
-      if (guests <= 200) price = 40000;
-      else if (guests <= 400) price = 65000;
-      else if (guests <= 700) price = 90000;
-      else price = 125000;
-      priceDisplay.textContent = '₹' + price.toLocaleString('en-IN');
-    });
+
+  function getHallPrice(guests) {
+    if (guests <= 200) return 40000;
+    else if (guests <= 400) return 65000;
+    else if (guests <= 700) return 90000;
+    else return 125000;
   }
+
+  function updateSummary() {
+    const guests = parseInt(guestInput?.value) || 200;
+    const hallPrice = getHallPrice(guests);
+    const gst = Math.round(hallPrice * 0.18);
+    const hallTotal = hallPrice + gst;
+
+    if (priceDisplay) priceDisplay.textContent = '₹' + hallPrice.toLocaleString('en-IN');
+
+    document.getElementById('summary-hall') && (document.getElementById('summary-hall').textContent = '₹' + hallPrice.toLocaleString('en-IN'));
+    document.getElementById('summary-gst') && (document.getElementById('summary-gst').textContent = '₹' + gst.toLocaleString('en-IN'));
+    document.getElementById('summary-hall-total') && (document.getElementById('summary-hall-total').textContent = '₹' + hallTotal.toLocaleString('en-IN'));
+
+    const checkedAddons = document.querySelectorAll('#addonsOptions input[type=checkbox]:checked');
+    let addonTotal = 0;
+    let addonLines = '';
+    checkedAddons.forEach(cb => {
+      const label = cb.closest('label') || cb.parentElement;
+      const text = label?.textContent?.trim() || '';
+      const priceMatch = text.match(/₹([\d,]+)/);
+      if (priceMatch) {
+        const val = parseInt(priceMatch[1].replace(',',''));
+        addonTotal += val;
+        addonLines += `<div>• ${text}</div>`;
+      }
+    });
+
+    const addonsWrap = document.getElementById('summary-addons-wrap');
+    if (addonTotal > 0) {
+      addonsWrap && (addonsWrap.style.display = 'block');
+      document.getElementById('summary-addons-list') && (document.getElementById('summary-addons-list').innerHTML = addonLines);
+      document.getElementById('summary-addons-total') && (document.getElementById('summary-addons-total').textContent = '₹' + addonTotal.toLocaleString('en-IN'));
+    } else {
+      addonsWrap && (addonsWrap.style.display = 'none');
+    }
+
+    const grandTotal = hallTotal + addonTotal;
+    document.getElementById('summary-grand-total') && (document.getElementById('summary-grand-total').textContent = '₹' + grandTotal.toLocaleString('en-IN'));
+  }
+
+  guestInput?.addEventListener('input', updateSummary);
+  document.addEventListener('change', (e) => {
+    if (e.target.closest('#addonsOptions')) updateSummary();
+  });
+
+  setTimeout(updateSummary, 500);
 });
 </script>
 </body>
