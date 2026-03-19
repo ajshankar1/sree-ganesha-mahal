@@ -139,20 +139,13 @@
             </div>
             <div>
               <!-- Mini calendar for availability check -->
-              <div class="calendar-wrap" style="padding:20px;">
-                <div class="calendar-header">
-                  <h3 id="calendarTitle" style="font-size:1rem;">Loading...</h3>
-                  <div class="cal-nav">
-                    <button class="cal-nav-btn" id="calPrev"><i class="fas fa-chevron-left"></i></button>
-                    <button class="cal-nav-btn" id="calNext"><i class="fas fa-chevron-right"></i></button>
-                  </div>
-                </div>
-                <div class="calendar-grid" id="calendarGrid" style="gap:2px;"></div>
-                <div class="calendar-legend" style="margin-top:12px;gap:12px;font-size:0.72rem;">
-                  <div class="legend-item"><div class="legend-dot available"></div> Available</div>
-                  
-                </div>
-              </div>
+              <div style="background:var(--ivory);border-radius:8px;padding:20px;text-align:center;">
+  <i class="fas fa-calendar-days" style="font-size:3rem;color:var(--gold);margin-bottom:12px;display:block;"></i>
+  <p style="color:var(--text-mid);font-size:0.9rem;margin-bottom:8px;">Select your muhurat date from the left</p>
+  <a href="availability.html" target="_blank" style="color:var(--crimson);font-size:0.85rem;font-family:var(--font-ui);">
+    <i class="fas fa-external-link-alt"></i> View Full Availability Calendar
+  </a>
+</div>
             </div>
           </div>
           <p class="form-error" id="step3-error" style="display:none;"></p>
