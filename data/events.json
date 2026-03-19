@@ -1,0 +1,182 @@
+[
+  {
+    "id": "wedding",
+    "event_name": "Wedding",
+    "category": "Marriage Functions",
+    "description": "Traditional South Indian wedding ceremony with full mandapam setup, Vedic rituals, and grand celebration for the sacred union of two souls.",
+    "default_capacity": 600,
+    "base_price": 90000,
+    "image": "images/events/wedding.jpg",
+    "features": ["Decorated Mandapam", "Bridal Room", "Priest Arrangement", "Full Lighting Setup"]
+  },
+  {
+    "id": "reception",
+    "event_name": "Reception",
+    "category": "Marriage Functions",
+    "description": "Elegant wedding reception with stage décor, floral arrangements, and a grand celebration to welcome the newlyweds.",
+    "default_capacity": 700,
+    "base_price": 85000,
+    "image": "images/events/reception.jpg",
+    "features": ["Stage Decoration", "Welcome Gate", "Lighting Effects", "Photo Backdrop"]
+  },
+  {
+    "id": "engagement",
+    "event_name": "Engagement",
+    "category": "Marriage Functions",
+    "description": "A beautiful engagement ceremony with elegant décor and intimate celebration to mark the beginning of a lifelong journey.",
+    "default_capacity": 300,
+    "base_price": 45000,
+    "image": "images/events/engagement.jpg",
+    "features": ["Ring Exchange Setup", "Floral Décor", "Photo Area", "Family Seating"]
+  },
+  {
+    "id": "mehendi",
+    "event_name": "Mehendi",
+    "category": "Marriage Functions",
+    "description": "Vibrant Mehendi ceremony with colorful decorations and traditional music, creating a festive pre-wedding atmosphere.",
+    "default_capacity": 200,
+    "base_price": 30000,
+    "image": "images/events/mehendi.jpg",
+    "features": ["Colorful Décor", "Seating Arrangement", "Music Setup", "Snacks Area"]
+  },
+  {
+    "id": "Valaikappu",
+    "event_name": "Valaikappu",
+    "category": "Valaikappu Functions",
+    "description": "A sacred Valaikappu celebration filled with blessings, traditional rituals and joyful moments as family gathers to celebrate the mother-to-be.",
+    "default_capacity": 400,
+    "base_price": 50000,
+    "image": "images/events/valaikappu.jpg",
+    "features": ["Traditional Ritual Stage", "Floral Decorations", "Comfortable Seating", "Dining Arrangement"]
+  },
+  {
+    "id": "haldi",
+    "event_name": "Haldi",
+    "category": "Marriage Functions",
+    "description": "Traditional Haldi ceremony with marigold decorations, creating a cheerful and auspicious pre-wedding celebration.",
+    "default_capacity": 150,
+    "base_price": 20000,
+    "image": "images/events/haldi.jpg",
+    "features": ["Marigold Décor", "Haldi Stage", "Photo Setup", "Changing Area"]
+  },
+  {
+    "id": "get-together",
+    "event_name": "Get-Together",
+    "category": "Family & Friends",
+    "description": "A warm gathering where families and friends come together to celebrate special moments and create lasting memories.",
+    "default_capacity": 200,
+    "base_price": 25000,
+    "image": "images/events/gettogether.jpg",
+    "features": ["Ritual Setup", "Priest Arrangement", "Traditional Décor", "Family Seating"]
+  },
+  {
+    "id": "naming-ceremony",
+    "event_name": "Naming Ceremony",
+    "category": "Religious Functions",
+    "description": "Joyful Namakarana ceremony to officially name your newborn with family blessings and Vedic rituals.",
+    "default_capacity": 150,
+    "base_price": 20000,
+    "image": "images/events/naming.jpg",
+    "features": ["Baby Décor", "Cradle Setup", "Ritual Area", "Photo Zone"]
+  },
+  {
+    "id": "upanayanam",
+    "event_name": "Upanayanam",
+    "category": "Religious Functions",
+    "description": "Sacred Upanayanam thread ceremony marking a young boy's transition into brahmacharya with full Vedic rituals.",
+    "default_capacity": 300,
+    "base_price": 35000,
+    "image": "images/events/upanayanam.jpg",
+    "features": ["Yagnashala Setup", "Priest Arrangement", "Traditional Décor", "Dining Setup"]
+  },
+  {
+    "id": "ayush-homam",
+    "event_name": "Ayush Homam",
+    "category": "Religious Functions",
+    "description": "Auspicious Ayush Homam for long life and prosperity, conducted with traditional fire rituals and Vedic chanting.",
+    "default_capacity": 200,
+    "base_price": 25000,
+    "image": "images/events/homam.jpg",
+    "features": ["Homam Kundal", "Priest Arrangement", "Seating", "Prasad Area"]
+  },
+  {
+    "id": "satyanarayan-pooja",
+    "event_name": "Satyanarayana Pooja",
+    "category": "Religious Functions",
+    "description": "Auspicious Satyanarayana Pooja for blessings and prosperity, followed by prasad distribution to all devotees.",
+    "default_capacity": 200,
+    "base_price": 20000,
+    "image": "images/events/pooja.jpg",
+    "features": ["Pooja Setup", "Priest Arrangement", "Prasad Counter", "Seating"]
+  },
+  {
+    "id": "birthday",
+    "event_name": "Birthday Party",
+    "category": "Family Celebrations",
+    "description": "Memorable birthday celebrations with themed decorations, cake setup, and entertainment for all ages.",
+    "default_capacity": 300,
+    "base_price": 35000,
+    "image": "images/events/birthday.jpg",
+    "features": ["Theme Décor", "Cake Table", "Entertainment", "Photo Booth"]
+  },
+  {
+    "id": "baby-shower",
+    "event_name": "Baby Shower",
+    "category": "Family Celebrations",
+    "description": "Elegant baby shower celebration with dreamy decorations and games for the mother-to-be and family.",
+    "default_capacity": 150,
+    "base_price": 22000,
+    "image": "images/events/babyshower.jpg",
+    "features": ["Pastel Décor", "Gift Table", "Games Area", "Photo Zone"]
+  },
+  {
+    "id": "anniversary",
+    "event_name": "Anniversary",
+    "category": "Family Celebrations",
+    "description": "Celebrate milestones of love with elegant anniversary setups, floral decorations, and heartfelt celebrations.",
+    "default_capacity": 300,
+    "base_price": 40000,
+    "image": "images/events/anniversary.jpg",
+    "features": ["Floral Décor", "Photo Display", "Couple Stage", "Dining Setup"]
+  },
+  {
+    "id": "housewarming",
+    "event_name": "Housewarming",
+    "category": "House Functions",
+    "description": "Gruhapravesam and housewarming ceremonies with traditional rituals to bless your new home.",
+    "default_capacity": 200,
+    "base_price": 25000,
+    "image": "images/events/housewarming.jpg",
+    "features": ["Ritual Setup", "Priest Arrangement", "Décor", "Dining"]
+  },
+  {
+    "id": "conference",
+    "event_name": "Conference",
+    "category": "Corporate Events",
+    "description": "Professional conference setup with projector, PA system, and comfortable seating for corporate gatherings.",
+    "default_capacity": 400,
+    "base_price": 45000,
+    "image": "images/events/conference.jpg",
+    "features": ["Projector & Screen", "PA System", "Dais Setup", "Registration Desk"]
+  },
+  {
+    "id": "seminar",
+    "event_name": "Seminar",
+    "category": "Corporate Events",
+    "description": "Well-equipped seminar hall with audio-visual setup, whiteboards, and comfortable seating arrangements.",
+    "default_capacity": 300,
+    "base_price": 35000,
+    "image": "images/events/seminar.jpg",
+    "features": ["AV Equipment", "Stage & Podium", "Refreshment Area", "Wi-Fi"]
+  },
+  {
+    "id": "cultural",
+    "event_name": "Cultural Programs",
+    "category": "Social Events",
+    "description": "Vibrant stage for cultural performances, classical dance shows, music concerts, and community celebrations.",
+    "default_capacity": 600,
+    "base_price": 50000,
+    "image": "images/events/cultural.jpg",
+    "features": ["Performance Stage", "Green Room", "Sound System", "Lighting Rig"]
+  }
+]

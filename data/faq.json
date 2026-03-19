@@ -1,0 +1,104 @@
+[
+  {
+    "id": 1,
+    "category": "Capacity & Facilities",
+    "question": "What is the maximum seating capacity of Sree Ganesha Mahal?",
+    "answer": "Sree Ganesha Mahal can accommodate up to 700 guests in the main hall. With the dining area, the total venue capacity is approximately 900 persons. For intimate events, we offer partial hall arrangements for up to 200 guests."
+  },
+  {
+    "id": 2,
+    "category": "Capacity & Facilities",
+    "question": "Is the hall air conditioned?",
+    "answer": "Yes, the entire main hall and dining area are fully air conditioned with industrial-grade AC units. We also have backup AC systems in case of any technical issues. The temperature is maintained at a comfortable level throughout your event."
+  },
+  {
+    "id": 3,
+    "category": "Capacity & Facilities",
+    "question": "Is parking available at the venue?",
+    "answer": "Yes, we have a dedicated parking area that can accommodate up to 200 cars and 300 two-wheelers. Parking is included in all our packages and is supervised by our security staff throughout the event."
+  },
+  {
+    "id": 4,
+    "category": "Capacity & Facilities",
+    "question": "Are there guest rooms available?",
+    "answer": "Yes, we have 5 well-furnished guest rooms available for the wedding party and close family members. Rooms are available at ₹2,000 per room per day. Advance booking is required for guest rooms."
+  },
+  {
+    "id": 5,
+    "category": "Capacity & Facilities",
+    "question": "Is there a generator backup?",
+    "answer": "Absolutely. We have a full-capacity generator that kicks in automatically within seconds of any power outage. Your event will never be disrupted due to power failure. The generator covers all halls, AC, lighting, and sound systems."
+  },
+  {
+    "id": 6,
+    "category": "Booking & Payment",
+    "question": "How much advance booking amount is required?",
+    "answer": "A minimum advance of ₹25,000 is required to confirm your booking. This amount is adjusted in the final bill. The remaining balance can be paid in installments before the event date. Full payment must be cleared 3 days before the event."
+  },
+  {
+    "id": 7,
+    "category": "Booking & Payment",
+    "question": "How far in advance should I book the hall?",
+    "answer": "We recommend booking at least 3–6 months in advance for weddings and major functions, especially for auspicious dates (muhurtham). Popular months like March, April, June, and November get booked very quickly. For corporate events, 1–2 months advance is usually sufficient."
+  },
+  {
+    "id": 8,
+    "category": "Booking & Payment",
+    "question": "What is the cancellation policy?",
+    "answer": "Cancellations made more than 60 days before the event: 80% refund. 30–60 days before: 50% refund. 15–30 days before: 25% refund. Less than 15 days: no refund. Date changes are allowed once, subject to availability, with a ₹5,000 rescheduling fee."
+  },
+  {
+    "id": 9,
+    "category": "Booking & Payment",
+    "question": "What payment methods are accepted?",
+    "answer": "We accept cash, UPI (GPay, PhonePe, Paytm), NEFT/RTGS bank transfer, and cheque. UPI ID: sreeganesha@upi. For bank transfers, please contact us for account details. Receipts are issued for all payments."
+  },
+  {
+    "id": 10,
+    "category": "Catering & Food",
+    "question": "Do you allow outside catering?",
+    "answer": "Yes, you are free to bring your own caterer. Our dedicated catering space is fully equipped with cooking stations, utensil storage, and water supply. We charge a nominal kitchen usage fee of ₹5,000. Alternatively, we can recommend trusted caterers who have worked with us."
+  },
+  {
+    "id": 11,
+    "category": "Catering & Food",
+    "question": "Do you provide in-house catering?",
+    "answer": "We have tie-ups with experienced South Indian catering teams who specialize in traditional vegetarian and non-vegetarian menus. Catering is charged at ₹350 per plate and includes full meals with starters, main course, desserts, and beverages. Custom menus can be arranged."
+  },
+  {
+    "id": 12,
+    "category": "Catering & Food",
+    "question": "Is a separate dining hall available?",
+    "answer": "Yes, we have a large separate dining hall that can seat 200 guests at a time. It is included in the Standard and Premium packages. For the Basic package, dining hall can be added for ₹10,000."
+  },
+  {
+    "id": 13,
+    "category": "Decoration & Setup",
+    "question": "Can we use our own decorator?",
+    "answer": "Yes, you can hire your own decorator. We provide full access to the venue from 6 AM on the event day (or from the previous evening if the hall is available). Our staff will coordinate with your decorator for setup."
+  },
+  {
+    "id": 14,
+    "category": "Decoration & Setup",
+    "question": "Do you provide in-house decoration services?",
+    "answer": "Yes, we offer decoration packages through our partner decorators starting from ₹20,000. This includes stage decoration, welcome gate, floral arrangements, lighting, and hall decoration. Custom themes are available. Please enquire for detailed decoration packages."
+  },
+  {
+    "id": 15,
+    "category": "Decoration & Setup",
+    "question": "What time is the venue available for setup?",
+    "answer": "Venue setup can begin from 6 AM on the event day. For early morning functions (muhurtham), we allow entry from 4 AM. If the previous day is available, we can arrange overnight setup access for an additional fee of ₹5,000."
+  },
+  {
+    "id": 16,
+    "category": "Location & Access",
+    "question": "Where is Sree Ganesha Mahal located?",
+    "answer": "Sree Ganesha Mahal is located at 45, Temple Street, Palayamkottai, Tirunelveli – 627002. We are 2 km from Tirunelveli Junction railway station and 15 km from Thoothukudi International Airport. Easily accessible from NH-44."
+  },
+  {
+    "id": 17,
+    "category": "Location & Access",
+    "question": "Is the venue accessible for differently-abled guests?",
+    "answer": "Yes, our venue is designed to be inclusive. We have ramp access at all entrances, wide doorways, and accessible washrooms. Please inform us in advance if any guests require special assistance and we will make appropriate arrangements."
+  }
+]

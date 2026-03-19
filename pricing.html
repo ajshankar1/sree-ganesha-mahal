@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing & Packages | Sree Ganesha Mahal</title>
+  <meta name="description" content="Transparent pricing for weddings, receptions and events at Sree Ganesha Mahal Tirunelveli. Starting from ₹40,000.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<div class="top-bar"><div class="container">
+  <div class="top-bar-info">
+    <a href="tel:+918870007991"><i class="fas fa-phone"></i> +91 88700 07991</a>
+    <a href="mailto:sreeganesamahal@gmail.com"><i class="fas fa-envelope"></i> sreeganesamahal@gmail.com</a>
+  </div>
+  <div class="top-bar-social">
+    <a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="https://wa.me/918870007991"><i class="fab fa-whatsapp"></i></a>
+  </div>
+</div></div>
+<nav class="navbar"><div class="container">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">SG</div>
+    <div class="nav-logo-text"><span class="name">Sree Ganesha Mahal</span><span class="tagline">Tirunelveli's Premier Venue</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a><a href="about.html">About</a><a href="events.html">Events</a>
+    <a href="facilities.html">Facilities</a><a href="gallery.html">Gallery</a>
+    <a href="pricing.html" class="active">Pricing</a><a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    <a href="booking.html" class="btn btn-crimson nav-cta">Book Now</a>
+  </div>
+  <button class="nav-toggle"><span></span><span></span><span></span></button>
+</div></nav>
+
+<section class="page-hero">
+  <div class="page-hero-content container">
+    <span class="label"><i class="fas fa-tags"></i> Transparent Pricing</span>
+    <h1>Packages & Pricing</h1>
+    <p>Simple, transparent pricing with no hidden charges. Choose the package that suits your celebration.</p>
+    <nav class="breadcrumb"><a href="index.html">Home</a><i class="fas fa-chevron-right"></i><span>Pricing</span></nav>
+  </div>
+</section>
+
+<!-- PRICING PACKAGES -->
+<section class="section-pad" style="background:var(--ivory);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label"><i class="fas fa-star"></i> Our Packages</span>
+      <h2>Choose Your Perfect Package</h2>
+      <div class="ornament"><span>✦</span></div>
+      <!-- HOW TO EDIT PACKAGES: Update /data/pricing.json -->
+      <p>All packages include generator backup, security, and cleaning. Prices are for hall rental only.</p>
+    </div>
+    <div class="pricing-grid" id="pricingGrid">
+      <!-- Loaded by JS below -->
+    </div>
+  </div>
+</section>
+
+<!-- LIVE PRICE CALCULATOR -->
+<section class="section-pad" style="background:var(--ivory-dark);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label"><i class="fas fa-calculator"></i> Price Estimator</span>
+      <h2>Live Price Calculator</h2>
+      <div class="ornament"><span>✦</span></div>
+      <p>Get an instant price estimate for your event</p>
+    </div>
+    <div class="calculator-wrap reveal">
+      <div class="calc-row">
+        <div class="calc-field">
+          <label>Expected Number of Guests</label>
+          <input type="number" id="calc-guests" class="calc-input" min="50" max="900" value="200" placeholder="Enter guest count">
+          <small style="color:var(--text-light);font-family:var(--font-ui);font-size:0.78rem;display:block;margin-top:6px;" id="calc-tier-label">Up to 200 guests — Basic tier</small>
+        </div>
+        <div class="calc-field">
+          <label>Event Type</label>
+          <select id="calc-event" class="calc-input">
+            <option>Wedding</option><option>Reception</option><option>Engagement</option>
+            <option>Religious Function</option><option>Birthday Party</option>
+            <option>Corporate Event</option><option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="margin-bottom:28px;">
+        <label style="display:block;font-family:var(--font-ui);font-size:0.8rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-mid);margin-bottom:16px;">Add-ons</label>
+        <div class="addons-grid">
+          <label class="addon-item">
+            <input type="checkbox" value="decoration" class="addon-check calc-input">
+            <label style="font-family:var(--font-ui);font-size:0.88rem;color:var(--text-mid);cursor:pointer;">
+              <strong>Premium Decoration</strong><br>
+              <small>Stage, floral, lighting setup</small>
+            </label>
+            <span class="addon-price">+₹20,000</span>
+          </label>
+          <label class="addon-item">
+            <input type="checkbox" value="dining" class="addon-check calc-input">
+            <label style="font-family:var(--font-ui);font-size:0.88rem;color:var(--text-mid);cursor:pointer;">
+              <strong>Dining Hall</strong><br>
+              <small>Seats 300 guests</small>
+            </label>
+            <span class="addon-price">+₹10,000</span>
+          </label>
+          <label class="addon-item">
+            <input type="checkbox" value="rooms" class="addon-check calc-input">
+            <label style="font-family:var(--font-ui);font-size:0.88rem;color:var(--text-mid);cursor:pointer;">
+              <strong>Guest Rooms</strong><br>
+              <small>Well-furnished rooms</small>
+            </label>
+            <span class="addon-price">₹2,000/room</span>
+          </label>
+          <label class="addon-item">
+            <input type="checkbox" value="catering" class="addon-check calc-input">
+            <label style="font-family:var(--font-ui);font-size:0.88rem;color:var(--text-mid);cursor:pointer;">
+              <strong>Catering</strong><br>
+              <small>Full South Indian meals</small>
+            </label>
+            <span class="addon-price">₹350/plate</span>
+          </label>
+        </div>
+        <div id="rooms-input-wrap" style="display:none;margin-top:16px;">
+          <label style="font-family:var(--font-ui);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-mid);">Number of Rooms</label>
+          <input type="number" id="calc-rooms" class="calc-input" min="1" max="5" value="1" style="width:120px;padding:10px 14px;border:1px solid var(--ivory-deeper);border-radius:4px;margin-top:8px;font-family:var(--font-body);font-size:1rem;">
+        </div>
+        <div id="plates-input-wrap" style="display:none;margin-top:16px;">
+          <label style="font-family:var(--font-ui);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-mid);">Number of Plates (defaults to guest count)</label>
+          <input type="number" id="calc-plates" class="calc-input" min="0" style="width:160px;padding:10px 14px;border:1px solid var(--ivory-deeper);border-radius:4px;margin-top:8px;font-family:var(--font-body);font-size:1rem;" placeholder="Auto">
+        </div>
+      </div>
+
+      <div class="calc-result">
+        <span class="total-label"><i class="fas fa-indian-rupee-sign"></i> Estimated Total</span>
+        <span class="total-amount" id="calc-total">₹40,000</span>
+        <p class="total-note">*Estimate only. Final price based on confirmed requirements. GST applicable as per norms.</p>
+        <div class="calc-breakdown" id="calc-breakdown"></div>
+        <div style="margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <a href="booking.html" class="btn btn-primary"><i class="fas fa-calendar-check"></i> Book Now</a>
+          <a href="https://wa.me/918870007991?text=Hello, I need a price quote for my event at Sree Ganesha Mahal." target="_blank" class="btn btn-outline"><i class="fab fa-whatsapp"></i> Get Custom Quote</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAYMENT INFO -->
+<section class="section-pad" style="background:var(--ivory);">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:28px;">
+      <div class="reveal stagger-1" style="background:var(--white);border:1px solid var(--ivory-deeper);border-top:3px solid var(--gold);border-radius:var(--radius-lg);padding:32px;text-align:center;">
+        <i class="fas fa-hand-holding-rupee" style="font-size:2rem;color:var(--gold);margin-bottom:16px;display:block;"></i>
+        <h3 style="color:var(--crimson);margin-bottom:10px;">Advance Booking</h3>
+        <p style="color:var(--text-mid);font-size:0.95rem;">Minimum ₹25,000 advance to confirm your booking. Adjusted in final bill.</p>
+      </div>
+      <div class="reveal stagger-2" style="background:var(--white);border:1px solid var(--ivory-deeper);border-top:3px solid var(--gold);border-radius:var(--radius-lg);padding:32px;text-align:center;">
+        <i class="fas fa-credit-card" style="font-size:2rem;color:var(--gold);margin-bottom:16px;display:block;"></i>
+        <h3 style="color:var(--crimson);margin-bottom:10px;">Payment Methods</h3>
+        <p style="color:var(--text-mid);font-size:0.95rem;">Cash, UPI (GPay/PhonePe/Paytm), NEFT/RTGS, Cheque. Receipts issued for all payments.</p>
+      </div>
+      <div class="reveal stagger-3" style="background:var(--white);border:1px solid var(--ivory-deeper);border-top:3px solid var(--gold);border-radius:var(--radius-lg);padding:32px;text-align:center;">
+        <i class="fas fa-rotate-left" style="font-size:2rem;color:var(--gold);margin-bottom:16px;display:block;"></i>
+        <h3 style="color:var(--crimson);margin-bottom:10px;">Cancellation Policy</h3>
+        <p style="color:var(--text-mid);font-size:0.95rem;">60+ days: 80% refund. 30–60 days: 50%. 15–30 days: 25%. Under 15 days: no refund.</p>
+      </div>
+      <div class="reveal stagger-4" style="background:var(--white);border:1px solid var(--ivory-deeper);border-top:3px solid var(--gold);border-radius:var(--radius-lg);padding:32px;text-align:center;">
+        <i class="fas fa-calendar-xmark" style="font-size:2rem;color:var(--gold);margin-bottom:16px;display:block;"></i>
+        <h3 style="color:var(--crimson);margin-bottom:10px;">Date Change</h3>
+        <p style="color:var(--text-mid);font-size:0.95rem;">One date change allowed (subject to availability) with ₹5,000 rescheduling fee.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner">
+      <span class="label">Ready to Book?</span>
+      <h2>Secure Your Date Today</h2>
+      <div class="ornament"><span>✦</span></div>
+      <p>Popular auspicious dates fill up fast. Don't miss your preferred muhurtham.</p>
+      <div class="cta-btns">
+        <a href="booking.html" class="btn btn-primary btn-lg"><i class="fas fa-calendar-check"></i> Book Now</a>
+        <a href="contact.html" class="btn btn-outline btn-lg"><i class="fas fa-phone"></i> Talk to Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo-name">Sree Ganesha Mahal</span>
+        <span class="logo-tagline">Tirunelveli's Premier Wedding Venue</span>
+        <p>Creating magical moments for over 15 years in Tirunelveli.</p>
+        <div class="footer-social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a><a href="https://wa.me/918870007991"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Quick Links</h4><ul>
+        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+        <li><a href="events.html"><i class="fas fa-chevron-right"></i> Events</a></li>
+        <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+        <li><a href="booking.html"><i class="fas fa-chevron-right"></i> Book Now</a></li>
+        <li><a href="faq.html"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Events</h4><ul>
+        <li><a href="events.html"><i class="fas fa-chevron-right"></i> Wedding</a></li>
+        <li><a href="events.html"><i class="fas fa-chevron-right"></i> Reception</a></li>
+        <li><a href="events.html"><i class="fas fa-chevron-right"></i> Religious</a></li>
+        <li><a href="events.html"><i class="fas fa-chevron-right"></i> Corporate</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Contact</h4>
+        <div class="footer-contact-item"><i class="fas fa-phone"></i><span><a href="tel:+918870007991" style="color:rgba(255,255,255,0.65);">+91 88700 07991</a></span></div>
+        <div class="footer-contact-item"><i class="fas fa-location-dot"></i><span>45, Temple Street, Palayamkottai, Tirunelveli – 627002</span></div>
+        <div class="footer-contact-item"><i class="fas fa-clock"></i><span>Mon–Sat, 9 AM – 7 PM</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="container"><div class="footer-bottom">
+    <p>© 2025 Sree Ganesha Mahal. All Rights Reserved.</p>
+  </div></div>
+</footer>
+
+<a href="https://wa.me/918870007991" class="whatsapp-float" target="_blank">
+  <i class="fab fa-whatsapp"></i><span class="whatsapp-tooltip">Get a Quote</span>
+</a>
+<div id="toast" class="toast"></div>
+
+<script src="js/main.js"></script>
+<script src="js/price-calculator.js"></script>
+<script>
+// Load pricing packages from JSON
+async function loadPricingPackages() {
+  const grid = document.getElementById('pricingGrid');
+  if (!grid) return;
+  try {
+    const res = await fetch('data/pricing.json');
+    const data = await res.json();
+    grid.innerHTML = data.packages.map(pkg => `
+      <div class="pricing-card ${pkg.popular ? 'popular' : ''} reveal">
+        <div class="pricing-header ${pkg.popular ? 'gold-bg' : ''}">
+          ${pkg.popular ? '<span class="popular-badge">⭐ Most Popular</span>' : ''}
+          <h3 style="${pkg.popular ? 'color:var(--white)' : 'color:var(--crimson)'}">${pkg.name}</h3>
+          <p>${pkg.subtitle}</p>
+        </div>
+        <div class="pricing-price">
+          <span class="amount">₹${pkg.price.toLocaleString('en-IN')}</span>
+          <span class="capacity">${pkg.capacity} · ${pkg.duration}</span>
+        </div>
+        <ul class="pricing-features">
+          ${pkg.inclusions.map(f => `<li><i class="fas fa-check"></i> ${f}</li>`).join('')}
+          ${pkg.exclusions.map(f => `<li style="opacity:0.5;text-decoration:line-through;"><i class="fas fa-times"></i> ${f}</li>`).join('')}
+        </ul>
+        <div class="pricing-footer">
+          <a href="booking.html" class="btn ${pkg.popular ? 'btn-crimson' : 'btn-primary'}" style="width:100%;justify-content:center;">
+            <i class="fas fa-calendar-check"></i> Book ${pkg.name}
+          </a>
+        </div>
+      </div>
+    `).join('');
+    if (window.initScrollReveal) window.initScrollReveal();
+  } catch(e) { console.warn('Could not load pricing', e); }
+}
+document.addEventListener('DOMContentLoaded', loadPricingPackages);
+</script>
+</body>
+</html>

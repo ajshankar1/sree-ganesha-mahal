@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "name": "Priya & Karthik",
+    "event_type": "Wedding",
+    "event_date": "February 2024",
+    "rating": 5,
+    "photo": "images/testimonials/t1.jpg",
+    "initials": "PK",
+    "review": "Sree Ganesha Mahal made our wedding truly unforgettable. The hall was beautifully decorated, the staff were extremely helpful and professional. Every detail was perfect. We received so many compliments from our guests about the venue. Highly recommend for any grand celebration!",
+    "location": "Tirunelveli"
+  },
+  {
+    "id": 2,
+    "name": "Meenakshi Sundaram",
+    "event_type": "Reception",
+    "event_date": "March 2024",
+    "rating": 5,
+    "photo": "images/testimonials/t2.jpg",
+    "initials": "MS",
+    "review": "We hosted our daughter's wedding reception here and it was absolutely magnificent. The AC hall kept everyone comfortable, the lighting was stunning, and the parking was very convenient. The management team went above and beyond to ensure everything was perfect. A truly royal experience!",
+    "location": "Tirunelveli"
+  },
+  {
+    "id": 3,
+    "name": "Rajesh Murugan",
+    "event_type": "Upanayanam",
+    "event_date": "January 2024",
+    "rating": 5,
+    "photo": "images/testimonials/t3.jpg",
+    "initials": "RM",
+    "review": "The yagnashala setup for my son's Upanayanam was perfect. The priests had ample space, the family was comfortably seated, and the dining arrangements were excellent. The staff maintained cleanliness throughout the event. Very satisfied with the overall experience.",
+    "location": "Palayamkottai"
+  },
+  {
+    "id": 4,
+    "name": "Lakshmi Anand",
+    "event_type": "Birthday Party",
+    "event_date": "December 2023",
+    "rating": 4,
+    "photo": "images/testimonials/t4.jpg",
+    "initials": "LA",
+    "review": "Organized my mother's 60th birthday here. The decorations were beautiful, the hall was spacious, and the catering service they arranged was delicious. The team was responsive and made sure everything was arranged as we discussed. Great value for money!",
+    "location": "Tirunelveli"
+  },
+  {
+    "id": 5,
+    "name": "Venkatesh & Kavitha",
+    "event_type": "Engagement",
+    "event_date": "November 2023",
+    "rating": 5,
+    "photo": "images/testimonials/t5.jpg",
+    "initials": "VK",
+    "review": "Our engagement ceremony was everything we dreamed of. The floral decorations were breathtaking, the bridal room was well-equipped, and the stage setup was gorgeous. The management team coordinated beautifully with our decoration team. We will definitely be back for our wedding!",
+    "location": "Nagercoil"
+  },
+  {
+    "id": 6,
+    "name": "Dr. Selvaraj",
+    "event_type": "Conference",
+    "event_date": "October 2023",
+    "rating": 4,
+    "photo": "images/testimonials/t6.jpg",
+    "initials": "DS",
+    "review": "Conducted a medical conference for 250 doctors. The AV equipment was excellent, the PA system crystal clear, and the air conditioning worked perfectly throughout the day. The refreshment arrangements were also good. A professional venue for corporate events.",
+    "location": "Tirunelveli"
+  }
+]

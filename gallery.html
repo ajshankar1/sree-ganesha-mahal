@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photo Gallery | Sree Ganesha Mahal</title>
+  <meta name="description" content="Browse our photo gallery of weddings, receptions, and celebrations hosted at Sree Ganesha Mahal, Tirunelveli.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<div class="top-bar"><div class="container">
+  <div class="top-bar-info">
+    <a href="tel:+918870007991"><i class="fas fa-phone"></i> +91 88700 07991</a>
+    <a href="mailto:sreeganesamahal@gmail.com"><i class="fas fa-envelope"></i> sreeganesamahal@gmail.com</a>
+  </div>
+  <div class="top-bar-social">
+    <a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="https://wa.me/918870007991"><i class="fab fa-whatsapp"></i></a>
+  </div>
+</div></div>
+<nav class="navbar"><div class="container">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">SG</div>
+    <div class="nav-logo-text"><span class="name">Sree Ganesha Mahal</span><span class="tagline">Tirunelveli's Premier Venue</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a><a href="about.html">About</a><a href="events.html">Events</a>
+    <a href="facilities.html">Facilities</a><a href="gallery.html" class="active">Gallery</a>
+    <a href="pricing.html">Pricing</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a>
+    <a href="booking.html" class="btn btn-crimson nav-cta">Book Now</a>
+  </div>
+  <button class="nav-toggle"><span></span><span></span><span></span></button>
+</div></nav>
+
+<section class="page-hero">
+  <div class="page-hero-content container">
+    <span class="label"><i class="fas fa-images"></i> Our Gallery</span>
+    <h1>Glimpses of Grand Celebrations</h1>
+    <p>Every photo tells a story of joy, tradition, and unforgettable memories</p>
+    <nav class="breadcrumb"><a href="index.html">Home</a><i class="fas fa-chevron-right"></i><span>Gallery</span></nav>
+  </div>
+</section>
+
+<section class="section-pad" style="background:var(--ivory);">
+  <div class="container">
+    <!-- FILTER BUTTONS -->
+    <!-- HOW TO ADD CATEGORIES: Add a new button with data-filter="your-category" -->
+    <div class="gallery-filters reveal">
+      <button class="filter-btn active" data-filter="all">All Photos</button>
+      <button class="filter-btn" data-filter="wedding">Weddings</button>
+      <button class="filter-btn" data-filter="reception">Receptions</button>
+      <button class="filter-btn" data-filter="engagement">Engagements</button>
+      <button class="filter-btn" data-filter="decorations">Decorations</button>
+      <button class="filter-btn" data-filter="dining">Dining</button>
+      <button class="filter-btn" data-filter="stage">Stage Setup</button>
+      <button class="filter-btn" data-filter="lighting">Lighting</button>
+    </div>
+    <!-- GALLERY GRID — Images loaded from gallery.js -->
+    <!-- HOW TO ADD IMAGES: Add entries in /js/gallery.js in the galleryImages array -->
+    <div class="gallery-grid" id="galleryGrid">
+      <div style="grid-column:1/-1;text-align:center;padding:48px;">
+        <div class="spinner"></div>
+        <p style="margin-top:16px;color:var(--text-light);">Loading gallery...</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO SECTION -->
+<section class="section-pad" style="background:var(--ivory-dark);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label"><i class="fas fa-video"></i> Video Gallery</span>
+      <h2>Watch Our Events Come to Life</h2>
+      <div class="ornament"><span>✦</span></div>
+    </div>
+    <!-- HOW TO ADD VIDEOS: Place .mp4 files in /videos/ folder and add <video> tags below -->
+    <div class="video-grid">
+      <div class="video-card reveal stagger-1">
+        <video src="videos/wedding-highlights.mp4" poster="images/gallery/wedding-1.jpg" preload="none"></video>
+        <div class="video-card-overlay">
+          <div class="play-btn"><i class="fas fa-play"></i></div>
+        </div>
+        <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.7));padding:16px;">
+          <p style="color:var(--white);font-family:var(--font-ui);font-size:0.85rem;">Wedding Highlights 2024</p>
+        </div>
+      </div>
+      <div class="video-card reveal stagger-2">
+        <video src="videos/reception-tour.mp4" poster="images/gallery/reception-1.jpg" preload="none"></video>
+        <div class="video-card-overlay">
+          <div class="play-btn"><i class="fas fa-play"></i></div>
+        </div>
+        <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.7));padding:16px;">
+          <p style="color:var(--white);font-family:var(--font-ui);font-size:0.85rem;">Reception Hall Tour</p>
+        </div>
+      </div>
+      <div class="video-card reveal stagger-3">
+        <video src="videos/venue-walkthrough.mp4" poster="images/hero/about-hall.jpg" preload="none"></video>
+        <div class="video-card-overlay">
+          <div class="play-btn"><i class="fas fa-play"></i></div>
+        </div>
+        <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.7));padding:16px;">
+          <p style="color:var(--white);font-family:var(--font-ui);font-size:0.85rem;">Venue Walkthrough</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close" id="lightboxClose">&times;</span>
+  <span class="lightbox-nav lightbox-prev" id="lightboxPrev"><i class="fas fa-chevron-left"></i></span>
+  <img src="" alt="" id="lightboxImg">
+  <span class="lightbox-nav lightbox-next" id="lightboxNext"><i class="fas fa-chevron-right"></i></span>
+  <div id="lightboxCaption" style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.8);font-family:var(--font-ui);font-size:0.85rem;"></div>
+</div>
+
+<section class="cta-section">
+  <div class="container"><div class="cta-inner">
+    <span class="label">Your Celebration Next?</span>
+    <h2>Create Your Own Gallery</h2>
+    <div class="ornament"><span>✦</span></div>
+    <p>Book Sree Ganesha Mahal for your wedding and add your photos to our collection of grand memories.</p>
+    <div class="cta-btns">
+      <a href="booking.html" class="btn btn-primary btn-lg"><i class="fas fa-calendar-check"></i> Book Your Event</a>
+      <a href="https://wa.me/918870007991" target="_blank" class="btn btn-outline btn-lg"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+    </div>
+  </div></div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo-name">Sree Ganesha Mahal</span><span class="logo-tagline">Tirunelveli's Premier Wedding Venue</span>
+        <p>Creating magical moments for over 15 years in Tirunelveli.</p>
+        <div class="footer-social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a><a href="https://wa.me/918870007991"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Quick Links</h4><ul>
+        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+        <li><a href="events.html"><i class="fas fa-chevron-right"></i> Events</a></li>
+        <li><a href="pricing.html"><i class="fas fa-chevron-right"></i> Pricing</a></li>
+        <li><a href="booking.html"><i class="fas fa-chevron-right"></i> Book Now</a></li>
+        <li><a href="faq.html"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Gallery</h4><ul>
+        <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Wedding Photos</a></li>
+        <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Reception Photos</a></li>
+        <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Decoration Ideas</a></li>
+        <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Venue Tour</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Contact</h4>
+        <div class="footer-contact-item"><i class="fas fa-phone"></i><span><a href="tel:+918870007991" style="color:rgba(255,255,255,0.65);">+91 88700 07991</a></span></div>
+        <div class="footer-contact-item"><i class="fas fa-location-dot"></i><span>45, Temple Street, Palayamkottai, Tirunelveli</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="container"><div class="footer-bottom"><p>© 2025 Sree Ganesha Mahal. All Rights Reserved.</p></div></div>
+</footer>
+
+<a href="https://wa.me/918870007991" class="whatsapp-float" target="_blank">
+  <i class="fab fa-whatsapp"></i><span class="whatsapp-tooltip">Enquire Now</span>
+</a>
+
+<script src="js/main.js"></script>
+<script src="js/gallery.js"></script>
+<script>
+// Video play/pause toggle
+document.querySelectorAll('.video-card').forEach(card => {
+  const overlay = card.querySelector('.video-card-overlay');
+  const video = card.querySelector('video');
+  if (!overlay || !video) return;
+  overlay.addEventListener('click', () => {
+    if (video.paused) { video.play(); overlay.style.opacity = '0'; }
+    else { video.pause(); overlay.style.opacity = '1'; }
+  });
+  video.addEventListener('ended', () => { overlay.style.opacity = '1'; });
+});
+</script>
+</body>
+</html>

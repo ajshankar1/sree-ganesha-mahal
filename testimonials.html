@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testimonials | Sree Ganesha Mahal Tirunelveli</title>
+  <meta name="description" content="Read reviews from families who celebrated at Sree Ganesha Mahal — Tirunelveli's most trusted wedding venue.">
+  <link rel="stylesheet" href="css/styles.css"><link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<div class="top-bar"><div class="container">
+  <div class="top-bar-info"><a href="tel:+918870007991"><i class="fas fa-phone"></i> +91 88700 07991</a></div>
+  <div class="top-bar-social"><a href="https://wa.me/918870007991"><i class="fab fa-whatsapp"></i></a></div>
+</div></div>
+<nav class="navbar"><div class="container">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">SG</div>
+    <div class="nav-logo-text"><span class="name">Sree Ganesha Mahal</span><span class="tagline">Tirunelveli's Premier Venue</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a><a href="about.html">About</a><a href="events.html">Events</a>
+    <a href="facilities.html">Facilities</a><a href="gallery.html">Gallery</a>
+    <a href="pricing.html">Pricing</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a>
+    <a href="booking.html" class="btn btn-crimson nav-cta">Book Now</a>
+  </div>
+  <button class="nav-toggle"><span></span><span></span><span></span></button>
+</div></nav>
+
+<section class="page-hero">
+  <div class="page-hero-content container">
+    <span class="label"><i class="fas fa-star"></i> Reviews</span>
+    <h1>What Our Families Say</h1>
+    <p>Real stories from real celebrations at Sree Ganesha Mahal</p>
+    <nav class="breadcrumb"><a href="index.html">Home</a><i class="fas fa-chevron-right"></i><span>Testimonials</span></nav>
+  </div>
+</section>
+
+<!-- GOOGLE RATING BANNER -->
+<section style="background:var(--crimson-dark);padding:32px 0;">
+  <div class="container" style="text-align:center;">
+    <div style="display:inline-flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:center;">
+      <span style="font-family:var(--font-heading);font-size:3rem;color:var(--gold-light);">4.9</span>
+      <div>
+        <div style="color:var(--gold-light);font-size:1.5rem;letter-spacing:3px;">★★★★★</div>
+        <div style="font-family:var(--font-ui);font-size:0.8rem;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;">200+ Google Reviews</div>
+      </div>
+      <a href="#" target="_blank" class="btn btn-primary">View on Google</a>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad" style="background:var(--ivory);">
+  <div class="container">
+    <!-- HOW TO ADD TESTIMONIALS: Update /data/testimonials.json -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:28px;" id="testimonialsGrid">
+      <div style="grid-column:1/-1;text-align:center;padding:40px;"><div class="spinner"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container"><div class="cta-inner">
+    <span class="label">Join Our Family</span>
+    <h2>Create Your Own Memory</h2>
+    <div class="ornament"><span>✦</span></div>
+    <p>Thousands of families have celebrated at Sree Ganesha Mahal. Your turn next.</p>
+    <div class="cta-btns">
+      <a href="booking.html" class="btn btn-primary btn-lg"><i class="fas fa-calendar-check"></i> Book Now</a>
+      <a href="https://wa.me/918870007991" target="_blank" class="btn btn-outline btn-lg"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    </div>
+  </div></div>
+</section>
+
+<footer>
+  <div class="container"><div class="footer-grid">
+    <div class="footer-brand"><span class="logo-name">Sree Ganesha Mahal</span><span class="logo-tagline">Tirunelveli's Premier Wedding Venue</span><p>15+ years of creating beautiful celebrations.</p>
+      <div class="footer-social"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="https://wa.me/918870007991"><i class="fab fa-whatsapp"></i></a></div>
+    </div>
+    <div class="footer-col"><h4>Quick Links</h4><ul>
+      <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+      <li><a href="pricing.html"><i class="fas fa-chevron-right"></i> Pricing</a></li>
+      <li><a href="booking.html"><i class="fas fa-chevron-right"></i> Book Now</a></li>
+      <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Contact</h4>
+      <div class="footer-contact-item"><i class="fas fa-phone"></i><span><a href="tel:+918870007991" style="color:rgba(255,255,255,0.65);">+91 88700 07991</a></span></div>
+      <div class="footer-contact-item"><i class="fas fa-location-dot"></i><span>45, Temple Street, Palayamkottai, Tirunelveli</span></div>
+    </div>
+  </div></div>
+  <div class="container"><div class="footer-bottom"><p>© 2025 Sree Ganesha Mahal. All Rights Reserved.</p></div></div>
+</footer>
+<a href="https://wa.me/918870007991" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<script src="js/main.js"></script>
+<script>
+async function loadTestimonials() {
+  const grid = document.getElementById('testimonialsGrid');
+  try {
+    const res = await fetch('data/testimonials.json');
+    const items = await res.json();
+    grid.innerHTML = items.map(t => `
+      <div class="reveal" style="background:var(--white);border:1px solid var(--ivory-deeper);border-radius:var(--radius-lg);padding:32px;box-shadow:var(--shadow);">
+        <div style="color:var(--gold);font-size:1.2rem;letter-spacing:3px;margin-bottom:16px;">${'★'.repeat(t.rating)}</div>
+        <p style="font-style:italic;color:var(--text-mid);font-size:1.05rem;line-height:1.8;margin-bottom:24px;">"${t.review}"</p>
+        <div style="display:flex;align-items:center;gap:14px;border-top:1px solid var(--ivory-deeper);padding-top:20px;">
+          <div style="width:48px;height:48px;border-radius:50%;background:var(--crimson);color:var(--white);display:flex;align-items:center;justify-content:center;font-family:var(--font-ui);font-weight:600;font-size:0.85rem;flex-shrink:0;">${t.initials}</div>
+          <div>
+            <span style="font-family:var(--font-heading);color:var(--text-dark);display:block;">${t.name}</span>
+            <span style="font-family:var(--font-ui);font-size:0.78rem;color:var(--gold);">${t.event_type} · ${t.event_date}</span>
+            <span style="font-family:var(--font-ui);font-size:0.72rem;color:var(--text-light);display:block;">${t.location}</span>
+          </div>
+        </div>
+      </div>
+    `).join('');
+    if (window.initScrollReveal) window.initScrollReveal();
+  } catch(e) {}
+}
+document.addEventListener('DOMContentLoaded', loadTestimonials);
+</script>
+</body>
+</html>

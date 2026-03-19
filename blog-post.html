@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="postMetaTitle">Blog Post | Sree Ganesha Mahal</title>
+  <meta name="description" id="postMetaDesc" content="Wedding tips and inspiration from Sree Ganesha Mahal, Tirunelveli.">
+  <link rel="stylesheet" href="css/styles.css"><link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .post-content h2 { font-family:var(--font-heading);color:var(--crimson);margin:32px 0 16px;font-size:1.5rem; }
+    .post-content p { color:var(--text-mid);font-size:1.1rem;line-height:1.9;margin-bottom:20px; }
+    .post-content ul { padding-left:24px;margin-bottom:20px; }
+    .post-content ul li { color:var(--text-mid);font-size:1.05rem;margin-bottom:8px;list-style:disc; }
+  </style>
+</head>
+<body>
+<div class="top-bar"><div class="container">
+  <div class="top-bar-info">
+    <a href="tel:+918870007991"><i class="fas fa-phone"></i> +91 88700 07991</a>
+    <a href="mailto:sreeganesamahal@gmail.com"><i class="fas fa-envelope"></i> sreeganesamahal@gmail.com</a>
+  </div>
+  <div class="top-bar-social">
+    <a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="https://wa.me/918870007991"><i class="fab fa-whatsapp"></i></a>
+  </div>
+</div></div>
+<nav class="navbar"><div class="container">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">SG</div>
+    <div class="nav-logo-text"><span class="name">Sree Ganesha Mahal</span><span class="tagline">Tirunelveli's Premier Venue</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a><a href="about.html">About</a><a href="events.html">Events</a>
+    <a href="gallery.html">Gallery</a><a href="pricing.html">Pricing</a>
+    <a href="blog.html" class="active">Blog</a><a href="contact.html">Contact</a>
+    <a href="booking.html" class="btn btn-crimson nav-cta">Book Now</a>
+  </div>
+  <button class="nav-toggle"><span></span><span></span><span></span></button>
+</div></nav>
+
+<!-- POST HERO — Loaded dynamically -->
+<div id="postHero" style="min-height:400px;background:var(--crimson-dark);position:relative;overflow:hidden;">
+  <div id="postHeroBg" style="position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(0.3);"></div>
+  <div style="position:absolute;inset:0;background:rgba(90,16,16,0.5);"></div>
+  <div class="container" style="position:relative;z-index:1;padding:80px 24px;">
+    <nav class="breadcrumb" style="justify-content:flex-start;margin-bottom:20px;">
+      <a href="index.html">Home</a><i class="fas fa-chevron-right"></i>
+      <a href="blog.html">Blog</a><i class="fas fa-chevron-right"></i>
+      <span id="postBreadcrumb">Loading...</span>
+    </nav>
+    <div id="postHeroContent">
+      <div class="spinner" style="margin:0;"></div>
+    </div>
+  </div>
+</div>
+
+<section class="section-pad" style="background:var(--ivory);">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 340px;gap:56px;align-items:start;">
+      <!-- POST CONTENT -->
+      <div>
+        <div id="postBody" class="post-content">
+          <div style="text-align:center;padding:40px;"><div class="spinner"></div></div>
+        </div>
+        <!-- SHARE BUTTONS -->
+        <div style="margin-top:40px;padding-top:24px;border-top:1px solid var(--ivory-deeper);">
+          <p style="font-family:var(--font-ui);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-light);margin-bottom:12px;">Share this article</p>
+          <div style="display:flex;gap:10px;">
+            <a id="shareWa" href="#" target="_blank" class="btn btn-primary" style="padding:10px 20px;font-size:0.78rem;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <a id="shareFb" href="#" target="_blank" class="btn" style="background:#1877f2;color:#fff;border:none;padding:10px 20px;font-size:0.78rem;"><i class="fab fa-facebook-f"></i> Facebook</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div>
+        <!-- CTA CARD -->
+        <div style="background:linear-gradient(135deg,var(--crimson) 0%,var(--crimson-dark) 100%);border-radius:var(--radius-lg);padding:32px;text-align:center;margin-bottom:28px;">
+          <i class="fas fa-calendar-check" style="font-size:2rem;color:var(--gold-light);margin-bottom:16px;display:block;"></i>
+          <h3 style="font-family:var(--font-heading);color:var(--white);margin-bottom:10px;font-size:1.2rem;">Plan Your Wedding</h3>
+          <p style="color:rgba(255,255,255,0.8);font-size:0.9rem;margin-bottom:20px;">Check dates and book Sree Ganesha Mahal for your celebration.</p>
+          <a href="booking.html" class="btn btn-primary" style="width:100%;justify-content:center;">Book Now</a>
+        </div>
+        <!-- RECENT POSTS -->
+        <div style="background:var(--white);border:1px solid var(--ivory-deeper);border-radius:var(--radius-lg);padding:24px;">
+          <h4 style="font-family:var(--font-heading);color:var(--crimson);margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--ivory-deeper);">More Articles</h4>
+          <div id="recentPosts"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo-name">Sree Ganesha Mahal</span><span class="logo-tagline">Tirunelveli's Premier Wedding Venue</span>
+        <p>Creating magical moments for over 15 years in Tirunelveli.</p>
+        <div class="footer-social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a><a href="https://wa.me/918870007991"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Quick Links</h4><ul>
+        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+        <li><a href="blog.html"><i class="fas fa-chevron-right"></i> Blog</a></li>
+        <li><a href="booking.html"><i class="fas fa-chevron-right"></i> Book Now</a></li>
+        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Events</h4><ul>
+        <li><a href="events.html"><i class="fas fa-chevron-right"></i> Wedding</a></li>
+        <li><a href="events.html"><i class="fas fa-chevron-right"></i> Reception</a></li>
+        <li><a href="events.html"><i class="fas fa-chevron-right"></i> Religious</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Contact</h4>
+        <div class="footer-contact-item"><i class="fas fa-phone"></i><span><a href="tel:+918870007991" style="color:rgba(255,255,255,0.65);">+91 88700 07991</a></span></div>
+        <div class="footer-contact-item"><i class="fas fa-location-dot"></i><span>45, Temple Street, Palayamkottai, Tirunelveli</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="container"><div class="footer-bottom"><p>© 2025 Sree Ganesha Mahal. All Rights Reserved.</p></div></div>
+</footer>
+
+<a href="https://wa.me/918870007991" class="whatsapp-float" target="_blank">
+  <i class="fab fa-whatsapp"></i><span class="whatsapp-tooltip">Chat with us</span>
+</a>
+
+<script src="js/main.js"></script>
+<script>
+async function loadPost() {
+  const slug = new URLSearchParams(window.location.search).get('slug');
+  if (!slug) { window.location.href = 'blog.html'; return; }
+  try {
+    const res = await fetch('data/blog.json');
+    const posts = await res.json();
+    const post = posts.find(p => p.slug === slug);
+    if (!post) { window.location.href = 'blog.html'; return; }
+
+    // Update meta
+    document.title = post.title + ' | Sree Ganesha Mahal';
+    document.getElementById('postMetaTitle').textContent = document.title;
+    document.getElementById('postMetaDesc').content = post.short_description;
+    document.getElementById('postBreadcrumb').textContent = post.title.substring(0, 40) + '...';
+
+    // Hero
+    document.getElementById('postHeroBg').style.backgroundImage = `url('${post.image}')`;
+    document.getElementById('postHeroContent').innerHTML = `
+      <span style="display:inline-block;background:var(--gold);color:var(--text-dark);font-family:var(--font-ui);font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;padding:4px 14px;border-radius:20px;margin-bottom:16px;">${post.category}</span>
+      <h1 style="color:var(--white);font-size:clamp(1.6rem,3.5vw,2.8rem);max-width:700px;margin-bottom:20px;">${post.title}</h1>
+      <div style="display:flex;gap:24px;font-family:var(--font-ui);font-size:0.82rem;color:rgba(255,255,255,0.75);flex-wrap:wrap;">
+        <span><i class="fas fa-calendar-alt"></i> ${new Date(post.date).toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'})}</span>
+        <span><i class="fas fa-user"></i> ${post.author}</span>
+        ${post.tags ? '<span><i class="fas fa-tags"></i> ' + post.tags.slice(0,3).join(', ') + '</span>' : ''}
+      </div>
+    `;
+
+    // Content
+    document.getElementById('postBody').innerHTML = post.content;
+
+    // Share links
+    const pageUrl = encodeURIComponent(window.location.href);
+    const shareText = encodeURIComponent(post.title);
+    document.getElementById('shareWa').href = `https://wa.me/?text=${shareText}%20${pageUrl}`;
+    document.getElementById('shareFb').href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+
+    // Recent posts sidebar
+    const others = posts.filter(p => p.slug !== slug).slice(0, 3);
+    document.getElementById('recentPosts').innerHTML = others.map(p => `
+      <a href="blog-post.html?slug=${p.slug}" style="display:flex;gap:12px;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--ivory-deeper);text-decoration:none;">
+        <img src="${p.image}" alt="${p.title}" style="width:64px;height:64px;object-fit:cover;border-radius:4px;flex-shrink:0;">
+        <div>
+          <span style="font-family:var(--font-ui);font-size:0.7rem;color:var(--gold);text-transform:uppercase;letter-spacing:0.08em;">${p.category}</span>
+          <p style="font-family:var(--font-heading);font-size:0.88rem;color:var(--crimson);line-height:1.3;margin-top:2px;">${p.title.substring(0,60)}...</p>
+        </div>
+      </a>
+    `).join('');
+  } catch(e) { console.error(e); }
+}
+document.addEventListener('DOMContentLoaded', loadPost);
+</script>
+</body>
+</html>

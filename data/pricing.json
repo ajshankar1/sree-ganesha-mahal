@@ -1,0 +1,105 @@
+{
+  "packages": [
+    {
+      "id": "basic",
+      "name": "Basic Package",
+      "subtitle": "Perfect for intimate gatherings",
+      "price": 40000,
+      "capacity": "Up to 200 Guests",
+      "duration": "1 Day",
+      "popular": false,
+      "color": "silver",
+      "inclusions": [
+        "Main Hall (AC)",
+        "Basic Stage Decoration",
+        "Parking for 50 cars",
+        "Generator Backup",
+        "Basic Lighting",
+        "Bridal Room",
+        "Guest Toilets",
+        "Security Guard",
+        "Sweeping & Cleaning"
+      ],
+      "exclusions": [
+        "Catering",
+        "Dining Hall",
+        "Premium Decoration",
+        "Guest Rooms"
+      ]
+    },
+    {
+      "id": "standard",
+      "name": "Standard Package",
+      "subtitle": "Most popular choice",
+      "price": 65000,
+      "capacity": "Up to 400 Guests",
+      "duration": "1 Day",
+      "popular": true,
+      "color": "gold",
+      "inclusions": [
+        "Main Hall (AC) + Dining Hall",
+        "Premium Stage Decoration",
+        "Parking for 100 cars",
+        "Generator Backup",
+        "Designer Lighting",
+        "Bridal Room",
+        "2 Guest Rooms",
+        "Decoration Area",
+        "Security Guards (2)",
+        "Sweeping & Cleaning",
+        "Welcome Gate",
+        "Floral Decorations"
+      ],
+      "exclusions": [
+        "Catering",
+        "Extra Guest Rooms",
+        "Videography"
+      ]
+    },
+    {
+      "id": "premium",
+      "name": "Premium Package",
+      "subtitle": "The ultimate grand celebration",
+      "price": 90000,
+      "capacity": "Up to 700 Guests",
+      "duration": "2 Days",
+      "popular": false,
+      "color": "crimson",
+      "inclusions": [
+        "Full Venue (All Halls)",
+        "Luxury Stage Decoration",
+        "Parking for 200 cars",
+        "Generator Backup",
+        "Designer LED Lighting",
+        "Bridal Suite",
+        "5 Guest Rooms",
+        "Decoration Area",
+        "Security Team",
+        "Housekeeping Staff",
+        "Grand Welcome Gate",
+        "Full Floral Package",
+        "Photo Backdrop",
+        "Mandapam Decoration",
+        "Catering Space Setup"
+      ],
+      "exclusions": [
+        "Catering (can be arranged)",
+        "Photographer/Videographer"
+      ]
+    }
+  ],
+  "calculator": {
+    "tiers": [
+      { "max_guests": 200, "price": 40000, "label": "Up to 200 guests" },
+      { "max_guests": 400, "price": 65000, "label": "201–400 guests" },
+      { "max_guests": 700, "price": 90000, "label": "401–700 guests" },
+      { "max_guests": 9999, "price": 125000, "label": "700+ guests" }
+    ],
+    "addons": [
+      { "id": "decoration", "name": "Premium Decoration", "price": 20000, "unit": "flat" },
+      { "id": "dining", "name": "Dining Hall", "price": 10000, "unit": "flat" },
+      { "id": "rooms", "name": "Guest Rooms", "price": 2000, "unit": "per room" },
+      { "id": "catering", "name": "Catering", "price": 350, "unit": "per plate" }
+    ]
+  }
+}
