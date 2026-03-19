@@ -46,7 +46,7 @@ function renderCalendar(year, month) {
     day.style.cursor = 'pointer';
     day.addEventListener('click', () => {
       const date = day.dataset.date;
-      window.location.href = `booking.html?date=${date}`;
+      const dateInput = document.getElementById("event-date"); if(dateInput){ dateInput.value = date; };
     });
   });
 }
