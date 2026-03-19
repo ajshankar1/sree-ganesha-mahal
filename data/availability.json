@@ -12,14 +12,10 @@
     "2026-10-25", "2026-10-30",
     "2026-11-01", "2026-11-11", "2026-11-13", "2026-11-15", "2026-11-16", "2026-11-20", "2026-11-29",
     "2026-12-04", "2026-12-06", "2026-12-10", "2026-12-13", "2026-12-14"
-  ],
-  "booked": [],
-  "tentative": []
+  ]
 }
 ```
 
-**4.** Ctrl+S (Save)
-
-**5.** CMD mein push karo:
+**Ctrl+S** → Push:
 ```
-cd "C:\Users\Welcome\Desktop\SGM" && git add . && git commit -m "add muhurat dates 2026" && git push origin main
+cd "C:\Users\Welcome\Desktop\SGM" && git add . && git commit -m "simplify availability" && git push origin main
