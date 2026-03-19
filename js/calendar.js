@@ -108,3 +108,4 @@ function initCalendar() {
 }
 
 document.addEventListener('DOMContentLoaded', initCalendar);
+
