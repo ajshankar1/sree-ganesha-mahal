@@ -44,20 +44,16 @@
 
 <section class="section-pad" style="background:var(--ivory);">
   <div class="container">
-    <!-- FILTER BUTTONS -->
-    <!-- HOW TO ADD CATEGORIES: Add a new button with data-filter="your-category" -->
     <div class="gallery-filters reveal">
       <button class="filter-btn active" data-filter="all">All Photos</button>
       <button class="filter-btn" data-filter="wedding">Weddings</button>
       <button class="filter-btn" data-filter="reception">Receptions</button>
       <button class="filter-btn" data-filter="engagement">Engagements</button>
-      <button class="filter-btn" data-filter="decorations">Decorations</button>
-      <button class="filter-btn" data-filter="dining">Dining</button>
-      <button class="filter-btn" data-filter="stage">Stage Setup</button>
-      <button class="filter-btn" data-filter="lighting">Lighting</button>
+      <!-- <button class="filter-btn" data-filter="decorations">Decorations</button> -->
+      <!-- <button class="filter-btn" data-filter="dining">Dining</button> -->
+      <!-- <button class="filter-btn" data-filter="stage">Stage Setup</button> -->
+      <!-- <button class="filter-btn" data-filter="lighting">Lighting</button> -->
     </div>
-    <!-- GALLERY GRID — Images loaded from gallery.js -->
-    <!-- HOW TO ADD IMAGES: Add entries in /js/gallery.js in the galleryImages array -->
     <div class="gallery-grid" id="galleryGrid">
       <div style="grid-column:1/-1;text-align:center;padding:48px;">
         <div class="spinner"></div>
@@ -75,10 +71,9 @@
       <h2>Watch Our Events Come to Life</h2>
       <div class="ornament"><span>✦</span></div>
     </div>
-    <!-- HOW TO ADD VIDEOS: Place .mp4 files in /videos/ folder and add <video> tags below -->
     <div class="video-grid">
       <div class="video-card reveal stagger-1">
-        <video src="videos/wedding-highlights.mp4" poster="images/gallery/wedding-1.jpg" preload="none"></video>
+        <video src="videos/wedding-highlights.mp4" poster="images/events/wedding.jpg" preload="none"></video>
         <div class="video-card-overlay">
           <div class="play-btn"><i class="fas fa-play"></i></div>
         </div>
@@ -87,7 +82,7 @@
         </div>
       </div>
       <div class="video-card reveal stagger-2">
-        <video src="videos/reception-tour.mp4" poster="images/gallery/reception-1.jpg" preload="none"></video>
+        <video src="videos/reception-tour.mp4" poster="images/events/reception.jpg" preload="none"></video>
         <div class="video-card-overlay">
           <div class="play-btn"><i class="fas fa-play"></i></div>
         </div>
@@ -96,7 +91,7 @@
         </div>
       </div>
       <div class="video-card reveal stagger-3">
-        <video src="videos/venue-walkthrough.mp4" poster="images/hero/about-hall.jpg" preload="none"></video>
+        <video src="videos/venue-walkthrough.mp4" poster="images/events/valaikappu.jpg" preload="none"></video>
         <div class="video-card-overlay">
           <div class="play-btn"><i class="fas fa-play"></i></div>
         </div>
@@ -170,7 +165,6 @@
 <script src="js/main.js"></script>
 <script src="js/gallery.js"></script>
 <script>
-// Video play/pause toggle
 document.querySelectorAll('.video-card').forEach(card => {
   const overlay = card.querySelector('.video-card-overlay');
   const video = card.querySelector('video');
