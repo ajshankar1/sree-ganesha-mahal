@@ -36,7 +36,7 @@
     "description": "Vibrant Mehendi ceremony with colorful decorations and traditional music, creating a festive pre-wedding atmosphere.",
     "default_capacity": 200,
     "base_price": 30000,
-    "image": "images/events/mehendi.jpg",
+    "image": "images/events/Mehandi.jpg",
     "features": ["Colorful Décor", "Seating Arrangement", "Music Setup", "Snacks Area"]
   },
   {
