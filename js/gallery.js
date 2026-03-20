@@ -9,7 +9,7 @@ const galleryImages = [
   { src: 'images/events/reception.jpg',     alt: 'Wedding Reception Hall',      category: 'reception' },
   { src: 'images/events/gettogether.jpg',   alt: 'Family Get Together',         category: 'reception' },
   { src: 'images/events/engagement.jpg',    alt: 'Engagement Ceremony',         category: 'engagement' },
-  { src: 'images/events/Mehandi.jpg',       alt: 'Mehendi Celebration',         category: 'engagement' },
+  { src: 'images/events/mehandi.jpg',       alt: 'Mehendi Celebration',         category: 'engagement' },
 ];
 
 let currentIndex = 0;
