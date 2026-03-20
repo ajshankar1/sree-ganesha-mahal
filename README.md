@@ -1,10 +1,5 @@
 # 🏛️ Sree Ganesha Mahal — Website
 
-## 🚀 DEPLOYMENT (Netlify)
-1. Zip the entire `sree-ganesha-mahal` folder
-2. Go to https://netlify.com → "Add new site" → "Deploy manually"
-3. Drag and drop the zip file
-4. Your site is live! ✅
 
 ---
 
