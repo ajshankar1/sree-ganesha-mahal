@@ -258,7 +258,6 @@ p { font-size: 1.1rem; }
   background-position: center;
   background-repeat: no-repeat;
   filter: brightness(0.4);
-  /* HOW TO CHANGE HERO IMAGE: Replace 'hero-main.jpg' with your image filename */
 }
 .hero-overlay {
   position: absolute;
@@ -469,6 +468,8 @@ p { font-size: 1.1rem; }
   box-shadow: var(--shadow);
   transition: var(--transition);
   border: 1px solid var(--ivory-deeper);
+  display: flex;
+  flex-direction: column;
 }
 .event-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
 .event-card-image {
@@ -476,6 +477,7 @@ p { font-size: 1.1rem; }
   background: var(--ivory-darker, #ddd);
   position: relative;
   overflow: hidden;
+  flex-shrink: 0;
 }
 .event-card-image img {
   width: 100%; height: 100%;
@@ -497,7 +499,12 @@ p { font-size: 1.1rem; }
   padding: 4px 12px;
   border-radius: 20px;
 }
-.event-card-body { padding: 24px; }
+.event-card-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
 .event-card-body h3 { color: var(--crimson); margin-bottom: 8px; font-size: 1.2rem; }
 .event-card-body p { color: var(--text-mid); font-size: 0.95rem; margin-bottom: 16px; }
 .event-price {
@@ -507,6 +514,7 @@ p { font-size: 1.1rem; }
   margin-bottom: 16px;
 }
 .event-price span { font-family: var(--font-ui); font-size: 0.8rem; color: var(--text-light); }
+.event-card-body > div:last-child { margin-top: auto; }
 
 /* === GALLERY GRID === */
 .gallery-filters {
@@ -1236,7 +1244,7 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: gap;
+  flex-wrap: wrap;
   gap: 12px;
 }
 .footer-bottom p { font-family: var(--font-ui); font-size: 0.8rem; }
