@@ -22,14 +22,12 @@ function initMobileNav() {
     links.classList.toggle('open');
     toggle.classList.toggle('open');
   });
-  // Close on outside click
   document.addEventListener('click', e => {
     if (!toggle.contains(e.target) && !links.contains(e.target)) {
       links.classList.remove('open');
       toggle.classList.remove('open');
     }
   });
-  // Close on nav link click
   links.querySelectorAll('a').forEach(a => {
     a.addEventListener('click', () => {
       links.classList.remove('open');
@@ -62,7 +60,6 @@ function initScrollReveal() {
     observer.observe(el);
   });
 
-  // Auto-add stagger classes to grid children
   document.querySelectorAll('.events-grid, .facilities-grid, .blog-grid, .pricing-grid').forEach(grid => {
     Array.from(grid.children).forEach((child, i) => {
       if (!child.classList.contains('reveal')) {
@@ -106,18 +103,10 @@ function initCounters() {
 function initPopup() {
   const overlay = document.getElementById('leadPopup');
   if (!overlay) return;
-
-  // Don't show if already dismissed in this session
   if (sessionStorage.getItem('popup-dismissed')) return;
 
-  const showPopup = () => {
-    overlay.classList.add('show');
-  };
+  setTimeout(() => overlay.classList.add('show'), 20000);
 
-  // Show after 20 seconds
-  setTimeout(showPopup, 20000);
-
-  // Close button
   const closeBtn = overlay.querySelector('.popup-close');
   if (closeBtn) {
     closeBtn.addEventListener('click', () => {
@@ -125,8 +114,6 @@ function initPopup() {
       sessionStorage.setItem('popup-dismissed', 'true');
     });
   }
-
-  // Close on overlay click
   overlay.addEventListener('click', e => {
     if (e.target === overlay) {
       overlay.classList.remove('show');
@@ -134,7 +121,6 @@ function initPopup() {
     }
   });
 
-  // Handle popup form submit
   const popupForm = document.getElementById('leadForm');
   if (popupForm) {
     popupForm.addEventListener('submit', e => {
@@ -154,7 +140,7 @@ function initPopup() {
   }
 }
 
-/* === SAVE LEAD (localStorage for static hosting) === */
+/* === SAVE LEAD === */
 function saveLead(data) {
   try {
     const leads = JSON.parse(localStorage.getItem('sgm_leads') || '[]');
@@ -176,7 +162,6 @@ function showToast(message, type = 'success') {
   }
   toast.textContent = message;
   toast.className = `toast ${type}`;
-  // Force reflow
   void toast.offsetWidth;
   toast.classList.add('show');
   setTimeout(() => toast.classList.remove('show'), 4000);
@@ -188,15 +173,13 @@ function initFaq() {
     q.addEventListener('click', () => {
       const item = q.closest('.faq-item');
       const isOpen = item.classList.contains('open');
-      // Close all
       document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-      // Open clicked (if was closed)
       if (!isOpen) item.classList.add('open');
     });
   });
 }
 
-/* === SMOOTH SCROLL for anchor links === */
+/* === SMOOTH SCROLL === */
 function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
@@ -209,11 +192,10 @@ function initSmoothScroll() {
   });
 }
 
-/* === IMAGE PLACEHOLDER (handles missing images gracefully) === */
+/* === IMAGE FALLBACKS === */
 function initImageFallbacks() {
   document.querySelectorAll('img').forEach(img => {
     img.addEventListener('error', function() {
-      // Replace with a gradient placeholder
       this.style.background = 'linear-gradient(135deg, #F0E8D5 0%, #E5D9C0 100%)';
       this.style.opacity = '0.6';
       this.removeAttribute('src');
@@ -221,7 +203,7 @@ function initImageFallbacks() {
   });
 }
 
-/* === TESTIMONIALS SLIDER === */
+/* === TESTIMONIALS SLIDER — FIXED === */
 function initTestimonialsSlider() {
   const track = document.querySelector('.testimonials-track');
   const dots = document.querySelectorAll('.t-dot');
@@ -232,17 +214,26 @@ function initTestimonialsSlider() {
   const total = cards.length;
   if (total <= 3) return;
 
+  function getPerView() {
+    return window.innerWidth < 768 ? 1 : 3;
+  }
+
   function goTo(index) {
     current = (index + total) % total;
-    const perView = window.innerWidth < 768 ? 1 : 3;
-    const offset = current * (100 / perView);
+    const perView = getPerView();
+    // Calculate card width including gap as percentage of track
+    const cardWidthPercent = 100 / perView;
+    const gapPercent = (28 / track.offsetWidth) * 100;
+    const offset = current * (cardWidthPercent + gapPercent);
     track.style.transform = `translateX(-${offset}%)`;
     dots.forEach((d, i) => d.classList.toggle('active', i === current));
   }
 
   dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
 
-  // Auto-advance
+  // Re-calculate on resize
+  window.addEventListener('resize', () => goTo(current));
+
   let timer = setInterval(() => goTo(current + 1), 4500);
   track.parentElement.addEventListener('mouseenter', () => clearInterval(timer));
   track.parentElement.addEventListener('mouseleave', () => {
@@ -257,7 +248,6 @@ async function loadHomeEvents() {
   try {
     const res = await fetch('data/events.json');
     const events = await res.json();
-    // Show first 6 events
     const shown = events.slice(0, 6);
     container.innerHTML = shown.map(ev => `
       <div class="event-card reveal">
@@ -276,7 +266,6 @@ async function loadHomeEvents() {
         </div>
       </div>
     `).join('');
-    // Re-run reveal for dynamically loaded items
     initScrollReveal();
   } catch (e) {
     console.warn('Could not load events:', e);
@@ -303,7 +292,6 @@ async function loadHomeTestimonials() {
         </div>
       </div>
     `).join('');
-    // Create dots
     const dotsContainer = document.querySelector('.testimonials-nav');
     if (dotsContainer) {
       dotsContainer.innerHTML = items.map((_, i) => `<span class="t-dot ${i===0?'active':''}"></span>`).join('');
@@ -351,10 +339,7 @@ function prefillFromUrl() {
   const event = params.get('event');
   if (event) {
     const sel = document.querySelector(`[data-event-id="${event}"]`);
-    if (sel) {
-      sel.classList.add('selected');
-      // Trigger next step if applicable
-    }
+    if (sel) sel.classList.add('selected');
   }
 }
 
@@ -369,8 +354,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initFaq();
   initSmoothScroll();
   initImageFallbacks();
-
-  // Page-specific loads
   loadHomeEvents();
   loadHomeTestimonials();
   loadHomeBlog();
