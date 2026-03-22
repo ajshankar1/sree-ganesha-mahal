@@ -1,6 +1,5 @@
 /* ============================================================
-   IGS CONVENTION CENTRE — Main JavaScript
-   (Updated from Sree Ganesha Mahal original)
+   SREE GANESHA MAHAL — Main JavaScript
    ============================================================ */
 
 /* === ACTIVE NAV LINK === */
@@ -48,9 +47,6 @@ function initNavbarScroll() {
 
 /* === SCROLL REVEAL === */
 function initScrollReveal() {
-  // Add js-loaded to body so animations.css activates reveal classes
-  document.body.classList.add('js-loaded');
-
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -75,18 +71,17 @@ function initScrollReveal() {
 
 /* === COUNTER ANIMATION === */
 function animateCounter(el) {
-  const target = parseFloat(el.dataset.target || el.textContent.replace(/[^\d.]/g, ''));
+  const target = parseInt(el.dataset.target || el.textContent.replace(/\D/g, ''));
   const suffix = el.dataset.suffix || '';
   const prefix = el.dataset.prefix || '';
   const duration = 1800;
   const start = performance.now();
   const easeOut = t => 1 - Math.pow(1 - t, 3);
-  const isDecimal = target % 1 !== 0;
 
   function step(now) {
     const progress = Math.min((now - start) / duration, 1);
-    const value = easeOut(progress) * target;
-    el.textContent = prefix + (isDecimal ? value.toFixed(1) : Math.floor(value).toLocaleString('en-IN')) + suffix;
+    const value = Math.floor(easeOut(progress) * target);
+    el.textContent = prefix + value.toLocaleString('en-IN') + suffix;
     if (progress < 1) requestAnimationFrame(step);
   }
   requestAnimationFrame(step);
@@ -109,7 +104,9 @@ function initPopup() {
   const overlay = document.getElementById('leadPopup');
   if (!overlay) return;
   if (sessionStorage.getItem('popup-dismissed')) return;
+
   setTimeout(() => overlay.classList.add('show'), 20000);
+
   const closeBtn = overlay.querySelector('.popup-close');
   if (closeBtn) {
     closeBtn.addEventListener('click', () => {
@@ -123,14 +120,34 @@ function initPopup() {
       sessionStorage.setItem('popup-dismissed', 'true');
     }
   });
+
   const popupForm = document.getElementById('leadForm');
   if (popupForm) {
     popupForm.addEventListener('submit', e => {
       e.preventDefault();
+      const data = {
+        name: popupForm.querySelector('[name="name"]').value,
+        phone: popupForm.querySelector('[name="phone"]').value,
+        event_date: popupForm.querySelector('[name="event_date"]').value,
+        source: 'Popup',
+        timestamp: new Date().toISOString()
+      };
+      saveLead(data);
       overlay.classList.remove('show');
       sessionStorage.setItem('popup-dismissed', 'true');
       showToast('Thank you! We will contact you soon.', 'success');
     });
+  }
+}
+
+/* === SAVE LEAD === */
+function saveLead(data) {
+  try {
+    const leads = JSON.parse(localStorage.getItem('sgm_leads') || '[]');
+    leads.push(data);
+    localStorage.setItem('sgm_leads', JSON.stringify(leads));
+  } catch (e) {
+    console.warn('Could not save lead:', e);
   }
 }
 
@@ -180,29 +197,43 @@ function initImageFallbacks() {
   document.querySelectorAll('img').forEach(img => {
     img.addEventListener('error', function() {
       this.style.background = 'linear-gradient(135deg, #F0E8D5 0%, #E5D9C0 100%)';
-      this.style.minHeight = '200px';
+      this.style.opacity = '0.6';
       this.removeAttribute('src');
     });
   });
 }
 
-/* === TESTIMONIALS SLIDER === */
+/* === TESTIMONIALS SLIDER — FIXED === */
 function initTestimonialsSlider() {
   const track = document.querySelector('.testimonials-track');
   const dots = document.querySelectorAll('.t-dot');
   if (!track || !dots.length) return;
+
   let current = 0;
   const cards = track.querySelectorAll('.testimonial-card');
   const total = cards.length;
   if (total <= 3) return;
+
+  function getPerView() {
+    return window.innerWidth < 768 ? 1 : 3;
+  }
+
   function goTo(index) {
     current = (index + total) % total;
-    const perView = window.innerWidth < 768 ? 1 : 3;
-    const offset = current * (100 / perView);
+    const perView = getPerView();
+    // Calculate card width including gap as percentage of track
+    const cardWidthPercent = 100 / perView;
+    const gapPercent = (28 / track.offsetWidth) * 100;
+    const offset = current * (cardWidthPercent + gapPercent);
     track.style.transform = `translateX(-${offset}%)`;
     dots.forEach((d, i) => d.classList.toggle('active', i === current));
   }
+
   dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+  // Re-calculate on resize
+  window.addEventListener('resize', () => goTo(current));
+
   let timer = setInterval(() => goTo(current + 1), 4500);
   track.parentElement.addEventListener('mouseenter', () => clearInterval(timer));
   track.parentElement.addEventListener('mouseleave', () => {
@@ -210,14 +241,15 @@ function initTestimonialsSlider() {
   });
 }
 
-/* === LOAD EVENTS === */
+/* === LOAD EVENTS ON HOME PAGE === */
 async function loadHomeEvents() {
   const container = document.getElementById('homeEventsList');
   if (!container) return;
   try {
     const res = await fetch('data/events.json');
     const events = await res.json();
-    container.innerHTML = events.slice(0, 6).map(ev => `
+    const shown = events.slice(0, 6);
+    container.innerHTML = shown.map(ev => `
       <div class="event-card reveal">
         <div class="event-card-image">
           <img src="${ev.image}" alt="${ev.event_name}" loading="lazy">
@@ -226,14 +258,17 @@ async function loadHomeEvents() {
         <div class="event-card-body">
           <h3>${ev.event_name}</h3>
           <p>${ev.description.substring(0, 90)}...</p>
-          <div class="event-price">₹${ev.base_price.toLocaleString('en-IN')}<span>/ starting from</span></div>
+          <div class="event-price">
+            ₹${ev.base_price.toLocaleString('en-IN')}
+            <span>/ starting from</span>
+          </div>
           <a href="booking.html?event=${ev.id}" class="btn btn-crimson">Book This Event</a>
         </div>
       </div>
     `).join('');
     initScrollReveal();
   } catch (e) {
-    if (container) container.innerHTML = '<p style="text-align:center;padding:32px;color:var(--text-light);">Events loading soon.</p>';
+    console.warn('Could not load events:', e);
   }
 }
 
@@ -262,17 +297,20 @@ async function loadHomeTestimonials() {
       dotsContainer.innerHTML = items.map((_, i) => `<span class="t-dot ${i===0?'active':''}"></span>`).join('');
     }
     initTestimonialsSlider();
-  } catch (e) {}
+  } catch (e) {
+    console.warn('Could not load testimonials:', e);
+  }
 }
 
-/* === LOAD BLOG === */
+/* === LOAD BLOG POSTS === */
 async function loadHomeBlog() {
   const container = document.getElementById('homeBlogList');
   if (!container) return;
   try {
     const res = await fetch('data/blog.json');
     const posts = await res.json();
-    container.innerHTML = posts.slice(0, 3).map(post => `
+    const shown = posts.slice(0, 3);
+    container.innerHTML = shown.map(post => `
       <div class="blog-card reveal">
         <div class="blog-card-image">
           <img src="${post.image}" alt="${post.title}" loading="lazy">
@@ -280,65 +318,29 @@ async function loadHomeBlog() {
         </div>
         <div class="blog-card-body">
           <div class="blog-meta">
-            <span>${new Date(post.date).toLocaleDateString('en-IN', {day:'numeric',month:'short',year:'numeric'})}</span>
-            <span>${post.author}</span>
+            <span><i class="fas fa-calendar-alt"></i> ${new Date(post.date).toLocaleDateString('en-IN', {day:'numeric',month:'short',year:'numeric'})}</span>
+            <span><i class="fas fa-user"></i> ${post.author}</span>
           </div>
           <h3>${post.title}</h3>
           <p>${post.short_description}</p>
-          <a href="blog-post.html?slug=${post.slug}" class="read-more">Read More →</a>
+          <a href="blog-post.html?slug=${post.slug}" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
     `).join('');
     initScrollReveal();
-  } catch (e) {}
-}
-
-/* === AVAILABILITY CALENDAR === */
-const muhuratDates = ["2026-01-28","2026-02-06","2026-02-08","2026-02-13","2026-02-15","2026-02-16","2026-02-20","2026-03-05","2026-03-06","2026-03-08","2026-03-15","2026-03-16","2026-03-25","2026-04-06","2026-04-12","2026-04-13","2026-04-16","2026-04-20","2026-04-23","2026-04-30","2026-05-08","2026-05-13","2026-05-14","2026-05-18","2026-05-28","2026-05-29","2026-06-04","2026-06-07","2026-06-17","2026-06-18","2026-06-24","2026-06-25","2026-07-02","2026-07-05","2026-07-12","2026-08-23","2026-08-30","2026-08-31","2026-09-07","2026-09-13","2026-09-17","2026-10-25","2026-10-30","2026-11-01","2026-11-11","2026-11-13","2026-11-15","2026-11-16","2026-11-20","2026-11-29","2026-12-04","2026-12-06","2026-12-10","2026-12-13","2026-12-14"];
-let calYear, calMonth;
-
-function renderCalendar(year, month) {
-  const calEl = document.getElementById('calendarGrid');
-  const calTitle = document.getElementById('calendarTitle');
-  if (!calEl) return;
-  const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  const dayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-  if (calTitle) calTitle.textContent = monthNames[month] + ' ' + year;
-  const firstDay = new Date(year, month, 1).getDay();
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
-  const today = new Date();
-  let html = dayNames.map(d => '<div class="cal-day-name">'+d+'</div>').join('');
-  for (let i = 0; i < firstDay; i++) html += '<div class="cal-day empty"></div>';
-  for (let d = 1; d <= daysInMonth; d++) {
-    const dateStr = year+'-'+String(month+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
-    const isToday = d===today.getDate() && month===today.getMonth() && year===today.getFullYear();
-    const isPast = new Date(year,month,d) < new Date(today.getFullYear(),today.getMonth(),today.getDate());
-    const isMuhurat = muhuratDates.includes(dateStr);
-    let cls = 'cal-day'+(isPast?' past':isMuhurat?' available':' available')+(isToday?' today':'');
-    html += '<div class="'+cls+'" data-date="'+dateStr+'">'+d+'</div>';
+  } catch (e) {
+    console.warn('Could not load blog:', e);
   }
-  calEl.innerHTML = html;
-  calEl.querySelectorAll('.cal-day.available').forEach(day => {
-    day.style.cursor = 'pointer';
-    day.addEventListener('click', () => { window.location.href = 'booking.html?date='+day.dataset.date; });
-  });
 }
 
-function initCalendar() {
-  const calEl = document.getElementById('calendarGrid');
-  if (!calEl) return;
-  const now = new Date();
-  calYear = now.getFullYear();
-  calMonth = now.getMonth();
-  renderCalendar(calYear, calMonth);
-  document.getElementById('calPrev')?.addEventListener('click', () => {
-    calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; }
-    renderCalendar(calYear, calMonth);
-  });
-  document.getElementById('calNext')?.addEventListener('click', () => {
-    calMonth++; if (calMonth > 11) { calMonth = 0; calYear++; }
-    renderCalendar(calYear, calMonth);
-  });
+/* === BOOKING FORM — URL PARAM PRE-FILL === */
+function prefillFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const event = params.get('event');
+  if (event) {
+    const sel = document.querySelector(`[data-event-id="${event}"]`);
+    if (sel) sel.classList.add('selected');
+  }
 }
 
 /* === INIT ALL === */
@@ -352,8 +354,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initFaq();
   initSmoothScroll();
   initImageFallbacks();
-  initCalendar();
   loadHomeEvents();
   loadHomeTestimonials();
   loadHomeBlog();
+  prefillFromUrl();
 });
