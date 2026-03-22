@@ -221,3 +221,24 @@ footer {
   background: var(--ivory-dark) !important;
   min-height: 200px;
 }
+
+/* ── EVENT CARDS — equal height, button always at bottom ── */
+.events-grid {
+  align-items: stretch !important;
+}
+.event-card {
+  display: flex !important;
+  flex-direction: column !important;
+}
+.event-card-body {
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 !important;
+}
+.event-card-body .event-price {
+  margin-top: auto !important;
+  padding-top: 12px !important;
+}
+.event-card-body .btn {
+  margin-top: 12px !important;
+}

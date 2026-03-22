@@ -571,39 +571,52 @@
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/main.js"></script>
 <script>
-const muhuratDates = ["2026-01-28","2026-02-06","2026-02-08","2026-02-13","2026-02-15","2026-02-16","2026-02-20","2026-03-05","2026-03-06","2026-03-08","2026-03-15","2026-03-16","2026-03-25","2026-04-06","2026-04-12","2026-04-13","2026-04-16","2026-04-20","2026-04-23","2026-04-30","2026-05-08","2026-05-13","2026-05-14","2026-05-18","2026-05-28","2026-05-29","2026-06-04","2026-06-07","2026-06-17","2026-06-18","2026-06-24","2026-06-25","2026-07-02","2026-07-05","2026-07-12","2026-08-23","2026-08-30","2026-08-31","2026-09-07","2026-09-13","2026-09-17","2026-10-25","2026-10-30","2026-11-01","2026-11-11","2026-11-13","2026-11-15","2026-11-16","2026-11-20","2026-11-29","2026-12-04","2026-12-06","2026-12-10","2026-12-13","2026-12-14"];
-let calYear, calMonth;
-function renderCalendar(year, month) {
-  const calEl = document.getElementById('calendarGrid');
-  const calTitle = document.getElementById('calendarTitle');
-  if (!calEl) return;
-  const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  const dayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-  if (calTitle) calTitle.textContent = monthNames[month] + ' ' + year;
-  const firstDay = new Date(year, month, 1).getDay();
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
-  const today = new Date();
-  let html = dayNames.map(d => '<div class="cal-day-name">'+d+'</div>').join('');
-  for (let i = 0; i < firstDay; i++) html += '<div class="cal-day empty"></div>';
-  for (let d = 1; d <= daysInMonth; d++) {
-    const dateStr = year+'-'+String(month+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
-    const isToday = d===today.getDate() && month===today.getMonth() && year===today.getFullYear();
-    const isPast = new Date(year,month,d) < new Date(today.getFullYear(),today.getMonth(),today.getDate());
-    const isMuhurat = muhuratDates.includes(dateStr);
-    let cls = 'cal-day'+(isPast?' past':isMuhurat?' available':' available')+(isToday?' today':'');
-    html += '<div class="'+cls+'" data-date="'+dateStr+'">'+d+'</div>';
+document.addEventListener('DOMContentLoaded', function() {
+  var muhuratDates = ["2026-01-28","2026-02-06","2026-02-08","2026-02-13","2026-02-15","2026-02-16","2026-02-20","2026-03-05","2026-03-06","2026-03-08","2026-03-15","2026-03-16","2026-03-25","2026-04-06","2026-04-12","2026-04-13","2026-04-16","2026-04-20","2026-04-23","2026-04-30","2026-05-08","2026-05-13","2026-05-14","2026-05-18","2026-05-28","2026-05-29","2026-06-04","2026-06-07","2026-06-17","2026-06-18","2026-06-24","2026-06-25","2026-07-02","2026-07-05","2026-07-12","2026-08-23","2026-08-30","2026-08-31","2026-09-07","2026-09-13","2026-09-17","2026-10-25","2026-10-30","2026-11-01","2026-11-11","2026-11-13","2026-11-15","2026-11-16","2026-11-20","2026-11-29","2026-12-04","2026-12-06","2026-12-10","2026-12-13","2026-12-14"];
+  var calYear = new Date().getFullYear();
+  var calMonth = new Date().getMonth();
+
+  function renderCal(year, month) {
+    var calEl = document.getElementById('calendarGrid');
+    var calTitle = document.getElementById('calendarTitle');
+    if (!calEl) return;
+    var monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var dayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    if (calTitle) calTitle.textContent = monthNames[month] + ' ' + year;
+    var firstDay = new Date(year, month, 1).getDay();
+    var daysInMonth = new Date(year, month+1, 0).getDate();
+    var today = new Date();
+    var html = dayNames.map(function(d){ return '<div class="cal-day-name">'+d+'</div>'; }).join('');
+    for (var i=0; i<firstDay; i++) html += '<div class="cal-day empty"></div>';
+    for (var d=1; d<=daysInMonth; d++) {
+      var dateStr = year+'-'+String(month+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
+      var isToday = (d===today.getDate() && month===today.getMonth() && year===today.getFullYear());
+      var isPast = new Date(year,month,d) < new Date(today.getFullYear(),today.getMonth(),today.getDate());
+      var cls = 'cal-day' + (isPast ? ' past' : ' available') + (isToday ? ' today' : '');
+      html += '<div class="'+cls+'" data-date="'+dateStr+'">'+d+'</div>';
+    }
+    calEl.innerHTML = html;
+    calEl.querySelectorAll('.cal-day.available').forEach(function(day) {
+      day.style.cursor = 'pointer';
+      day.addEventListener('click', function() {
+        window.location.href = 'enquiry.html?date=' + day.getAttribute('data-date');
+      });
+    });
   }
-  calEl.innerHTML = html;
-  calEl.querySelectorAll('.cal-day.available').forEach(day => {
-    day.style.cursor = 'pointer';
-    day.addEventListener('click', () => { window.location.href = 'booking.html?date='+day.dataset.date; });
+
+  renderCal(calYear, calMonth);
+
+  var prev = document.getElementById('calPrev');
+  var next = document.getElementById('calNext');
+  if (prev) prev.addEventListener('click', function() {
+    calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; }
+    renderCal(calYear, calMonth);
   });
-}
-function initCalendar() {
-  const calEl = document.getElementById('calendarGrid');
-  if (!calEl) return;
-  const now = new Date();
-  calYear = now.getFullYear();
-  calMonth = now.getMonth();
-  renderCalendar(calYear, calMonth);
-  document.getElementById('calPrev')?.addEventLis
+  if (next) next.addEventListener('click', function() {
+    calMonth++; if (calMonth > 11) { calMonth = 0; calYear++; }
+    renderCal(calYear, calMonth);
+  });
+});
+</script>
+</body>
+</html>
