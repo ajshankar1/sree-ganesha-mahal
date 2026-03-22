@@ -1,5 +1,6 @@
 /* ============================================================
-   SREE GANESHA MAHAL — Main JavaScript
+   IGS CONVENTION CENTRE — Main JavaScript
+   (Updated from Sree Ganesha Mahal original)
    ============================================================ */
 
 /* === ACTIVE NAV LINK === */
@@ -22,14 +23,12 @@ function initMobileNav() {
     links.classList.toggle('open');
     toggle.classList.toggle('open');
   });
-  // Close on outside click
   document.addEventListener('click', e => {
     if (!toggle.contains(e.target) && !links.contains(e.target)) {
       links.classList.remove('open');
       toggle.classList.remove('open');
     }
   });
-  // Close on nav link click
   links.querySelectorAll('a').forEach(a => {
     a.addEventListener('click', () => {
       links.classList.remove('open');
@@ -49,6 +48,9 @@ function initNavbarScroll() {
 
 /* === SCROLL REVEAL === */
 function initScrollReveal() {
+  // Add js-loaded to body so animations.css activates reveal classes
+  document.body.classList.add('js-loaded');
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -62,7 +64,6 @@ function initScrollReveal() {
     observer.observe(el);
   });
 
-  // Auto-add stagger classes to grid children
   document.querySelectorAll('.events-grid, .facilities-grid, .blog-grid, .pricing-grid').forEach(grid => {
     Array.from(grid.children).forEach((child, i) => {
       if (!child.classList.contains('reveal')) {
@@ -74,17 +75,18 @@ function initScrollReveal() {
 
 /* === COUNTER ANIMATION === */
 function animateCounter(el) {
-  const target = parseInt(el.dataset.target || el.textContent.replace(/\D/g, ''));
+  const target = parseFloat(el.dataset.target || el.textContent.replace(/[^\d.]/g, ''));
   const suffix = el.dataset.suffix || '';
   const prefix = el.dataset.prefix || '';
   const duration = 1800;
   const start = performance.now();
   const easeOut = t => 1 - Math.pow(1 - t, 3);
+  const isDecimal = target % 1 !== 0;
 
   function step(now) {
     const progress = Math.min((now - start) / duration, 1);
-    const value = Math.floor(easeOut(progress) * target);
-    el.textContent = prefix + value.toLocaleString('en-IN') + suffix;
+    const value = easeOut(progress) * target;
+    el.textContent = prefix + (isDecimal ? value.toFixed(1) : Math.floor(value).toLocaleString('en-IN')) + suffix;
     if (progress < 1) requestAnimationFrame(step);
   }
   requestAnimationFrame(step);
@@ -106,18 +108,8 @@ function initCounters() {
 function initPopup() {
   const overlay = document.getElementById('leadPopup');
   if (!overlay) return;
-
-  // Don't show if already dismissed in this session
   if (sessionStorage.getItem('popup-dismissed')) return;
-
-  const showPopup = () => {
-    overlay.classList.add('show');
-  };
-
-  // Show after 20 seconds
-  setTimeout(showPopup, 20000);
-
-  // Close button
+  setTimeout(() => overlay.classList.add('show'), 20000);
   const closeBtn = overlay.querySelector('.popup-close');
   if (closeBtn) {
     closeBtn.addEventListener('click', () => {
@@ -125,43 +117,20 @@ function initPopup() {
       sessionStorage.setItem('popup-dismissed', 'true');
     });
   }
-
-  // Close on overlay click
   overlay.addEventListener('click', e => {
     if (e.target === overlay) {
       overlay.classList.remove('show');
       sessionStorage.setItem('popup-dismissed', 'true');
     }
   });
-
-  // Handle popup form submit
   const popupForm = document.getElementById('leadForm');
   if (popupForm) {
     popupForm.addEventListener('submit', e => {
       e.preventDefault();
-      const data = {
-        name: popupForm.querySelector('[name="name"]').value,
-        phone: popupForm.querySelector('[name="phone"]').value,
-        event_date: popupForm.querySelector('[name="event_date"]').value,
-        source: 'Popup',
-        timestamp: new Date().toISOString()
-      };
-      saveLead(data);
       overlay.classList.remove('show');
       sessionStorage.setItem('popup-dismissed', 'true');
       showToast('Thank you! We will contact you soon.', 'success');
     });
-  }
-}
-
-/* === SAVE LEAD (localStorage for static hosting) === */
-function saveLead(data) {
-  try {
-    const leads = JSON.parse(localStorage.getItem('sgm_leads') || '[]');
-    leads.push(data);
-    localStorage.setItem('sgm_leads', JSON.stringify(leads));
-  } catch (e) {
-    console.warn('Could not save lead:', e);
   }
 }
 
@@ -176,7 +145,6 @@ function showToast(message, type = 'success') {
   }
   toast.textContent = message;
   toast.className = `toast ${type}`;
-  // Force reflow
   void toast.offsetWidth;
   toast.classList.add('show');
   setTimeout(() => toast.classList.remove('show'), 4000);
@@ -188,15 +156,13 @@ function initFaq() {
     q.addEventListener('click', () => {
       const item = q.closest('.faq-item');
       const isOpen = item.classList.contains('open');
-      // Close all
       document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-      // Open clicked (if was closed)
       if (!isOpen) item.classList.add('open');
     });
   });
 }
 
-/* === SMOOTH SCROLL for anchor links === */
+/* === SMOOTH SCROLL === */
 function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
@@ -209,13 +175,12 @@ function initSmoothScroll() {
   });
 }
 
-/* === IMAGE PLACEHOLDER (handles missing images gracefully) === */
+/* === IMAGE FALLBACKS === */
 function initImageFallbacks() {
   document.querySelectorAll('img').forEach(img => {
     img.addEventListener('error', function() {
-      // Replace with a gradient placeholder
       this.style.background = 'linear-gradient(135deg, #F0E8D5 0%, #E5D9C0 100%)';
-      this.style.opacity = '0.6';
+      this.style.minHeight = '200px';
       this.removeAttribute('src');
     });
   });
@@ -226,12 +191,10 @@ function initTestimonialsSlider() {
   const track = document.querySelector('.testimonials-track');
   const dots = document.querySelectorAll('.t-dot');
   if (!track || !dots.length) return;
-
   let current = 0;
   const cards = track.querySelectorAll('.testimonial-card');
   const total = cards.length;
   if (total <= 3) return;
-
   function goTo(index) {
     current = (index + total) % total;
     const perView = window.innerWidth < 768 ? 1 : 3;
@@ -239,10 +202,7 @@ function initTestimonialsSlider() {
     track.style.transform = `translateX(-${offset}%)`;
     dots.forEach((d, i) => d.classList.toggle('active', i === current));
   }
-
   dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
-
-  // Auto-advance
   let timer = setInterval(() => goTo(current + 1), 4500);
   track.parentElement.addEventListener('mouseenter', () => clearInterval(timer));
   track.parentElement.addEventListener('mouseleave', () => {
@@ -250,16 +210,14 @@ function initTestimonialsSlider() {
   });
 }
 
-/* === LOAD EVENTS ON HOME PAGE === */
+/* === LOAD EVENTS === */
 async function loadHomeEvents() {
   const container = document.getElementById('homeEventsList');
   if (!container) return;
   try {
     const res = await fetch('data/events.json');
     const events = await res.json();
-    // Show first 6 events
-    const shown = events.slice(0, 6);
-    container.innerHTML = shown.map(ev => `
+    container.innerHTML = events.slice(0, 6).map(ev => `
       <div class="event-card reveal">
         <div class="event-card-image">
           <img src="${ev.image}" alt="${ev.event_name}" loading="lazy">
@@ -268,18 +226,14 @@ async function loadHomeEvents() {
         <div class="event-card-body">
           <h3>${ev.event_name}</h3>
           <p>${ev.description.substring(0, 90)}...</p>
-          <div class="event-price">
-            ₹${ev.base_price.toLocaleString('en-IN')}
-            <span>/ starting from</span>
-          </div>
+          <div class="event-price">₹${ev.base_price.toLocaleString('en-IN')}<span>/ starting from</span></div>
           <a href="booking.html?event=${ev.id}" class="btn btn-crimson">Book This Event</a>
         </div>
       </div>
     `).join('');
-    // Re-run reveal for dynamically loaded items
     initScrollReveal();
   } catch (e) {
-    console.warn('Could not load events:', e);
+    if (container) container.innerHTML = '<p style="text-align:center;padding:32px;color:var(--text-light);">Events loading soon.</p>';
   }
 }
 
@@ -303,26 +257,22 @@ async function loadHomeTestimonials() {
         </div>
       </div>
     `).join('');
-    // Create dots
     const dotsContainer = document.querySelector('.testimonials-nav');
     if (dotsContainer) {
       dotsContainer.innerHTML = items.map((_, i) => `<span class="t-dot ${i===0?'active':''}"></span>`).join('');
     }
     initTestimonialsSlider();
-  } catch (e) {
-    console.warn('Could not load testimonials:', e);
-  }
+  } catch (e) {}
 }
 
-/* === LOAD BLOG POSTS === */
+/* === LOAD BLOG === */
 async function loadHomeBlog() {
   const container = document.getElementById('homeBlogList');
   if (!container) return;
   try {
     const res = await fetch('data/blog.json');
     const posts = await res.json();
-    const shown = posts.slice(0, 3);
-    container.innerHTML = shown.map(post => `
+    container.innerHTML = posts.slice(0, 3).map(post => `
       <div class="blog-card reveal">
         <div class="blog-card-image">
           <img src="${post.image}" alt="${post.title}" loading="lazy">
@@ -330,32 +280,65 @@ async function loadHomeBlog() {
         </div>
         <div class="blog-card-body">
           <div class="blog-meta">
-            <span><i class="fas fa-calendar-alt"></i> ${new Date(post.date).toLocaleDateString('en-IN', {day:'numeric',month:'short',year:'numeric'})}</span>
-            <span><i class="fas fa-user"></i> ${post.author}</span>
+            <span>${new Date(post.date).toLocaleDateString('en-IN', {day:'numeric',month:'short',year:'numeric'})}</span>
+            <span>${post.author}</span>
           </div>
           <h3>${post.title}</h3>
           <p>${post.short_description}</p>
-          <a href="blog-post.html?slug=${post.slug}" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+          <a href="blog-post.html?slug=${post.slug}" class="read-more">Read More →</a>
         </div>
       </div>
     `).join('');
     initScrollReveal();
-  } catch (e) {
-    console.warn('Could not load blog:', e);
-  }
+  } catch (e) {}
 }
 
-/* === BOOKING FORM — URL PARAM PRE-FILL === */
-function prefillFromUrl() {
-  const params = new URLSearchParams(window.location.search);
-  const event = params.get('event');
-  if (event) {
-    const sel = document.querySelector(`[data-event-id="${event}"]`);
-    if (sel) {
-      sel.classList.add('selected');
-      // Trigger next step if applicable
-    }
+/* === AVAILABILITY CALENDAR === */
+const muhuratDates = ["2026-01-28","2026-02-06","2026-02-08","2026-02-13","2026-02-15","2026-02-16","2026-02-20","2026-03-05","2026-03-06","2026-03-08","2026-03-15","2026-03-16","2026-03-25","2026-04-06","2026-04-12","2026-04-13","2026-04-16","2026-04-20","2026-04-23","2026-04-30","2026-05-08","2026-05-13","2026-05-14","2026-05-18","2026-05-28","2026-05-29","2026-06-04","2026-06-07","2026-06-17","2026-06-18","2026-06-24","2026-06-25","2026-07-02","2026-07-05","2026-07-12","2026-08-23","2026-08-30","2026-08-31","2026-09-07","2026-09-13","2026-09-17","2026-10-25","2026-10-30","2026-11-01","2026-11-11","2026-11-13","2026-11-15","2026-11-16","2026-11-20","2026-11-29","2026-12-04","2026-12-06","2026-12-10","2026-12-13","2026-12-14"];
+let calYear, calMonth;
+
+function renderCalendar(year, month) {
+  const calEl = document.getElementById('calendarGrid');
+  const calTitle = document.getElementById('calendarTitle');
+  if (!calEl) return;
+  const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const dayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  if (calTitle) calTitle.textContent = monthNames[month] + ' ' + year;
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const today = new Date();
+  let html = dayNames.map(d => '<div class="cal-day-name">'+d+'</div>').join('');
+  for (let i = 0; i < firstDay; i++) html += '<div class="cal-day empty"></div>';
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dateStr = year+'-'+String(month+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
+    const isToday = d===today.getDate() && month===today.getMonth() && year===today.getFullYear();
+    const isPast = new Date(year,month,d) < new Date(today.getFullYear(),today.getMonth(),today.getDate());
+    const isMuhurat = muhuratDates.includes(dateStr);
+    let cls = 'cal-day'+(isPast?' past':isMuhurat?' available':' available')+(isToday?' today':'');
+    html += '<div class="'+cls+'" data-date="'+dateStr+'">'+d+'</div>';
   }
+  calEl.innerHTML = html;
+  calEl.querySelectorAll('.cal-day.available').forEach(day => {
+    day.style.cursor = 'pointer';
+    day.addEventListener('click', () => { window.location.href = 'booking.html?date='+day.dataset.date; });
+  });
+}
+
+function initCalendar() {
+  const calEl = document.getElementById('calendarGrid');
+  if (!calEl) return;
+  const now = new Date();
+  calYear = now.getFullYear();
+  calMonth = now.getMonth();
+  renderCalendar(calYear, calMonth);
+  document.getElementById('calPrev')?.addEventListener('click', () => {
+    calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; }
+    renderCalendar(calYear, calMonth);
+  });
+  document.getElementById('calNext')?.addEventListener('click', () => {
+    calMonth++; if (calMonth > 11) { calMonth = 0; calYear++; }
+    renderCalendar(calYear, calMonth);
+  });
 }
 
 /* === INIT ALL === */
@@ -369,10 +352,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initFaq();
   initSmoothScroll();
   initImageFallbacks();
-
-  // Page-specific loads
+  initCalendar();
   loadHomeEvents();
   loadHomeTestimonials();
   loadHomeBlog();
-  prefillFromUrl();
 });

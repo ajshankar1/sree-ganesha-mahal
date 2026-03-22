@@ -64,38 +64,46 @@
 }
 
 /* === SCROLL REVEAL CLASSES === */
-/* Elements start invisible and animate when .visible is added by JS */
+/* Elements animate when .visible is added by JS */
 .reveal {
+  opacity: 1; /* Changed: start visible so local preview works */
+  transform: translateY(0);
+  transition: opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* JS adds 'animate' class on load, then reveal works properly on live site */
+body.js-loaded .reveal {
   opacity: 0;
   transform: translateY(28px);
-  transition: opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1),
-              transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+body.js-loaded .reveal.visible { opacity: 1; transform: translateY(0); }
 
 .reveal-left {
-  opacity: 0;
-  transform: translateX(-30px);
+  opacity: 1;
+  transform: translateX(0);
   transition: opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1),
               transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.reveal-left.visible { opacity: 1; transform: translateX(0); }
+body.js-loaded .reveal-left { opacity: 0; transform: translateX(-30px); }
+body.js-loaded .reveal-left.visible { opacity: 1; transform: translateX(0); }
 
 .reveal-right {
-  opacity: 0;
-  transform: translateX(30px);
+  opacity: 1;
+  transform: translateX(0);
   transition: opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1),
               transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.reveal-right.visible { opacity: 1; transform: translateX(0); }
+body.js-loaded .reveal-right { opacity: 0; transform: translateX(30px); }
+body.js-loaded .reveal-right.visible { opacity: 1; transform: translateX(0); }
 
 .reveal-scale {
-  opacity: 0;
-  transform: scale(0.92);
+  opacity: 1;
+  transform: scale(1);
   transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
               transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.reveal-scale.visible { opacity: 1; transform: scale(1); }
+body.js-loaded .reveal-scale { opacity: 0; transform: scale(0.92); }
+body.js-loaded .reveal-scale.visible { opacity: 1; transform: scale(1); }
 
 /* Stagger delays for grid children */
 .stagger-1 { transition-delay: 0.05s; }
