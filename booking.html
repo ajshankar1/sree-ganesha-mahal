@@ -190,6 +190,58 @@
       font-size: 2rem;
       color: #2e7d32;
     }
+    /* Phone input with country code */
+    .phone-input-wrap {
+      display: flex;
+      gap: 0;
+      border: 1.5px solid var(--ivory-deeper);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--ivory);
+      transition: border-color 0.2s;
+    }
+    .phone-input-wrap:focus-within {
+      border-color: var(--crimson);
+      background: var(--white);
+    }
+    .country-select-wrap {
+      position: relative;
+      flex-shrink: 0;
+    }
+    .country-select-wrap select {
+      border: none !important;
+      border-right: 1.5px solid var(--ivory-deeper) !important;
+      border-radius: 0 !important;
+      background: var(--ivory-dark) !important;
+      padding: 11px 28px 11px 10px !important;
+      font-size: 0.88rem !important;
+      color: var(--text-dark) !important;
+      cursor: pointer;
+      appearance: none;
+      min-width: 90px;
+    }
+    .country-select-wrap::after {
+      content: '▾';
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.7rem;
+      color: var(--text-light);
+      pointer-events: none;
+    }
+    .phone-input-wrap input[type="tel"] {
+      border: none !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      flex: 1;
+      padding: 11px 14px !important;
+    }
+    .phone-input-wrap input[type="tel"]:focus {
+      outline: none !important;
+      background: transparent !important;
+    }
+
     @media (max-width: 640px) {
       .form-row { grid-template-columns: 1fr; }
       .amount-row { grid-template-columns: 1fr; }
@@ -229,7 +281,7 @@
     <a href="facilities.html">Facilities</a>
     <a href="gallery.html">Gallery</a>
     <a href="pricing.html">Pricing</a>
-    <a href="availability.html">Availability</a><a href="booking.html">Booking</a>
+    <a href="availability.html">Availability</a>
     <a href="booking.html" class="active">Booking</a>
     <a href="blog.html">Blog</a>
     <a href="contact.html">Contact</a>
@@ -290,13 +342,56 @@
             </div>
             <div class="form-group">
               <label>Primary Phone <span class="req">*</span></label>
-              <input type="tel" id="b-phone" placeholder="+91 XXXXX XXXXX" required>
+              <div class="phone-input-wrap">
+                <div class="country-select-wrap">
+                  <select id="b-phone-code" onchange="updatePhonePlaceholder('b-phone', this.value)">
+                    <option value="+91" data-flag="🇮🇳" selected>🇮🇳 +91</option>
+                    <option value="+1" data-flag="🇺🇸">🇺🇸 +1</option>
+                    <option value="+44" data-flag="🇬🇧">🇬🇧 +44</option>
+                    <option value="+971" data-flag="🇦🇪">🇦🇪 +971</option>
+                    <option value="+65" data-flag="🇸🇬">🇸🇬 +65</option>
+                    <option value="+60" data-flag="🇲🇾">🇲🇾 +60</option>
+                    <option value="+61" data-flag="🇦🇺">🇦🇺 +61</option>
+                    <option value="+49" data-flag="🇩🇪">🇩🇪 +49</option>
+                    <option value="+33" data-flag="🇫🇷">🇫🇷 +33</option>
+                    <option value="+81" data-flag="🇯🇵">🇯🇵 +81</option>
+                    <option value="+86" data-flag="🇨🇳">🇨🇳 +86</option>
+                    <option value="+966" data-flag="🇸🇦">🇸🇦 +966</option>
+                    <option value="+974" data-flag="🇶🇦">🇶🇦 +974</option>
+                    <option value="+973" data-flag="🇧🇭">🇧🇭 +973</option>
+                    <option value="+968" data-flag="🇴🇲">🇴🇲 +968</option>
+                    <option value="+64" data-flag="🇳🇿">🇳🇿 +64</option>
+                    <option value="+27" data-flag="🇿🇦">🇿🇦 +27</option>
+                    <option value="+94" data-flag="🇱🇰">🇱🇰 +94</option>
+                  </select>
+                </div>
+                <input type="tel" id="b-phone" placeholder="XXXXX XXXXX" required>
+              </div>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group">
               <label>Alternate Phone</label>
-              <input type="tel" id="b-phone2" placeholder="Optional">
+              <div class="phone-input-wrap">
+                <div class="country-select-wrap">
+                  <select id="b-phone2-code">
+                    <option value="+91" data-flag="🇮🇳" selected>🇮🇳 +91</option>
+                    <option value="+1" data-flag="🇺🇸">🇺🇸 +1</option>
+                    <option value="+44" data-flag="🇬🇧">🇬🇧 +44</option>
+                    <option value="+971" data-flag="🇦🇪">🇦🇪 +971</option>
+                    <option value="+65" data-flag="🇸🇬">🇸🇬 +65</option>
+                    <option value="+60" data-flag="🇲🇾">🇲🇾 +60</option>
+                    <option value="+61" data-flag="🇦🇺">🇦🇺 +61</option>
+                    <option value="+49" data-flag="🇩🇪">🇩🇪 +49</option>
+                    <option value="+966" data-flag="🇸🇦">🇸🇦 +966</option>
+                    <option value="+974" data-flag="🇶🇦">🇶🇦 +974</option>
+                    <option value="+973" data-flag="🇧🇭">🇧🇭 +973</option>
+                    <option value="+968" data-flag="🇴🇲">🇴🇲 +968</option>
+                    <option value="+94" data-flag="🇱🇰">🇱🇰 +94</option>
+                  </select>
+                </div>
+                <input type="tel" id="b-phone2" placeholder="Optional">
+              </div>
             </div>
             <div class="form-group">
               <label>Email Address</label>
@@ -372,31 +467,29 @@
               <input type="number" id="b-guests" placeholder="e.g. 250" min="10" required>
             </div>
           </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Check-in Time <span class="req">*</span></label>
-              <select id="b-intime" required onchange="autoFillRent()">
-                <option value="">Select</option>
-                <option>3:00 PM</option>
-                <option>6:00 AM</option>
-                <option>10:00 PM</option>
-                <option>11:00 AM</option>
-                <option>11:00 PM</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Check-out Time <span class="req">*</span></label>
-              <select id="b-outtime" required onchange="autoFillRent()">
-                <option value="">Select</option>
-                <option>2:00 PM (Next Day)</option>
-                <option>10:00 PM (Same Day)</option>
-                <option>10:00 PM (Next Day)</option>
-                <option>2:00 PM (2nd Day)</option>
-                <option>2:00 PM (3rd Day)</option>
-                <option>3:00 PM (Half Day Meeting)</option>
-                <option>6:00 AM (Half Day Meeting)</option>
-              </select>
-            </div>
+          <div class="form-group">
+            <label>Booking Slot <span class="req">*</span></label>
+            <select id="b-slot" required onchange="autoFillRent()" style="font-size:0.92rem;">
+              <option value="">Select Booking Slot</option>
+              <optgroup label="Half Day Slots">
+                <option value="morning|3:00 PM - 10:00 PM (Half Day — Morning/Muhurtham)|half">Morning Function / Muhurtham — 3:00 PM to 10:00 PM (Half Day)</option>
+                <option value="morning|6:00 AM - 3:00 PM (Half Day — Morning Slot)|half">Morning Slot — 6:00 AM to 3:00 PM (Half Day)</option>
+                <option value="evening|3:00 PM - 10:00 PM (Half Day — Evening/Reception)|half">Evening Function / Reception — 3:00 PM to 10:00 PM (Half Day)</option>
+              </optgroup>
+              <optgroup label="Full Day Slots">
+                <option value="fullday|3:00 PM - 2:00 PM Next Day (Full Day)|fullday">Full Day — 3:00 PM to 2:00 PM (Next Day)</option>
+                <option value="fullday|11:00 PM - 10:00 PM Next Day (Night Booking)|fullday">Night / Reception Booking — 11:00 PM to 10:00 PM (Next Day)</option>
+                <option value="fullday|11:00 AM - 10:00 PM Same Day (Full Day Corporate)|fullday">Full Day Corporate — 11:00 AM to 10:00 PM (Same Day)</option>
+              </optgroup>
+              <optgroup label="Multi-Day Slots">
+                <option value="multiday|3:00 PM - 2:00 PM (2 Days)|2day">2-Day Booking — 3:00 PM to 2:00 PM (2nd Day)</option>
+                <option value="multiday|3:00 PM - 2:00 PM (3 Days)|3day">3-Day Booking — 3:00 PM to 2:00 PM (3rd Day)</option>
+              </optgroup>
+              <optgroup label="Short Slots (Meeting / Conference)">
+                <option value="meeting|4-Hour Session (Meeting with Snacks)|4hr">4-Hour Meeting Session</option>
+              </optgroup>
+            </select>
+            <small id="slot-hint" style="font-family:var(--font-ui);font-size:0.75rem;color:var(--text-light);margin-top:6px;display:block;"></small>
           </div>
 
           <!-- SECTION 3: GST (Optional) -->
@@ -430,9 +523,9 @@
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label>Total Hall Rent (excl. GST) <span class="req">*</span></label>
-              <input type="number" id="b-rent" placeholder="Auto-filled or enter manually" required oninput="calcBalance()">
-              <small id="rent-hint" style="font-family:var(--font-ui);font-size:0.75rem;color:var(--text-light);margin-top:4px;display:block;">Select hall + timing above to auto-fill</small>
+              <label>Hall Rental Charge (excl. GST) <span class="req">*</span></label>
+              <input type="number" id="b-rent" placeholder="Select hall & timing above" required oninput="calcBalance()">
+              <small id="rent-hint" style="font-family:var(--font-ui);font-size:0.75rem;color:var(--text-light);margin-top:4px;display:block;"></small>
             </div>
             <div class="form-group">
               <label>GST Amount (18%)</label>
@@ -583,6 +676,21 @@
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/main.js"></script>
 <script>
+// ── PHONE PLACEHOLDER ──
+function updatePhonePlaceholder(inputId, code) {
+  const el = document.getElementById(inputId);
+  if (!el) return;
+  const placeholders = {
+    '+91': 'XXXXX XXXXX',
+    '+1': 'XXX XXX XXXX',
+    '+44': 'XXXX XXXXXX',
+    '+971': 'XX XXX XXXX',
+    '+65': 'XXXX XXXX',
+    '+60': 'XX XXXX XXXX',
+  };
+  el.placeholder = placeholders[code] || 'Phone number';
+}
+
 // ── BOOKING ID GENERATOR ──
 function generateBookingId() {
   const year = new Date().getFullYear();
@@ -666,26 +774,75 @@ const rentMatrix = {
 
 function autoFillRent() {
   const hall = document.getElementById('b-hall').value;
-  const intime = document.getElementById('b-intime').value;
-  const outtime = document.getElementById('b-outtime').value;
-  if (!hall || !intime || !outtime) return;
-  
-  const key = intime + '|' + outtime;
-  const hallPrices = rentMatrix[hall];
+  const slotEl = document.getElementById('b-slot');
+  const slot = slotEl ? slotEl.value : '';
+  if (!hall || !slot) return;
+
+  // Price matrix: hall -> slot type -> price (excl GST)
+  const priceMatrix = {
+    'Shree Ganesha Mahal (500 Guests)': {
+      'half': 0, // No half day for Ganesha Mahal
+      'fullday': 150000,
+      '2day': 225000,
+      '3day': 295000,
+      '4hr': 0,
+    },
+    'Kaveri Hall (350 Guests)': {
+      'half': 40000,
+      'fullday': 110000,
+      '2day': 175000,
+      '3day': 0,
+      '4hr': 20000,
+    },
+    'Vaigai Hall (200 Guests)': {
+      'half': 20000,
+      'fullday': 110000,
+      '2day': 175000,
+      '3day': 0,
+      '4hr': 10000,
+    },
+    'Thamirabarani Hall (100 Guests)': {
+      'half': 10000,
+      'fullday': 110000,
+      '2day': 175000,
+      '3day': 0,
+      '4hr': 7500,
+    },
+    'Kaveri + Vaigai Combined': {
+      'half': 60000,
+      'fullday': 90000,
+      '2day': 0,
+      '3day': 0,
+      '4hr': 0,
+    },
+    'Vaigai + Thamirabarani Combined': {
+      'half': 40000,
+      'fullday': 60000,
+      '2day': 0,
+      '3day': 0,
+      '4hr': 0,
+    },
+  };
+
+  const slotParts = slot.split('|');
+  const slotType = slotParts[2];
+  const slotLabel = slotParts[1];
+
+  const hallPrices = priceMatrix[hall];
   if (!hallPrices) return;
-  
-  const rent = hallPrices[key];
-  if (rent) {
-    document.getElementById('b-rent').value = rent;
+
+  const price = hallPrices[slotType];
+  const hintEl = document.getElementById('slot-hint');
+
+  if (price && price > 0) {
+    document.getElementById('b-rent').value = price;
+    hintEl.textContent = '✓ Rate auto-filled: ₹' + price.toLocaleString('en-IN') + ' + 18% GST';
+    hintEl.style.color = 'green';
     calcBalance();
-    // Show a small hint
-    document.getElementById('rent-hint').textContent = 
-      '✓ Rate auto-filled based on hall & timing selection';
-    document.getElementById('rent-hint').style.color = 'green';
-  } else {
-    document.getElementById('rent-hint').textContent = 
-      'Rate not found for this combination — please enter manually';
-    document.getElementById('rent-hint').style.color = 'var(--text-light)';
+  } else if (price === 0) {
+    document.getElementById('b-rent').value = '';
+    hintEl.textContent = 'This slot is not available for the selected hall. Please contact us.';
+    hintEl.style.color = 'var(--crimson)';
   }
 }
 
@@ -714,17 +871,20 @@ document.getElementById('bookingForm').addEventListener('submit', function(e) {
   document.getElementById('bookingId').value = bookingId;
 
   const name = document.getElementById('b-name').value.trim();
-  const phone = document.getElementById('b-phone').value.trim();
+  const phoneCode = document.getElementById('b-phone-code').value;
+  const phone = phoneCode + ' ' + document.getElementById('b-phone').value.trim();
+  const phone2Code = document.getElementById('b-phone2-code').value;
+  const phone2Raw = document.getElementById('b-phone2').value.trim();
+  const phone2 = phone2Raw ? phone2Code + ' ' + phone2Raw : '';
   const event = document.getElementById('b-event').value;
   const hall = document.getElementById('b-hall').value;
   const date = document.getElementById('b-date').value;
   const guests = document.getElementById('b-guests').value;
-  const intime = document.getElementById('b-intime').value;
-  const outtime = document.getElementById('b-outtime').value;
+  const slot = document.getElementById('b-slot').value;
   const rent = parseFloat(document.getElementById('b-rent').value) || 0;
   const advance = parseFloat(document.getElementById('b-advance').value) || 0;
 
-  if (!name || !phone || !event || !hall || !date || !guests || !intime || !outtime || !rent || !advance) {
+  if (!name || !phone || !event || !hall || !date || !guests || !slot || !rent || !advance) {
     alert('Please fill all required fields.');
     return;
   }
@@ -736,10 +896,10 @@ document.getElementById('bookingForm').addEventListener('submit', function(e) {
   bookingData = {
     bookingId: bookingId,
     name, phone,
-    phone2: document.getElementById('b-phone2').value,
+    phone2: phone2,
     email: document.getElementById('b-email').value,
     address: document.getElementById('b-address').value,
-    event, hall, date, guests, intime, outtime,
+    event, hall, date, guests, bookingSlot: document.getElementById('b-slot').options[document.getElementById('b-slot').selectedIndex]?.text || '',
     gstRequired: document.getElementById('gstToggle').checked,
     company: document.getElementById('b-company').value,
     gstin: document.getElementById('b-gstin').value,
@@ -893,8 +1053,8 @@ function downloadPDF() {
     ['Event', d.event],
     ['Hall', d.hall],
     ['Date', eventDate],
-    ['Check-in', d.intime],
-    ['Check-out', d.outtime],
+    ['Booking Slot', d.bookingSlot ? d.bookingSlot.split(' — ')[0] : ''],
+    ['Timing', d.bookingSlot ? d.bookingSlot.split(' — ')[1] || '' : ''],
     ['Guests', d.guests + ' persons'],
     ['Catering', d.catering],
   ];
@@ -1019,4 +1179,26 @@ const params = new URLSearchParams(window.location.search);
 if (params.get('hall')) {
   const hallSelect = document.getElementById('b-hall');
   for (let o of hallSelect.options) {
-    if (o.value.toLowerCase().includes(params.get('hall').toLowerCase())) {
+    if (o.value.toLowerCase().includes(params.get('hall').toLowerCase())) {      o.selected = true; break;
+    }
+  }
+}
+if (params.get('date')) {
+  document.getElementById('b-date').value = params.get('date');
+}
+if (params.get('event')) {
+  const evSelect = document.getElementById('b-event');
+  for (let o of evSelect.options) {
+    if (o.value.toLowerCase().includes(params.get('event').toLowerCase())) {
+      o.selected = true; break;
+    }
+  }
+}
+
+// Auto-fill rent on page load
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(autoFillRent, 200);
+});
+</script>
+</body>
+</html>
