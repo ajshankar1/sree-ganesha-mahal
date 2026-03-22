@@ -605,7 +605,8 @@
           <div class="success-icon"><i class="fas fa-check"></i></div>
           <h2 style="font-family:var(--font-heading);color:var(--crimson);margin-bottom:8px;">Booking Confirmed!</h2>
           <p style="color:var(--text-mid);margin-bottom:8px;">Booking ID: <strong id="successBookingId" style="color:var(--crimson);"></strong></p>
-          <p style="color:var(--text-mid);margin-bottom:32px;">Your booking has been recorded. Please download the confirmation PDF and share it with your guest.</p>
+          <p style="color:var(--text-mid);margin-bottom:8px;" id="successName"></p>
+          <p style="color:var(--text-mid);margin-bottom:32px;">Your booking has been confirmed and recorded. Please download the PDF confirmation below and retain it for your reference. Our team will be in touch to finalise the arrangements.</p>
           <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
             <button onclick="downloadPDF()" class="btn btn-crimson btn-lg" style="color:#fff!important;">
               <i class="fas fa-file-pdf"></i> Download Confirmation PDF
@@ -781,7 +782,7 @@ function autoFillRent() {
   // Price matrix: hall -> slot type -> price (excl GST)
   const priceMatrix = {
     'Shree Ganesha Mahal (500 Guests)': {
-      'half': 0, // No half day for Ganesha Mahal
+      'half': 150000, // Full hall - contact for custom half day quote
       'fullday': 150000,
       '2day': 225000,
       '3day': 295000,
@@ -924,6 +925,7 @@ document.getElementById('bookingForm').addEventListener('submit', function(e) {
   document.getElementById('bookingForm').style.display = 'none';
   document.getElementById('successScreen').style.display = 'block';
   document.getElementById('successBookingId').textContent = bookingId;
+  document.getElementById('successName').textContent = 'Dear ' + name + ', thank you for booking with IGS Convention Centre.';
 });
 
 // ── PDF GENERATOR ──
@@ -1081,12 +1083,13 @@ function downloadPDF() {
   doc.text('PAYMENT SUMMARY', margin + 4, y + 6.5);
   y += 12;
 
+  const fmt = (n) => 'Rs. ' + n.toLocaleString('en-IN');
   const payRows = [
-    ['Hall Rental Charge', '', '₹' + d.rent.toLocaleString('en-IN')],
-    ['GST @ 18%', '', '₹' + d.gst.toLocaleString('en-IN')],
-    ['TOTAL AMOUNT', '', '₹' + d.total.toLocaleString('en-IN')],
-    ['Advance Paid (' + d.paymode + ')', '', '₹' + d.advance.toLocaleString('en-IN')],
-    ['BALANCE DUE', '', '₹' + d.balance.toLocaleString('en-IN')],
+    ['Hall Rental Charge (excl. GST)', '', fmt(d.rent)],
+    ['GST @ 18%', '', fmt(d.gst)],
+    ['TOTAL AMOUNT (incl. GST)', '', fmt(d.total)],
+    ['Advance Paid (' + d.paymode + ')', '', fmt(d.advance)],
+    ['BALANCE DUE', '', fmt(d.balance)],
   ];
 
   payRows.forEach((row, i) => {
@@ -1138,7 +1141,7 @@ function downloadPDF() {
     '1. Hall rental charges inclusive of GST are payable in advance to confirm the booking.',
     '2. Security deposit and ancillary charges must be cleared at least 2 weeks before the event.',
     '3. Cancellation: 60+ days — 80% refund | 30-60 days — 50% | 15-30 days — 25% | Under 15 days — No refund.',
-    '4. One date change permitted (subject to availability) with ₹5,000 rescheduling fee.',
+    '4. One date change permitted (subject to availability) with Rs. 5,000 rescheduling fee.',
     '5. Any damage to venue property will be assessed and billed to the booking party.',
   ];
   terms.forEach((t, i) => { doc.text(t, margin + 4, y + 10 + i * 4); });
