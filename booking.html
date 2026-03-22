@@ -229,7 +229,8 @@
     <a href="facilities.html">Facilities</a>
     <a href="gallery.html">Gallery</a>
     <a href="pricing.html">Pricing</a>
-    <a href="availability.html">Availability</a>
+    <a href="availability.html">Availability</a><a href="booking.html">Booking</a>
+    <a href="booking.html" class="active">Booking</a>
     <a href="blog.html">Blog</a>
     <a href="contact.html">Contact</a>
     <a href="enquiry.html" class="btn btn-crimson nav-cta" style="color:#fff!important;">Enquire Now</a>
@@ -346,7 +347,7 @@
             </div>
             <div class="form-group">
               <label>Hall Selection <span class="req">*</span></label>
-              <select id="b-hall" required>
+              <select id="b-hall" required onchange="autoFillRent()">
                 <option value="">Select Hall</option>
                 <optgroup label="Shree Ganesha Mahal">
                   <option>Shree Ganesha Mahal (500 Guests)</option>
@@ -374,23 +375,26 @@
           <div class="form-row">
             <div class="form-group">
               <label>Check-in Time <span class="req">*</span></label>
-              <select id="b-intime" required>
+              <select id="b-intime" required onchange="autoFillRent()">
                 <option value="">Select</option>
                 <option>3:00 PM</option>
                 <option>6:00 AM</option>
                 <option>10:00 PM</option>
                 <option>11:00 AM</option>
+                <option>11:00 PM</option>
               </select>
             </div>
             <div class="form-group">
               <label>Check-out Time <span class="req">*</span></label>
-              <select id="b-outtime" required>
+              <select id="b-outtime" required onchange="autoFillRent()">
                 <option value="">Select</option>
                 <option>2:00 PM (Next Day)</option>
                 <option>10:00 PM (Same Day)</option>
                 <option>10:00 PM (Next Day)</option>
                 <option>2:00 PM (2nd Day)</option>
                 <option>2:00 PM (3rd Day)</option>
+                <option>3:00 PM (Half Day Meeting)</option>
+                <option>6:00 AM (Half Day Meeting)</option>
               </select>
             </div>
           </div>
@@ -427,7 +431,8 @@
           <div class="form-row">
             <div class="form-group">
               <label>Total Hall Rent (excl. GST) <span class="req">*</span></label>
-              <input type="number" id="b-rent" placeholder="e.g. 150000" required oninput="calcBalance()">
+              <input type="number" id="b-rent" placeholder="Auto-filled or enter manually" required oninput="calcBalance()">
+              <small id="rent-hint" style="font-family:var(--font-ui);font-size:0.75rem;color:var(--text-light);margin-top:4px;display:block;">Select hall + timing above to auto-fill</small>
             </div>
             <div class="form-group">
               <label>GST Amount (18%)</label>
@@ -606,6 +611,81 @@ function checkCorporate() {
   if (event === 'Corporate Event') {
     document.getElementById('gstToggle').checked = true;
     document.getElementById('gstSection').classList.add('show');
+  }
+}
+
+// ── RENT PRICE MATRIX ──
+const rentMatrix = {
+  // Shree Ganesha Mahal
+  'Shree Ganesha Mahal (500 Guests)': {
+    '3:00 PM|2:00 PM (Next Day)': 150000,
+    '10:00 PM (Same Day)|10:00 PM (Next Day)': 150000,
+    '3:00 PM|2:00 PM (2nd Day)': 225000,
+    '3:00 PM|2:00 PM (3rd Day)': 295000,
+  },
+  // Kaveri Hall
+  'Kaveri Hall (350 Guests)': {
+    '3:00 PM|2:00 PM (Next Day)': 110000,
+    '11:00 PM|10:00 PM (Next Day)': 110000,
+    '3:00 PM|2:00 PM (2nd Day)': 175000,
+    '3:00 PM|10:00 PM (Same Day)': 65000,
+    '11:00 AM|10:00 PM (Same Day)': 75000,
+    '3:00 PM|10:00 PM (Half Day Meeting)': 40000,
+    '6:00 AM|3:00 PM (Half Day Meeting)': 40000,
+  },
+  // Vaigai Hall
+  'Vaigai Hall (200 Guests)': {
+    '3:00 PM|2:00 PM (Next Day)': 110000,
+    '11:00 PM|10:00 PM (Next Day)': 110000,
+    '3:00 PM|2:00 PM (2nd Day)': 175000,
+    '3:00 PM|10:00 PM (Same Day)': 65000,
+    '11:00 AM|10:00 PM (Same Day)': 75000,
+    '3:00 PM|10:00 PM (Half Day Meeting)': 20000,
+    '6:00 AM|3:00 PM (Half Day Meeting)': 20000,
+  },
+  // Thamirabarani Hall
+  'Thamirabarani Hall (100 Guests)': {
+    '3:00 PM|2:00 PM (Next Day)': 110000,
+    '11:00 PM|10:00 PM (Next Day)': 110000,
+    '3:00 PM|2:00 PM (2nd Day)': 175000,
+    '3:00 PM|10:00 PM (Same Day)': 65000,
+    '11:00 AM|10:00 PM (Same Day)': 75000,
+    '3:00 PM|10:00 PM (Half Day Meeting)': 10000,
+    '6:00 AM|3:00 PM (Half Day Meeting)': 10000,
+  },
+  // Combined halls
+  'Kaveri + Vaigai Combined': {
+    '3:00 PM|10:00 PM (Same Day)': 60000,
+    '3:00 PM|2:00 PM (Next Day)': 90000,
+  },
+  'Vaigai + Thamirabarani Combined': {
+    '3:00 PM|10:00 PM (Same Day)': 40000,
+    '3:00 PM|2:00 PM (Next Day)': 60000,
+  },
+};
+
+function autoFillRent() {
+  const hall = document.getElementById('b-hall').value;
+  const intime = document.getElementById('b-intime').value;
+  const outtime = document.getElementById('b-outtime').value;
+  if (!hall || !intime || !outtime) return;
+  
+  const key = intime + '|' + outtime;
+  const hallPrices = rentMatrix[hall];
+  if (!hallPrices) return;
+  
+  const rent = hallPrices[key];
+  if (rent) {
+    document.getElementById('b-rent').value = rent;
+    calcBalance();
+    // Show a small hint
+    document.getElementById('rent-hint').textContent = 
+      '✓ Rate auto-filled based on hall & timing selection';
+    document.getElementById('rent-hint').style.color = 'green';
+  } else {
+    document.getElementById('rent-hint').textContent = 
+      'Rate not found for this combination — please enter manually';
+    document.getElementById('rent-hint').style.color = 'var(--text-light)';
   }
 }
 
