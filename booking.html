@@ -1,20 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book Your Event | Sree Ganesha Mahal</title>
-  <meta name="description" content="Book your wedding or event at Sree Ganesha Mahal, Tirunelveli. Easy online booking form.">
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Hall | IGS Convention Centre Tirunelveli</title>
+  <meta name="description" content="Book your hall at IGS Convention Centre. Instant booking confirmation with PDF receipt.">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/igs-fixes.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    .booking-wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      background: var(--white);
+      border: 1px solid var(--ivory-deeper);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+    .booking-header {
+      background: linear-gradient(135deg, var(--crimson), var(--crimson-dark));
+      padding: 32px 40px;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .booking-header-icon {
+      width: 60px; height: 60px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      color: var(--gold-light);
+      flex-shrink: 0;
+    }
+    .booking-header h2 {
+      color: var(--white);
+      font-size: 1.5rem;
+      margin-bottom: 4px;
+    }
+    .booking-header p {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.88rem;
+      font-family: var(--font-ui);
+    }
+    .booking-body { padding: 40px; }
+    .booking-section-title {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      color: var(--crimson);
+      margin: 28px 0 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--ivory-deeper);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .booking-section-title:first-child { margin-top: 0; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .form-group label {
+      font-family: var(--font-ui);
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-mid);
+    }
+    .form-group label .req { color: var(--crimson); margin-left: 2px; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 11px 14px;
+      border: 1.5px solid var(--ivory-deeper);
+      border-radius: var(--radius);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      background: var(--ivory);
+      transition: border-color 0.2s;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--crimson);
+      background: var(--white);
+    }
+    .gst-section {
+      background: var(--ivory-dark);
+      border: 1px solid var(--ivory-deeper);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 16px;
+      display: none;
+    }
+    .gst-section.show { display: block; }
+    .gst-toggle-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding: 14px 16px;
+      background: var(--ivory-dark);
+      border: 1px solid var(--ivory-deeper);
+      border-radius: var(--radius);
+      cursor: pointer;
+    }
+    .gst-toggle-row input[type="checkbox"] {
+      width: 18px; height: 18px;
+      accent-color: var(--crimson);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .gst-toggle-row label {
+      font-family: var(--font-ui);
+      font-size: 0.88rem;
+      color: var(--text-dark);
+      cursor: pointer;
+      font-weight: 500;
+    }
+    .amount-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+    .amount-display {
+      background: var(--ivory-dark);
+      border: 1px solid var(--ivory-deeper);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      text-align: center;
+    }
+    .amount-display .amt-label {
+      font-family: var(--font-ui);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-light);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .amount-display .amt-value {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      color: var(--crimson);
+      font-weight: 700;
+    }
+    .submit-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+    .booking-id-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--ivory-dark);
+      border: 1px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 8px 16px;
+      font-family: var(--font-ui);
+      font-size: 0.82rem;
+      color: var(--text-mid);
+      margin-bottom: 20px;
+    }
+    .booking-id-badge strong {
+      color: var(--crimson);
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+    }
+    /* Success screen */
+    #successScreen {
+      display: none;
+      text-align: center;
+      padding: 60px 40px;
+    }
+    #successScreen .success-icon {
+      width: 80px; height: 80px;
+      background: #e8f5e9;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 2rem;
+      color: #2e7d32;
+    }
+    @media (max-width: 640px) {
+      .form-row { grid-template-columns: 1fr; }
+      .amount-row { grid-template-columns: 1fr; }
+      .booking-body { padding: 24px; }
+      .booking-header { padding: 24px; }
+    }
+  </style>
 </head>
 <body>
-<!-- TOP BAR -->
+
 <div class="top-bar"><div class="container">
   <div class="top-bar-info">
     <a href="tel:+919841608160"><i class="fas fa-phone"></i> +91 98416 08160</a>
     <a href="mailto:sreeganesamahal@gmail.com"><i class="fas fa-envelope"></i> sreeganesamahal@gmail.com</a>
+    <span><i class="fas fa-map-marker-alt"></i> 51/4A,4B Ambai Road, Palayamkottai, Tirunelveli</span>
   </div>
   <div class="top-bar-social">
     <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -22,20 +212,27 @@
     <a href="https://wa.me/919841608160"><i class="fab fa-whatsapp"></i></a>
   </div>
 </div></div>
+
 <nav class="navbar"><div class="container">
   <a href="index.html" class="nav-logo">
-    <div class="nav-logo-icon">SG</div>
+    <div class="nav-logo-icon">IGS</div>
     <div class="nav-logo-text">
-      <span class="name">Sree Ganesha Mahal</span>
-      <span class="tagline">Tirunelveli's Premier Venue</span>
+      <span class="name">IGS Convention Centre</span>
+      <span class="tagline">Tirunelveli's Premier Convention Venue</span>
     </div>
   </a>
   <div class="nav-links">
-    <a href="index.html">Home</a><a href="about.html">About</a>
-    <a href="events.html">Events</a><a href="facilities.html">Facilities</a>
-    <a href="gallery.html">Gallery</a><a href="pricing.html">Pricing</a><a href="availability.html">Availability</a>
-    <a href="blog.html">Blog</a><a href="contact.html">Contact</a>
-    <a href="booking.html" class="btn btn-crimson nav-cta">Book Now</a>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="halls.html">Halls</a>
+    <a href="events.html">Events</a>
+    <a href="facilities.html">Facilities</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="availability.html">Availability</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    <a href="enquiry.html" class="btn btn-crimson nav-cta" style="color:#fff!important;">Enquire Now</a>
   </div>
   <button class="nav-toggle"><span></span><span></span><span></span></button>
 </div></nav>
@@ -43,9 +240,9 @@
 <!-- PAGE HERO -->
 <section class="page-hero">
   <div class="page-hero-content container">
-    <span class="label"><i class="fas fa-calendar-check"></i> Reservations</span>
-    <h1>Book Your Celebration</h1>
-    <p>Complete the form below and our team will confirm your booking within 24 hours</p>
+    <span class="label"><i class="fas fa-calendar-check"></i> Booking</span>
+    <h1>Hall Booking Form</h1>
+    <p>Complete the form below to confirm your hall reservation at IGS Convention Centre.</p>
     <nav class="breadcrumb">
       <a href="index.html">Home</a>
       <i class="fas fa-chevron-right"></i>
@@ -54,391 +251,706 @@
   </div>
 </section>
 
-<section class="section-pad">
+<!-- BOOKING FORM -->
+<section class="section-pad" style="background:var(--ivory);">
   <div class="container">
+    <div class="booking-wrap reveal">
 
-    <!-- BOOKING PROGRESS -->
-    <div class="booking-progress reveal">
-      <div class="step-item active" id="step-item-1">
-        <div class="step-circle">1</div>
-        <span class="step-label">Category</span>
+      <div class="booking-header">
+        <div class="booking-header-icon">
+          <i class="fas fa-calendar-star"></i>
+        </div>
+        <div>
+          <h2>Reserve Your Hall</h2>
+          <p>All fields marked with * are mandatory. A booking confirmation PDF will be generated upon submission.</p>
+        </div>
       </div>
-      <div class="step-item" id="step-item-2">
-        <div class="step-circle">2</div>
-        <span class="step-label">Event Type</span>
-      </div>
-      <div class="step-item" id="step-item-3">
-        <div class="step-circle">3</div>
-        <span class="step-label">Date</span>
-      </div>
-      <div class="step-item" id="step-item-4">
-        <div class="step-circle">4</div>
-        <span class="step-label">Details</span>
-      </div>
-      <div class="step-item" id="step-item-5">
-        <div class="step-circle">5</div>
-        <span class="step-label">Contact</span>
-      </div>
-    </div>
 
-    <!-- BOOKING FORM WRAP -->
-    <div id="bookingFormWrap">
-      <div class="form-wrap reveal">
+      <div class="booking-body">
 
-        <!-- STEP 1: CATEGORY -->
-        <div class="form-step active" id="formStep1">
-          <h3 class="form-step-title"><i class="fas fa-list-check" style="color:var(--gold);margin-right:10px;"></i>Step 1: Choose Event Category</h3>
-          <p style="color:var(--text-mid);margin-bottom:28px;font-style:italic;">What type of celebration are you planning?</p>
-          <div class="event-type-grid" id="categoryOptions" style="grid-template-columns:repeat(3,1fr);">
-            <!-- Loaded by form-steps.js -->
-          </div>
-          <p class="form-error" id="step1-error" style="display:none;"></p>
-          <div class="form-nav">
-            <span></span>
-            <button class="btn btn-crimson" onclick="nextStep()">Next Step <i class="fas fa-arrow-right"></i></button>
-          </div>
+        <!-- BOOKING ID -->
+        <div class="booking-id-badge">
+          <i class="fas fa-hashtag" style="color:var(--gold);"></i>
+          Booking ID: <strong id="displayBookingId">Generating...</strong>
         </div>
 
-        <!-- STEP 2: EVENT TYPE -->
-        <div class="form-step" id="formStep2">
-          <h3 class="form-step-title"><i class="fas fa-calendar-star" style="color:var(--gold);margin-right:10px;"></i>Step 2: Select Event Type</h3>
-          <p style="color:var(--text-mid);margin-bottom:28px;font-style:italic;">Select the specific event you are hosting</p>
-          <div class="event-type-grid" id="eventTypeOptions" style="grid-template-columns:repeat(3,1fr);">
-            <!-- Loaded dynamically -->
-          </div>
-          <p class="form-error" id="step2-error" style="display:none;"></p>
-          <div class="form-nav">
-            <button class="btn btn-outline" style="color:var(--text-mid);border-color:var(--ivory-deeper);" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Back</button>
-            <button class="btn btn-crimson" onclick="nextStep()">Next Step <i class="fas fa-arrow-right"></i></button>
-          </div>
-        </div>
+        <!-- FORM -->
+        <form id="bookingForm">
+          <input type="hidden" id="bookingId">
 
-        <!-- STEP 3: DATE SELECTION -->
-        <div class="form-step" id="formStep3">
-          <h3 class="form-step-title"><i class="fas fa-calendar" style="color:var(--gold);margin-right:10px;"></i>Step 3: Choose Your Date</h3>
-          <p style="color:var(--text-mid);margin-bottom:28px;font-style:italic;">Select your auspicious event date</p>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;">
-            <div>
-              <div class="form-group">
-                <label>Event Date *</label>
-                <input type="date" id="event-date" name="event_date"
-                  min="2025-01-01" required>
-              </div>
-              <div class="form-group">
-                <label>Event Start Time</label>
-                <input type="time" id="event-time" name="event_time" value="08:00">
-              </div>
-              <div class="form-group">
-                <label>Duration</label>
-                <select id="event-duration">
-                  <option value="1">1 Day</option>
-                  <option value="2">2 Days</option>
-                  <option value="3">3 Days</option>
-                </select>
-              </div>
-            </div>
-            <div>
-              <!-- Mini calendar for availability check -->
-              <div class="calendar-wrap" style="padding:16px;">
-  <div class="calendar-header">
-    <h3 id="calendarTitle" style="font-size:1rem;">Loading...</h3>
-    <div class="cal-nav">
-      <button class="cal-nav-btn" id="calPrev"><i class="fas fa-chevron-left"></i></button>
-      <button class="cal-nav-btn" id="calNext"><i class="fas fa-chevron-right"></i></button>
-    </div>
-  </div>
-  <div class="calendar-grid" id="calendarGrid" style="gap:2px;"></div>
-  <div class="calendar-legend" style="margin-top:8px;font-size:0.72rem;">
-    <div class="legend-item"><div class="legend-dot available"></div> Available — Click to select</div>
-  </div>
-</div>
-            </div>
+          <!-- SECTION 1: Contact Details -->
+          <div class="booking-section-title">
+            <i class="fas fa-user" style="color:var(--gold);"></i> Contact Details
           </div>
-          <p class="form-error" id="step3-error" style="display:none;"></p>
-          <div class="form-nav">
-            <button class="btn btn-outline" style="color:var(--text-mid);border-color:var(--ivory-deeper);" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Back</button>
-            <button class="btn btn-crimson" onclick="nextStep()">Next Step <i class="fas fa-arrow-right"></i></button>
-          </div>
-        </div>
-
-        <!-- STEP 4: GUEST COUNT & ADD-ONS -->
-        <div class="form-step" id="formStep4">
-          <h3 class="form-step-title"><i class="fas fa-users" style="color:var(--gold);margin-right:10px;"></i>Step 4: Guests & Add-ons</h3>
-          <p style="color:var(--text-mid);margin-bottom:28px;font-style:italic;">Tell us about your guest count and additional requirements</p>
           <div class="form-row">
             <div class="form-group">
-              <label>Expected Guest Count *</label>
-              <input type="number" id="guest-count" name="guests" min="50" max="700" value="200" class="calc-input">
-              <small style="color:var(--text-light);font-family:var(--font-ui);font-size:0.78rem;">Up to 700 guests</small>
+              <label>Full Name <span class="req">*</span></label>
+              <input type="text" id="b-name" placeholder="As per ID proof" required>
             </div>
             <div class="form-group">
-              <label>Hall Rental</label>
-              <div style="padding:14px 16px;background:var(--ivory);border:1px solid var(--ivory-deeper);border-radius:4px;font-family:var(--font-heading);font-size:1.2rem;color:var(--crimson);" id="step4-price">₹65,000</div>
+              <label>Primary Phone <span class="req">*</span></label>
+              <input type="tel" id="b-phone" placeholder="+91 XXXXX XXXXX" required>
             </div>
           </div>
-          <div class="form-group">
-            <label>Additional Requirements (Optional)</label>
-            <div id="addonsOptions"><!-- Loaded by JS --></div>
-          </div>
-          <p class="form-error" id="step4-error" style="display:none;"></p>
-          <div class="form-nav">
-            <button class="btn btn-outline" style="color:var(--text-mid);border-color:var(--ivory-deeper);" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Back</button>
-            <button class="btn btn-crimson" onclick="nextStep()">Next Step <i class="fas fa-arrow-right"></i></button>
-          </div>
-        </div>
-
-        <!-- STEP 5: CONTACT DETAILS -->
-        <div class="form-step" id="formStep5">
-          <h3 class="form-step-title"><i class="fas fa-user-pen" style="color:var(--gold);margin-right:10px;"></i>Step 5: Your Contact Details</h3>
-          <p style="color:var(--text-mid);margin-bottom:28px;font-style:italic;">We will confirm your booking within 24 hours</p>
           <div class="form-row">
             <div class="form-group">
-              <label>Full Name *</label>
-              <input type="text" id="contact-name" name="name" placeholder="Your full name" required>
+              <label>Alternate Phone</label>
+              <input type="tel" id="b-phone2" placeholder="Optional">
             </div>
             <div class="form-group">
-              <label>Phone Number *</label>
-              <input type="tel" id="contact-phone" name="phone" placeholder="10-digit mobile number" required>
+              <label>Email Address</label>
+              <input type="email" id="b-email" placeholder="your@email.com">
             </div>
           </div>
           <div class="form-group">
-            <label>Email Address</label>
-            <input type="email" id="contact-email" name="email" placeholder="your@email.com">
+            <label>Address</label>
+            <input type="text" id="b-address" placeholder="Full address">
+          </div>
+
+          <!-- SECTION 2: Event Details -->
+          <div class="booking-section-title">
+            <i class="fas fa-calendar-star" style="color:var(--gold);"></i> Event Details
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Event Type <span class="req">*</span></label>
+              <select id="b-event" required onchange="checkCorporate()">
+                <option value="">Select Event Type</option>
+                <optgroup label="Marriage Functions">
+                  <option>Wedding Ceremony</option>
+                  <option>Wedding Reception</option>
+                  <option>Engagement Ceremony</option>
+                  <option>Mehendi Ceremony</option>
+                  <option>Haldi Ceremony</option>
+                </optgroup>
+                <optgroup label="Religious Functions">
+                  <option>Valaikappu</option>
+                  <option>Seemantham</option>
+                  <option>Naming Ceremony</option>
+                  <option>Upanayanam</option>
+                  <option>Ear Piercing Ceremony</option>
+                </optgroup>
+                <optgroup label="Family Celebrations">
+                  <option>Birthday Party</option>
+                  <option>Anniversary Celebration</option>
+                  <option>Retirement Function</option>
+                  <option>House Warming</option>
+                </optgroup>
+                <optgroup label="Corporate & Social">
+                  <option value="Corporate Event">Corporate Event</option>
+                  <option value="Corporate Event">Conference / Seminar</option>
+                  <option value="Corporate Event">Product Launch</option>
+                  <option>Social / Community Event</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Hall Selection <span class="req">*</span></label>
+              <select id="b-hall" required>
+                <option value="">Select Hall</option>
+                <optgroup label="Shree Ganesha Mahal">
+                  <option>Shree Ganesha Mahal (500 Guests)</option>
+                </optgroup>
+                <optgroup label="Shree Ambica Mahal">
+                  <option>Kaveri Hall (350 Guests)</option>
+                  <option>Vaigai Hall (200 Guests)</option>
+                  <option>Thamirabarani Hall (100 Guests)</option>
+                  <option>Kaveri + Vaigai Combined</option>
+                  <option>Vaigai + Thamirabarani Combined</option>
+                </optgroup>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Event Date <span class="req">*</span></label>
+              <input type="date" id="b-date" required>
+            </div>
+            <div class="form-group">
+              <label>Expected Guest Count <span class="req">*</span></label>
+              <input type="number" id="b-guests" placeholder="e.g. 250" min="10" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Check-in Time <span class="req">*</span></label>
+              <select id="b-intime" required>
+                <option value="">Select</option>
+                <option>3:00 PM</option>
+                <option>6:00 AM</option>
+                <option>10:00 PM</option>
+                <option>11:00 AM</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Check-out Time <span class="req">*</span></label>
+              <select id="b-outtime" required>
+                <option value="">Select</option>
+                <option>2:00 PM (Next Day)</option>
+                <option>10:00 PM (Same Day)</option>
+                <option>10:00 PM (Next Day)</option>
+                <option>2:00 PM (2nd Day)</option>
+                <option>2:00 PM (3rd Day)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- SECTION 3: GST (Optional) -->
+          <div class="booking-section-title">
+            <i class="fas fa-file-invoice" style="color:var(--gold);"></i> GST Invoice (Optional)
+          </div>
+          <div class="gst-toggle-row" onclick="toggleGST()">
+            <input type="checkbox" id="gstToggle" onchange="toggleGST()">
+            <label for="gstToggle">I require a GST Invoice for this booking (for corporate / business use)</label>
+          </div>
+          <div class="gst-section" id="gstSection">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Company / Organisation Name <span class="req">*</span></label>
+                <input type="text" id="b-company" placeholder="Legal company name">
+              </div>
+              <div class="form-group">
+                <label>GSTIN Number <span class="req">*</span></label>
+                <input type="text" id="b-gstin" placeholder="e.g. 33XXXXX0000X1ZX" maxlength="15" style="text-transform:uppercase;">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Registered Business Address</label>
+              <input type="text" id="b-bizaddress" placeholder="Address as per GST registration">
+            </div>
+          </div>
+
+          <!-- SECTION 4: Payment Details -->
+          <div class="booking-section-title">
+            <i class="fas fa-indian-rupee-sign" style="color:var(--gold);"></i> Payment Details
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Total Hall Rent (excl. GST) <span class="req">*</span></label>
+              <input type="number" id="b-rent" placeholder="e.g. 150000" required oninput="calcBalance()">
+            </div>
+            <div class="form-group">
+              <label>GST Amount (18%)</label>
+              <input type="number" id="b-gst" placeholder="Auto calculated" readonly style="background:var(--ivory-darker,#e8e0d0);">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Advance Amount Paid <span class="req">*</span></label>
+              <input type="number" id="b-advance" placeholder="e.g. 25000" required oninput="calcBalance()">
+            </div>
+            <div class="form-group">
+              <label>Payment Mode</label>
+              <select id="b-paymode">
+                <option>Cash</option>
+                <option>UPI — GPay</option>
+                <option>UPI — PhonePe</option>
+                <option>UPI — Paytm</option>
+                <option>NEFT / RTGS</option>
+                <option>Cheque</option>
+              </select>
+            </div>
+          </div>
+          <div class="amount-row">
+            <div class="amount-display">
+              <span class="amt-label">Total (incl. GST)</span>
+              <span class="amt-value" id="disp-total">₹0</span>
+            </div>
+            <div class="amount-display">
+              <span class="amt-label">Advance Paid</span>
+              <span class="amt-value" id="disp-advance">₹0</span>
+            </div>
+            <div class="amount-display" style="border-color:var(--crimson);">
+              <span class="amt-label">Balance Due</span>
+              <span class="amt-value" id="disp-balance" style="color:var(--crimson);">₹0</span>
+            </div>
+          </div>
+
+          <!-- SECTION 5: Additional Requirements -->
+          <div class="booking-section-title">
+            <i class="fas fa-clipboard-list" style="color:var(--gold);"></i> Additional Requirements
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Catering</label>
+              <select id="b-catering">
+                <option>Not Required</option>
+                <option>Vegetarian</option>
+                <option>Non-Vegetarian</option>
+                <option>Both Veg & Non-Veg</option>
+                <option>Outside Caterer</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Guest Rooms Required</label>
+              <input type="number" id="b-rooms" placeholder="Number of rooms" min="0" max="15">
+            </div>
           </div>
           <div class="form-group">
-            <label>Additional Message</label>
-            <textarea id="contact-message" name="message" placeholder="Any special requirements, preferred decoration theme, or questions..." rows="4"></textarea>
+            <label>Special Requirements / Notes</label>
+            <textarea id="b-notes" rows="3" placeholder="Any specific arrangements, decorations, or instructions..."></textarea>
           </div>
-          <!-- Booking Summary -->
-<div style="background:var(--ivory-dark);border:1px solid var(--ivory-deeper);border-left:4px solid var(--gold);border-radius:var(--radius);padding:20px;margin-bottom:24px;">
-  <h4 style="font-family:var(--font-heading);color:var(--crimson);margin-bottom:16px;font-size:1rem;">📋 Tentative Quote</h4>
-  <div style="font-family:var(--font-ui);font-size:0.9rem;color:var(--text-mid);">
-    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--ivory-deeper);">
-      <span>Hall Rental</span><span id="summary-hall" style="color:var(--crimson);font-weight:600;">₹0</span>
-    </div>
-    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--ivory-deeper);">
-      <span>GST (18%)</span><span id="summary-gst" style="color:var(--crimson);font-weight:600;">₹0</span>
-    </div>
-    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--ivory-deeper);font-weight:600;">
-      <span>Hall Total (with GST)</span><span id="summary-hall-total" style="color:var(--crimson);">₹0</span>
-    </div>
-    <div id="summary-addons-wrap" style="padding:8px 0;border-bottom:1px solid var(--ivory-deeper);display:none;">
-      <div style="margin-bottom:6px;font-weight:600;">Add-on Services (Optional — your choice):</div>
-      <div id="summary-addons-list" style="color:var(--text-mid);font-size:0.85rem;"></div>
-      <div style="display:flex;justify-content:space-between;margin-top:8px;">
-        <span>Add-ons Total</span><span id="summary-addons-total" style="color:var(--crimson);font-weight:600;">₹0</span>
-      </div>
-    </div>
-    <div style="display:flex;justify-content:space-between;padding:10px 0;font-size:1rem;font-weight:700;">
-      <span style="color:var(--crimson);">Estimated Grand Total</span>
-      <span id="summary-grand-total" style="color:var(--crimson);font-size:1.1rem;">₹0</span>
-    </div>
-    <div style="background:#fff8e1;border-radius:4px;padding:10px;margin-top:8px;font-size:0.8rem;color:#7a6000;">
-      ⚠️ <strong>Note:</strong> Yeh ek tentative estimate hai. Final amount confirmation ke baad team batayegi. Add-on services aap khud arrange kar sakte hain ya humse le sakte hain. Booking confirm karne ke liye ₹25,000 advance required hai.
-    </div>
-  </div>
-</div>
-          <p class="form-error" id="step5-error" style="display:none;"></p>
-          <div class="form-nav">
-            <button class="btn btn-outline" style="color:var(--text-mid);border-color:var(--ivory-deeper);" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Back</button>
-            <button class="btn btn-crimson btn-lg" onclick="submitBooking()">
-              <i class="fas fa-check-circle"></i> Submit Booking Enquiry
+
+          <!-- SUBMIT -->
+          <div class="submit-row">
+            <button type="submit" class="btn btn-crimson btn-lg" style="flex:1;justify-content:center;color:#fff!important;">
+              <i class="fas fa-calendar-check"></i> Confirm Booking & Generate PDF
             </button>
+            <a href="https://wa.me/919841608160?text=Hello, I would like to confirm my booking at IGS Convention Centre." target="_blank" class="btn btn-primary btn-lg" style="justify-content:center;">
+              <i class="fab fa-whatsapp"></i> Confirm via WhatsApp
+            </a>
+          </div>
+        </form>
+
+        <!-- SUCCESS SCREEN -->
+        <div id="successScreen">
+          <div class="success-icon"><i class="fas fa-check"></i></div>
+          <h2 style="font-family:var(--font-heading);color:var(--crimson);margin-bottom:8px;">Booking Confirmed!</h2>
+          <p style="color:var(--text-mid);margin-bottom:8px;">Booking ID: <strong id="successBookingId" style="color:var(--crimson);"></strong></p>
+          <p style="color:var(--text-mid);margin-bottom:32px;">Your booking has been recorded. Please download the confirmation PDF and share it with your guest.</p>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+            <button onclick="downloadPDF()" class="btn btn-crimson btn-lg" style="color:#fff!important;">
+              <i class="fas fa-file-pdf"></i> Download Confirmation PDF
+            </button>
+            <a href="index.html" class="btn btn-primary btn-lg">
+              <i class="fas fa-home"></i> Back to Home
+            </a>
           </div>
         </div>
 
-      </div><!-- /.form-wrap -->
-    </div><!-- /#bookingFormWrap -->
-
-    <!-- SUCCESS MESSAGE -->
-    <div id="bookingSuccess" style="display:none;" class="reveal">
-      <div style="background:var(--white);border:2px solid #4caf50;border-radius:var(--radius-lg);padding:60px 48px;text-align:center;max-width:600px;margin:0 auto;box-shadow:var(--shadow);">
-        <div style="font-size:4rem;margin-bottom:20px;">🎉</div>
-        <h2 style="color:var(--crimson);margin-bottom:12px;">Booking Enquiry Submitted!</h2>
-        <p style="color:var(--text-mid);font-size:1.1rem;margin-bottom:8px;">Thank you! Our team will contact you within 24 hours to confirm your booking.</p>
-        <p style="font-family:var(--font-ui);font-size:0.85rem;color:var(--text-light);margin-bottom:32px;">You can also reach us directly on WhatsApp for faster response.</p>
-        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-          <a href="https://wa.me/919841608160" id="wa-followup" target="_blank" class="btn btn-primary">
-            <i class="fab fa-whatsapp"></i> WhatsApp Follow-up
-          </a>
-          <a href="index.html" class="btn btn-crimson">
-            <i class="fas fa-home"></i> Back to Home
-          </a>
-        </div>
       </div>
     </div>
-
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <span class="logo-name">Sree Ganesha Mahal</span>
-        <span class="logo-tagline">Tirunelveli's Premier Wedding Venue</span>
-        <p>Celebrating 15+ years of creating magical moments for families across Tamil Nadu.</p>
-        <div class="footer-social">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a>
-          <a href="https://wa.me/919841608160"><i class="fab fa-whatsapp"></i></a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
-          <li><a href="events.html"><i class="fas fa-chevron-right"></i> Events</a></li>
-          <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
-          <li><a href="pricing.html"><i class="fas fa-chevron-right"></i> Pricing</a></li>
-          <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Events</h4>
-        <ul>
-          <li><a href="events.html"><i class="fas fa-chevron-right"></i> Wedding</a></li>
-          <li><a href="events.html"><i class="fas fa-chevron-right"></i> Reception</a></li>
-          <li><a href="events.html"><i class="fas fa-chevron-right"></i> Religious</a></li>
-          <li><a href="events.html"><i class="fas fa-chevron-right"></i> Corporate</a></li>
-          <li><a href="faq.html"><i class="fas fa-chevron-right"></i> FAQ</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <div class="footer-contact-item">
-          <i class="fas fa-phone"></i>
-          <span><a href="tel:+919841608160" style="color:rgba(255,255,255,0.65);">+91 98416 08160</a></span>
-        </div>
-        <div class="footer-contact-item">
-          <i class="fas fa-location-dot"></i>
-          <span>51/4A,4B Ambai Road,Palayamkottai, Tirunelveli, Tirunelveli – 627002</span>
-        </div>
+  <div class="container"><div class="footer-grid">
+    <div class="footer-brand">
+      <span class="logo-name">IGS Convention Centre</span>
+      <span class="logo-tagline">Tirunelveli's Premier Convention Venue</span>
+      <p>Creating magical moments for over 15 years in Tirunelveli.</p>
+      <div class="footer-social">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="https://wa.me/919841608160"><i class="fab fa-whatsapp"></i></a>
       </div>
     </div>
-  </div>
+    <div class="footer-col"><h4>Quick Links</h4><ul>
+      <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+      <li><a href="halls.html"><i class="fas fa-chevron-right"></i> Our Halls</a></li>
+      <li><a href="pricing.html"><i class="fas fa-chevron-right"></i> Pricing</a></li>
+      <li><a href="enquiry.html"><i class="fas fa-chevron-right"></i> Enquire Now</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Our Halls</h4><ul>
+      <li><a href="halls.html#shree-ganesha-mahal"><i class="fas fa-chevron-right"></i> Shree Ganesha Mahal</a></li>
+      <li><a href="halls.html#kaveri-hall"><i class="fas fa-chevron-right"></i> Kaveri Hall</a></li>
+      <li><a href="halls.html#vaigai-hall"><i class="fas fa-chevron-right"></i> Vaigai Hall</a></li>
+      <li><a href="halls.html#thamirabarani-hall"><i class="fas fa-chevron-right"></i> Thamirabarani Hall</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Contact</h4>
+      <div class="footer-contact-item"><i class="fas fa-phone"></i><span><a href="tel:+919841608160" style="color:rgba(255,255,255,0.65);">+91 98416 08160</a></span></div>
+      <div class="footer-contact-item"><i class="fas fa-envelope"></i><span><a href="mailto:sreeganesamahal@gmail.com" style="color:rgba(255,255,255,0.65);">sreeganesamahal@gmail.com</a></span></div>
+      <div class="footer-contact-item"><i class="fas fa-location-dot"></i><span>51/4A,4B Ambai Road, Palayamkottai, Tirunelveli – 627002</span></div>
+    </div>
+  </div></div>
   <div class="container">
-    <div class="footer-bottom">
-      <p>© 2026 Sree Ganesha Mahal. All Rights Reserved.</p>
+    <div class="footer-bottom" style="flex-direction:column;gap:8px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+        <p>© 2026 IGS Convention Centre. All Rights Reserved.</p>
+        <p>Made with <span style="color:var(--gold);">♥</span> for Tirunelveli's finest celebrations</p>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);">
+        <a href="terms.html" style="font-family:var(--font-ui);font-size:0.82rem;color:rgba(255,255,255,0.5);text-decoration:none;">Terms & Conditions</a>
+        <span style="color:rgba(255,255,255,0.25);font-size:0.7rem;">|</span>
+        <a href="privacy.html" style="font-family:var(--font-ui);font-size:0.82rem;color:rgba(255,255,255,0.5);text-decoration:none;">Privacy Policy</a>
+        <span style="color:rgba(255,255,255,0.25);font-size:0.7rem;">|</span>
+        <a href="disclaimer.html" style="font-family:var(--font-ui);font-size:0.82rem;color:rgba(255,255,255,0.5);text-decoration:none;">Disclaimer</a>
+      </div>
     </div>
   </div>
 </footer>
 
 <a href="https://wa.me/919841608160" class="whatsapp-float" target="_blank">
-  <i class="fab fa-whatsapp"></i>
-  <span class="whatsapp-tooltip">Quick Enquiry</span>
+  <i class="fab fa-whatsapp"></i><span class="whatsapp-tooltip">Quick Enquiry</span>
 </a>
-<div id="toast" class="toast"></div>
 
 <script src="js/main.js"></script>
-<script src="js/form-steps.js"></script>
 <script>
-const muhuratDates = ["2026-01-28","2026-02-06","2026-02-08","2026-02-13","2026-02-15","2026-02-16","2026-02-20","2026-03-05","2026-03-06","2026-03-08","2026-03-15","2026-03-16","2026-03-25","2026-04-06","2026-04-12","2026-04-13","2026-04-16","2026-04-20","2026-04-23","2026-04-30","2026-05-08","2026-05-13","2026-05-14","2026-05-18","2026-05-28","2026-05-29","2026-06-04","2026-06-07","2026-06-17","2026-06-18","2026-06-24","2026-06-25","2026-07-02","2026-07-05","2026-07-12","2026-08-23","2026-08-30","2026-08-31","2026-09-07","2026-09-13","2026-09-17","2026-10-25","2026-10-30","2026-11-01","2026-11-11","2026-11-13","2026-11-15","2026-11-16","2026-11-20","2026-11-29","2026-12-04","2026-12-06","2026-12-10","2026-12-13","2026-12-14"];
-let calYear, calMonth;
-function renderCalendar(year, month) {
-  const calEl = document.getElementById('calendarGrid');
-  const calTitle = document.getElementById('calendarTitle');
-  if (!calEl) return;
-  const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  const dayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-  if (calTitle) calTitle.textContent = monthNames[month] + ' ' + year;
-  const firstDay = new Date(year, month, 1).getDay();
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
-  const today = new Date();
-  let html = dayNames.map(d => '<div class="cal-day-name">'+d+'</div>').join('');
-  for (let i = 0; i < firstDay; i++) html += '<div class="cal-day empty"></div>';
-  for (let d = 1; d <= daysInMonth; d++) {
-    const dateStr = year+'-'+String(month+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
-    const isToday = d===today.getDate() && month===today.getMonth() && year===today.getFullYear();
-    const isPast = new Date(year,month,d) < new Date(today.getFullYear(),today.getMonth(),today.getDate());
-    const isMuhurat = muhuratDates.includes(dateStr);
-    let cls = 'cal-day'+(isPast?' past':isMuhurat?' available':' available')+(isToday?' today':'');
-    html += '<div class="'+cls+'" data-date="'+dateStr+'">'+d+'</div>';
-  }
-  calEl.innerHTML = html;
-  calEl.querySelectorAll('.cal-day.available').forEach(day => {
-    day.style.cursor = 'pointer';
-    day.addEventListener('click', () => {
-      const dateInput = document.getElementById('event-date');
-      if (dateInput) dateInput.value = day.dataset.date;
-      calEl.querySelectorAll('.cal-day').forEach(d => d.style.outline = '');
-      day.style.outline = '2px solid var(--crimson)';
-    });
-  });
+// ── BOOKING ID GENERATOR ──
+function generateBookingId() {
+  const year = new Date().getFullYear();
+  const existing = JSON.parse(localStorage.getItem('igs_bookings') || '[]');
+  const count = existing.length + 1;
+  return 'IGS-' + year + '-' + String(count).padStart(4, '0');
 }
-function initCalendar() {
-  const calEl = document.getElementById('calendarGrid');
-  if (!calEl) return;
-  const now = new Date();
-  calYear = now.getFullYear();
-  calMonth = now.getMonth();
-  document.getElementById('calPrev')?.addEventListener('click', () => { calMonth--; if(calMonth<0){calMonth=11;calYear--;} renderCalendar(calYear,calMonth); });
-  document.getElementById('calNext')?.addEventListener('click', () => { calMonth++; if(calMonth>11){calMonth=0;calYear++;} renderCalendar(calYear,calMonth); });
-  renderCalendar(calYear, calMonth);
+
+const bookingId = generateBookingId();
+document.getElementById('bookingId').value = bookingId;
+document.getElementById('displayBookingId').textContent = bookingId;
+
+// ── GST TOGGLE ──
+function toggleGST() {
+  const cb = document.getElementById('gstToggle');
+  const section = document.getElementById('gstSection');
+  if (cb.checked) {
+    section.classList.add('show');
+  } else {
+    section.classList.remove('show');
+  }
 }
-document.addEventListener('DOMContentLoaded', initCalendar);
-</script>
-<script>
-// Update price display as guest count changes
-document.addEventListener('DOMContentLoaded', () => {
-  const guestInput = document.getElementById('guest-count');
-  const priceDisplay = document.getElementById('step4-price');
 
-  function getHallPrice(guests) {
-    if (guests <= 200) return 40000;
-    else if (guests <= 400) return 65000;
-    else if (guests <= 700) return 90000;
-    else return 125000;
+function checkCorporate() {
+  const event = document.getElementById('b-event').value;
+  if (event === 'Corporate Event') {
+    document.getElementById('gstToggle').checked = true;
+    document.getElementById('gstSection').classList.add('show');
+  }
+}
+
+// ── BALANCE CALCULATOR ──
+function calcBalance() {
+  const rent = parseFloat(document.getElementById('b-rent').value) || 0;
+  const gst = Math.round(rent * 0.18);
+  const total = rent + gst;
+  const advance = parseFloat(document.getElementById('b-advance').value) || 0;
+  const balance = total - advance;
+
+  document.getElementById('b-gst').value = gst || '';
+  document.getElementById('disp-total').textContent = '₹' + total.toLocaleString('en-IN');
+  document.getElementById('disp-advance').textContent = '₹' + advance.toLocaleString('en-IN');
+  document.getElementById('disp-balance').textContent = '₹' + balance.toLocaleString('en-IN');
+}
+
+// ── FORM SUBMIT ──
+let bookingData = {};
+
+document.getElementById('bookingForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const name = document.getElementById('b-name').value.trim();
+  const phone = document.getElementById('b-phone').value.trim();
+  const event = document.getElementById('b-event').value;
+  const hall = document.getElementById('b-hall').value;
+  const date = document.getElementById('b-date').value;
+  const guests = document.getElementById('b-guests').value;
+  const intime = document.getElementById('b-intime').value;
+  const outtime = document.getElementById('b-outtime').value;
+  const rent = parseFloat(document.getElementById('b-rent').value) || 0;
+  const advance = parseFloat(document.getElementById('b-advance').value) || 0;
+
+  if (!name || !phone || !event || !hall || !date || !guests || !intime || !outtime || !rent || !advance) {
+    alert('Please fill all required fields.');
+    return;
   }
 
-  function updateSummary() {
-    const guests = parseInt(guestInput?.value) || 200;
-    const hallPrice = getHallPrice(guests);
-    const gst = Math.round(hallPrice * 0.18);
-    const hallTotal = hallPrice + gst;
+  const gst = Math.round(rent * 0.18);
+  const total = rent + gst;
+  const balance = total - advance;
 
-    if (priceDisplay) priceDisplay.textContent = '₹' + hallPrice.toLocaleString('en-IN');
+  bookingData = {
+    bookingId: bookingId,
+    name, phone,
+    phone2: document.getElementById('b-phone2').value,
+    email: document.getElementById('b-email').value,
+    address: document.getElementById('b-address').value,
+    event, hall, date, guests, intime, outtime,
+    gstRequired: document.getElementById('gstToggle').checked,
+    company: document.getElementById('b-company').value,
+    gstin: document.getElementById('b-gstin').value,
+    bizAddress: document.getElementById('b-bizaddress').value,
+    rent, gst, total, advance,
+    balance,
+    paymode: document.getElementById('b-paymode').value,
+    catering: document.getElementById('b-catering').value,
+    rooms: document.getElementById('b-rooms').value,
+    notes: document.getElementById('b-notes').value,
+    timestamp: new Date().toLocaleString('en-IN')
+  };
 
-    document.getElementById('summary-hall') && (document.getElementById('summary-hall').textContent = '₹' + hallPrice.toLocaleString('en-IN'));
-    document.getElementById('summary-gst') && (document.getElementById('summary-gst').textContent = '₹' + gst.toLocaleString('en-IN'));
-    document.getElementById('summary-hall-total') && (document.getElementById('summary-hall-total').textContent = '₹' + hallTotal.toLocaleString('en-IN'));
+  // Save to localStorage
+  try {
+    const bookings = JSON.parse(localStorage.getItem('igs_bookings') || '[]');
+    bookings.push(bookingData);
+    localStorage.setItem('igs_bookings', JSON.stringify(bookings));
+  } catch(e) {}
 
-    const checkedAddons = document.querySelectorAll('#addonsOptions input[type=checkbox]:checked');
-    let addonTotal = 0;
-    let addonLines = '';
-    checkedAddons.forEach(cb => {
-      const label = cb.closest('label') || cb.parentElement;
-      const text = label?.textContent?.trim() || '';
-      const priceMatch = text.match(/₹([\d,]+)/);
-      if (priceMatch) {
-        const val = parseInt(priceMatch[1].replace(',',''));
-        addonTotal += val;
-        addonLines += `<div>• ${text}</div>`;
-      }
-    });
-
-    const addonsWrap = document.getElementById('summary-addons-wrap');
-    if (addonTotal > 0) {
-      addonsWrap && (addonsWrap.style.display = 'block');
-      document.getElementById('summary-addons-list') && (document.getElementById('summary-addons-list').innerHTML = addonLines);
-      document.getElementById('summary-addons-total') && (document.getElementById('summary-addons-total').textContent = '₹' + addonTotal.toLocaleString('en-IN'));
-    } else {
-      addonsWrap && (addonsWrap.style.display = 'none');
-    }
-
-    const grandTotal = hallTotal + addonTotal;
-    document.getElementById('summary-grand-total') && (document.getElementById('summary-grand-total').textContent = '₹' + grandTotal.toLocaleString('en-IN'));
-  }
-
-  guestInput?.addEventListener('input', updateSummary);
-  document.addEventListener('change', (e) => {
-    if (e.target.closest('#addonsOptions')) updateSummary();
-  });
-
-  setTimeout(updateSummary, 500);
+  // Show success
+  document.getElementById('bookingForm').style.display = 'none';
+  document.getElementById('successScreen').style.display = 'block';
+  document.getElementById('successBookingId').textContent = bookingId;
 });
+
+// ── PDF GENERATOR ──
+function downloadPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+  const d = bookingData;
+
+  const pageW = 210;
+  const margin = 18;
+  const contentW = pageW - margin * 2;
+  let y = 0;
+
+  // ── HEADER BACKGROUND ──
+  doc.setFillColor(130, 17, 17);
+  doc.rect(0, 0, pageW, 42, 'F');
+
+  // ── LOGO TEXT ──
+  doc.setTextColor(212, 175, 55);
+  doc.setFontSize(18);
+  doc.setFont('helvetica', 'bold');
+  doc.text('IGS CONVENTION CENTRE', margin, 16);
+
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(8);
+  doc.setFont('helvetica', 'normal');
+  doc.text("Tirunelveli's Premier Convention Venue", margin, 22);
+  doc.text('51/4A,4B Ambai Road, Palayamkottai, Tirunelveli – 627002', margin, 27);
+  doc.text('Ph: +91 98416 08160  |  Email: sreeganesamahal@gmail.com', margin, 32);
+
+  // GST number on header right
+  if (d.gstRequired) {
+    doc.setFontSize(7);
+    doc.text('GSTIN: 33AXXXX0000X1ZX', pageW - margin, 32, { align: 'right' });
+  }
+
+  // ── DOCUMENT TITLE ──
+  doc.setFillColor(245, 240, 230);
+  doc.rect(0, 42, pageW, 14, 'F');
+  doc.setTextColor(130, 17, 17);
+  doc.setFontSize(13);
+  doc.setFont('helvetica', 'bold');
+  const docTitle = d.gstRequired ? 'TAX INVOICE — HALL BOOKING CONFIRMATION' : 'HALL BOOKING CONFIRMATION';
+  doc.text(docTitle, pageW / 2, 51, { align: 'center' });
+
+  y = 64;
+
+  // ── BOOKING ID & DATE ──
+  doc.setFillColor(255, 255, 255);
+  doc.setDrawColor(200, 190, 175);
+  doc.setLineWidth(0.3);
+  doc.roundedRect(margin, y, contentW, 14, 2, 2, 'FD');
+
+  doc.setTextColor(130, 17, 17);
+  doc.setFontSize(9);
+  doc.setFont('helvetica', 'bold');
+  doc.text('Booking ID: ' + d.bookingId, margin + 4, y + 5.5);
+  doc.setTextColor(80, 60, 50);
+  doc.setFont('helvetica', 'normal');
+  doc.text('Date of Issue: ' + d.timestamp, margin + 4, y + 10);
+  doc.setTextColor(130, 17, 17);
+  doc.setFont('helvetica', 'bold');
+  doc.text('Status: CONFIRMED', pageW - margin - 4, y + 7, { align: 'right' });
+
+  y += 20;
+
+  // ── TWO COLUMN: Customer + Event ──
+  const colW = (contentW - 6) / 2;
+
+  // Customer box
+  doc.setFillColor(250, 247, 242);
+  doc.setDrawColor(200, 190, 175);
+  doc.roundedRect(margin, y, colW, 52, 2, 2, 'FD');
+
+  doc.setFillColor(130, 17, 17);
+  doc.roundedRect(margin, y, colW, 9, 2, 2, 'F');
+  doc.rect(margin, y + 5, colW, 4, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(8);
+  doc.setFont('helvetica', 'bold');
+  doc.text('CUSTOMER DETAILS', margin + 4, y + 6.5);
+
+  doc.setTextColor(60, 40, 30);
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(8.5);
+  const custLines = [
+    ['Name', d.name],
+    ['Phone', d.phone + (d.phone2 ? ' / ' + d.phone2 : '')],
+    ['Email', d.email || '—'],
+    ['Address', d.address || '—'],
+  ];
+  if (d.gstRequired && d.company) {
+    custLines.push(['Company', d.company]);
+    custLines.push(['GSTIN', d.gstin || '—']);
+  }
+  let cy = y + 14;
+  custLines.forEach(([label, value]) => {
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(100, 70, 50);
+    doc.text(label + ':', margin + 4, cy);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(40, 30, 20);
+    const wrapped = doc.splitTextToSize(value, colW - 28);
+    doc.text(wrapped, margin + 24, cy);
+    cy += 7;
+  });
+
+  // Event box
+  const col2X = margin + colW + 6;
+  doc.setFillColor(250, 247, 242);
+  doc.setDrawColor(200, 190, 175);
+  doc.roundedRect(col2X, y, colW, 52, 2, 2, 'FD');
+
+  doc.setFillColor(130, 17, 17);
+  doc.roundedRect(col2X, y, colW, 9, 2, 2, 'F');
+  doc.rect(col2X, y + 5, colW, 4, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(8);
+  doc.setFont('helvetica', 'bold');
+  doc.text('EVENT DETAILS', col2X + 4, y + 6.5);
+
+  doc.setTextColor(60, 40, 30);
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(8.5);
+  const eventDate = new Date(d.date).toLocaleDateString('en-IN', { day: '2-digit', month: 'long', year: 'numeric' });
+  const evLines = [
+    ['Event', d.event],
+    ['Hall', d.hall],
+    ['Date', eventDate],
+    ['Check-in', d.intime],
+    ['Check-out', d.outtime],
+    ['Guests', d.guests + ' persons'],
+    ['Catering', d.catering],
+  ];
+  let ey = y + 14;
+  evLines.forEach(([label, value]) => {
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(100, 70, 50);
+    doc.text(label + ':', col2X + 4, ey);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(40, 30, 20);
+    doc.text(String(value), col2X + 24, ey);
+    ey += 7;
+  });
+
+  y += 58;
+
+  // ── PAYMENT TABLE ──
+  doc.setFillColor(130, 17, 17);
+  doc.roundedRect(margin, y, contentW, 9, 2, 2, 'F');
+  doc.rect(margin, y + 5, contentW, 4, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(8);
+  doc.setFont('helvetica', 'bold');
+  doc.text('PAYMENT SUMMARY', margin + 4, y + 6.5);
+  y += 12;
+
+  const payRows = [
+    ['Hall Rental Charge', '', '₹' + d.rent.toLocaleString('en-IN')],
+    ['GST @ 18%', '', '₹' + d.gst.toLocaleString('en-IN')],
+    ['TOTAL AMOUNT', '', '₹' + d.total.toLocaleString('en-IN')],
+    ['Advance Paid (' + d.paymode + ')', '', '₹' + d.advance.toLocaleString('en-IN')],
+    ['BALANCE DUE', '', '₹' + d.balance.toLocaleString('en-IN')],
+  ];
+
+  payRows.forEach((row, i) => {
+    const isTotal = row[0] === 'TOTAL AMOUNT' || row[0] === 'BALANCE DUE';
+    if (isTotal) {
+      doc.setFillColor(245, 238, 220);
+    } else {
+      doc.setFillColor(i % 2 === 0 ? 255 : 250, i % 2 === 0 ? 255 : 247, i % 2 === 0 ? 255 : 242);
+    }
+    doc.rect(margin, y, contentW, 8, 'F');
+    doc.setDrawColor(220, 210, 195);
+    doc.setLineWidth(0.2);
+    doc.line(margin, y + 8, margin + contentW, y + 8);
+
+    doc.setFontSize(isTotal ? 9 : 8.5);
+    doc.setFont('helvetica', isTotal ? 'bold' : 'normal');
+    doc.setTextColor(isTotal ? 130 : 60, isTotal ? 17 : 40, isTotal ? 17 : 30);
+    doc.text(row[0], margin + 4, y + 5.5);
+    doc.text(row[2], pageW - margin - 4, y + 5.5, { align: 'right' });
+    y += 8;
+  });
+
+  y += 8;
+
+  // ── NOTES ──
+  if (d.notes) {
+    doc.setFontSize(8);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(130, 17, 17);
+    doc.text('Special Requirements:', margin, y);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(60, 40, 30);
+    const noteLines = doc.splitTextToSize(d.notes, contentW);
+    doc.text(noteLines, margin, y + 5);
+    y += 5 + noteLines.length * 4 + 6;
+  }
+
+  // ── TERMS ──
+  doc.setFillColor(250, 247, 242);
+  doc.setDrawColor(200, 190, 175);
+  doc.roundedRect(margin, y, contentW, 28, 2, 2, 'FD');
+  doc.setFontSize(7.5);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(130, 17, 17);
+  doc.text('Terms & Conditions:', margin + 4, y + 5);
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(80, 60, 50);
+  const terms = [
+    '1. Hall rental charges inclusive of GST are payable in advance to confirm the booking.',
+    '2. Security deposit and ancillary charges must be cleared at least 2 weeks before the event.',
+    '3. Cancellation: 60+ days — 80% refund | 30-60 days — 50% | 15-30 days — 25% | Under 15 days — No refund.',
+    '4. One date change permitted (subject to availability) with ₹5,000 rescheduling fee.',
+    '5. Any damage to venue property will be assessed and billed to the booking party.',
+  ];
+  terms.forEach((t, i) => { doc.text(t, margin + 4, y + 10 + i * 4); });
+
+  y += 34;
+
+  // ── SIGNATURES ──
+  doc.setDrawColor(180, 160, 130);
+  doc.setLineWidth(0.3);
+  doc.line(margin, y + 10, margin + 55, y + 10);
+  doc.line(pageW - margin - 55, y + 10, pageW - margin, y + 10);
+  doc.setFontSize(7.5);
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(100, 80, 60);
+  doc.text('Customer Signature', margin, y + 14);
+  doc.text('Authorised Signatory', pageW - margin, y + 14, { align: 'right' });
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(130, 17, 17);
+  doc.text('IGS Convention Centre', pageW - margin, y + 18, { align: 'right' });
+
+  // ── FOOTER BAR ──
+  doc.setFillColor(130, 17, 17);
+  doc.rect(0, 280, pageW, 17, 'F');
+  doc.setTextColor(212, 175, 55);
+  doc.setFontSize(7.5);
+  doc.setFont('helvetica', 'bold');
+  doc.text('IGS Convention Centre — Tirunelveli\'s Premier Convention Venue', pageW / 2, 287, { align: 'center' });
+  doc.setTextColor(255, 255, 255);
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(7);
+  doc.text('51/4A,4B Ambai Road, Palayamkottai, Tirunelveli – 627002  |  +91 98416 08160  |  sreeganesamahal@gmail.com', pageW / 2, 292, { align: 'center' });
+
+  doc.save('IGS-Booking-' + d.bookingId + '.pdf');
+}
+
+// Pre-fill from URL params
+const params = new URLSearchParams(window.location.search);
+if (params.get('hall')) {
+  const hallSelect = document.getElementById('b-hall');
+  for (let o of hallSelect.options) {
+    if (o.value.toLowerCase().includes(params.get('hall').toLowerCase())) {
+      o.selected = true; break;
+    }
+  }
+}
+if (params.get('date')) {
+  document.getElementById('b-date').value = params.get('date');
+}
+if (params.get('event')) {
+  const evSelect = document.getElementById('b-event');
+  for (let o of evSelect.options) {
+    if (o.value.toLowerCase().includes(params.get('event').toLowerCase())) {
+      o.selected = true; break;
+    }
+  }
+}
 </script>
 </body>
 </html>
