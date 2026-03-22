@@ -69,29 +69,129 @@
       <div class="ornament"><span>✦</span></div>
       <p>All packages include generator backup, security, and cleaning. Prices are for hall rental only.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:40px;">
+    <style>
+      .hall-price-card {
+        background: var(--white);
+        border: 2px solid var(--ivory-deeper);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: var(--transition);
+      }
+      .hall-price-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+      .hall-price-card .hpc-top {
+        background: var(--ivory-dark);
+        padding: 28px 24px 20px;
+        text-align: center;
+        border-bottom: 1px solid var(--ivory-deeper);
+        position: relative;
+      }
+      .hall-price-card .hpc-badge {
+        display: inline-block;
+        font-family: var(--font-ui);
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 4px 14px;
+        border-radius: 20px;
+        margin-bottom: 12px;
+      }
+      .hall-price-card .hpc-icon {
+        width: 56px; height: 56px;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        margin: 0 auto 14px;
+        font-size: 1.4rem;
+      }
+      .hall-price-card .hpc-name {
+        font-family: var(--font-heading);
+        font-size: 1.15rem;
+        color: var(--crimson);
+        margin-bottom: 4px;
+      }
+      .hall-price-card .hpc-sub {
+        font-family: var(--font-ui);
+        font-size: 0.75rem;
+        color: var(--text-light);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+      .hall-price-card .hpc-capacity {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 4px;
+        margin-top: 14px;
+        background: var(--white);
+        border: 1px solid var(--ivory-deeper);
+        border-radius: var(--radius);
+        padding: 8px 20px;
+      }
+      .hall-price-card .hpc-capacity .cap-num {
+        font-family: var(--font-heading);
+        font-size: 1.8rem;
+        color: var(--crimson);
+        font-weight: 700;
+        line-height: 1;
+      }
+      .hall-price-card .hpc-capacity .cap-lbl {
+        font-family: var(--font-ui);
+        font-size: 0.72rem;
+        color: var(--text-light);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+      .hall-price-card .hpc-features {
+        padding: 24px;
+        list-style: none;
+        flex: 1;
+      }
+      .hall-price-card .hpc-features li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 7px 0;
+        font-family: var(--font-ui);
+        font-size: 0.88rem;
+        color: var(--text-mid);
+        border-bottom: 1px solid var(--ivory);
+      }
+      .hall-price-card .hpc-features li:last-child { border-bottom: none; }
+      .hall-price-card .hpc-features li i { color: var(--gold); flex-shrink: 0; }
+      .hall-price-card .hpc-footer {
+        padding: 20px 24px;
+        border-top: 1px solid var(--ivory-deeper);
+        background: var(--ivory);
+      }
+    </style>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:40px;">
 
       <!-- Shree Ganesha Mahal -->
-      <div class="pricing-card popular reveal stagger-1">
-        <div class="pricing-header gold-bg">
-          <span class="popular-badge">⭐ Most Popular</span>
-          <h3 style="color:var(--white);">Shree Ganesha Mahal</h3>
-          <p>Grand Flagship Hall</p>
+      <div class="hall-price-card reveal stagger-1" style="border-color:var(--gold);">
+        <div class="hpc-top" style="background:linear-gradient(135deg,var(--crimson),var(--crimson-dark));">
+          <div class="hpc-badge" style="background:var(--gold);color:var(--text-dark);">⭐ Most Popular</div>
+          <div class="hpc-icon" style="background:rgba(255,255,255,0.15);">
+            <i class="fas fa-landmark" style="color:var(--gold-light);"></i>
+          </div>
+          <div class="hpc-name" style="color:var(--white);">Shree Ganesha Mahal</div>
+          <div class="hpc-sub" style="color:rgba(255,255,255,0.65);">Grand Flagship Hall</div>
+          <div class="hpc-capacity" style="background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.2);">
+            <span class="cap-num" style="color:var(--gold-light);">500</span>
+            <span class="cap-lbl" style="color:rgba(255,255,255,0.65);">Guests</span>
+          </div>
         </div>
-        <div class="pricing-price">
-          <span class="amount" style="font-size:1.6rem;">Contact for Quote</span>
-          <span class="capacity">500 Guests · Full Day</span>
-        </div>
-        <ul class="pricing-features">
+        <ul class="hpc-features">
           <li><i class="fas fa-check"></i> 150 × 90 ft hall</li>
-          <li><i class="fas fa-check"></i> Full AC</li>
+          <li><i class="fas fa-check"></i> Fully Air-Conditioned</li>
           <li><i class="fas fa-check"></i> Italian Marble flooring</li>
           <li><i class="fas fa-check"></i> Grand elevated stage</li>
           <li><i class="fas fa-check"></i> Crystal chandeliers + LED</li>
           <li><i class="fas fa-check"></i> Professional sound system</li>
           <li><i class="fas fa-check"></i> Generator backup</li>
         </ul>
-        <div class="pricing-footer">
+        <div class="hpc-footer">
           <a href="enquiry.html?hall=Shree+Ganesha+Mahal" class="btn btn-crimson" style="width:100%;justify-content:center;">
             <i class="fas fa-calendar-check"></i> Book This Hall
           </a>
@@ -99,78 +199,90 @@
       </div>
 
       <!-- Kaveri Hall -->
-      <div class="pricing-card reveal stagger-2">
-        <div class="pricing-header">
-          <h3 style="color:var(--crimson);">Kaveri Hall</h3>
-          <p>Premium Mid-Size Hall</p>
+      <div class="hall-price-card reveal stagger-2">
+        <div class="hpc-top">
+          <div class="hpc-badge" style="background:var(--crimson);color:var(--white);">Best Value</div>
+          <div class="hpc-icon" style="background:var(--crimson);">
+            <i class="fas fa-building-columns" style="color:var(--gold-light);"></i>
+          </div>
+          <div class="hpc-name">Kaveri Hall</div>
+          <div class="hpc-sub">Premium Mid-Size Hall</div>
+          <div class="hpc-capacity">
+            <span class="cap-num">350</span>
+            <span class="cap-lbl">Guests</span>
+          </div>
         </div>
-        <div class="pricing-price">
-          <span class="amount" style="font-size:1.6rem;">Contact for Quote</span>
-          <span class="capacity">350 Guests · Full Day</span>
-        </div>
-        <ul class="pricing-features">
+        <ul class="hpc-features">
           <li><i class="fas fa-check"></i> 110 × 70 ft hall</li>
-          <li><i class="fas fa-check"></i> Full AC</li>
+          <li><i class="fas fa-check"></i> Fully Air-Conditioned</li>
           <li><i class="fas fa-check"></i> Granite flooring</li>
           <li><i class="fas fa-check"></i> Decorated stage</li>
           <li><i class="fas fa-check"></i> LED chandeliers + spotlights</li>
           <li><i class="fas fa-check"></i> Hi-fi stereo system</li>
           <li><i class="fas fa-check"></i> Generator backup</li>
         </ul>
-        <div class="pricing-footer">
-          <a href="enquiry.html?hall=Kaveri+Hall" class="btn btn-primary" style="width:100%;justify-content:center;">
+        <div class="hpc-footer">
+          <a href="enquiry.html?hall=Kaveri+Hall" class="btn btn-crimson" style="width:100%;justify-content:center;">
             <i class="fas fa-calendar-check"></i> Book This Hall
           </a>
         </div>
       </div>
 
       <!-- Vaigai Hall -->
-      <div class="pricing-card reveal stagger-3">
-        <div class="pricing-header">
-          <h3 style="color:var(--crimson);">Vaigai Hall</h3>
-          <p>Elegant Medium Hall</p>
+      <div class="hall-price-card reveal stagger-3">
+        <div class="hpc-top">
+          <div class="hpc-badge" style="background:var(--gold);color:var(--text-dark);">Elegant Choice</div>
+          <div class="hpc-icon" style="background:var(--crimson);">
+            <i class="fas fa-water" style="color:var(--gold-light);"></i>
+          </div>
+          <div class="hpc-name">Vaigai Hall</div>
+          <div class="hpc-sub">Elegant Medium Hall</div>
+          <div class="hpc-capacity">
+            <span class="cap-num">200</span>
+            <span class="cap-lbl">Guests</span>
+          </div>
         </div>
-        <div class="pricing-price">
-          <span class="amount" style="font-size:1.6rem;">Contact for Quote</span>
-          <span class="capacity">200 Guests · Full Day</span>
-        </div>
-        <ul class="pricing-features">
+        <ul class="hpc-features">
           <li><i class="fas fa-check"></i> 80 × 55 ft hall</li>
-          <li><i class="fas fa-check"></i> Full AC</li>
+          <li><i class="fas fa-check"></i> Fully Air-Conditioned</li>
           <li><i class="fas fa-check"></i> Vitrified tile flooring</li>
-          <li><i class="fas fa-check"></i> Compact stage</li>
+          <li><i class="fas fa-check"></i> Compact decorated stage</li>
           <li><i class="fas fa-check"></i> LED panel lighting</li>
           <li><i class="fas fa-check"></i> Stereo sound system</li>
           <li><i class="fas fa-check"></i> Generator backup</li>
         </ul>
-        <div class="pricing-footer">
-          <a href="enquiry.html?hall=Vaigai+Hall" class="btn btn-primary" style="width:100%;justify-content:center;">
+        <div class="hpc-footer">
+          <a href="enquiry.html?hall=Vaigai+Hall" class="btn btn-crimson" style="width:100%;justify-content:center;">
             <i class="fas fa-calendar-check"></i> Book This Hall
           </a>
         </div>
       </div>
 
       <!-- Thamirabarani Hall -->
-      <div class="pricing-card reveal stagger-4">
-        <div class="pricing-header">
-          <h3 style="color:var(--crimson);">Thamirabarani Hall</h3>
-          <p>Intimate Gathering Hall</p>
+      <div class="hall-price-card reveal stagger-4">
+        <div class="hpc-top">
+          <div class="hpc-badge" style="background:var(--gold);color:var(--text-dark);">Intimate Hall</div>
+          <div class="hpc-icon" style="background:var(--crimson);">
+            <i class="fas fa-om" style="color:var(--gold-light);"></i>
+          </div>
+          <div class="hpc-name">Thamirabarani Hall</div>
+          <div class="hpc-sub">Intimate Gathering Hall</div>
+          <div class="hpc-capacity">
+            <span class="cap-num">100</span>
+            <span class="cap-lbl">Guests</span>
+          </div>
         </div>
-        <div class="pricing-price">
-          <span class="amount" style="font-size:1.6rem;">Contact for Quote</span>
-          <span class="capacity">100 Guests · Full Day</span>
-        </div>
-        <ul class="pricing-features">
+        <ul class="hpc-features">
           <li><i class="fas fa-check"></i> 50 × 40 ft hall</li>
-          <li><i class="fas fa-check"></i> Full AC</li>
+          <li><i class="fas fa-check"></i> Fully Air-Conditioned</li>
           <li><i class="fas fa-check"></i> Ceramic tile flooring</li>
           <li><i class="fas fa-check"></i> Flexible stage / podium</li>
           <li><i class="fas fa-check"></i> Projector & screen</li>
           <li><i class="fas fa-check"></i> PA system + Wi-Fi</li>
           <li><i class="fas fa-check"></i> Generator backup</li>
         </ul>
-        <div class="pricing-footer">
-          <a href="enquiry.html?hall=Thamirabarani+Hall" class="btn btn-primary" style="width:100%;justify-content:center;">
+        <div class="hpc-footer">
+          <a href="enquiry.html?hall=Thamirabarani+Hall" class="btn btn-crimson" style="width:100%;justify-content:center;">
             <i class="fas fa-calendar-check"></i> Book This Hall
           </a>
         </div>
