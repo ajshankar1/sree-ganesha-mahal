@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Halls | IGS Convention Centre Tirunelveli</title>
+  <meta name="description" content="IGS Convention Centre has 4 grand halls — Shree Ganesha Mahal (500), Kaveri Hall (350), Vaigai Hall (200), Thamirabarani Hall (100). Book your hall in Tirunelveli.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .hall-section { padding: 80px 0; }
+    .hall-section:nth-child(even) { background: var(--ivory-dark); }
+    .hall-section:nth-child(odd) { background: var(--ivory); }
+    .hall-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .hall-grid.reverse { direction: rtl; }
+    .hall-grid.reverse > * { direction: ltr; }
+    .hall-image-box {
+      background: linear-gradient(135deg, var(--crimson-dark), var(--text-dark));
+      aspect-ratio: 4/3;
+      border-radius: var(--radius-lg);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 16px;
+      border: 2px solid var(--ivory-deeper);
+      position: relative;
+      overflow: hidden;
+    }
+    .hall-image-box i { font-size: 4rem; color: var(--gold); opacity: 0.8; }
+    .hall-image-box .hall-name-bg {
+      position: absolute;
+      font-family: var(--font-heading);
+      font-size: 5rem;
+      color: rgba(255,255,255,0.04);
+      text-align: center;
+      padding: 0 20px;
+      line-height: 1.2;
+    }
+    .hall-pax-badge {
+      position: absolute;
+      top: 20px; right: 20px;
+      background: var(--gold);
+      color: var(--text-dark);
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 8px 16px;
+      border-radius: var(--radius);
+    }
+    .hall-info .section-tag {
+      display: inline-block;
+      font-family: var(--font-ui);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(201,168,76,0.35);
+      padding: 5px 16px;
+      border-radius: 2px;
+      margin-bottom: 16px;
+    }
+    .hall-info h2 { color: var(--crimson); margin-bottom: 8px; }
+    .hall-info p { color: var(--text-mid); margin-bottom: 20px; font-size: 1.05rem; }
+    .hall-specs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 24px 0;
+    }
+    .spec-box {
+      background: var(--white);
+      border: 1px solid var(--ivory-deeper);
+      border-left: 3px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+    }
+    .spec-box .spec-val {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      color: var(--crimson);
+      display: block;
+      line-height: 1;
+    }
+    .spec-box .spec-key {
+      font-family: var(--font-ui);
+      font-size: 0.72rem;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 4px;
+      display: block;
+    }
+    .hall-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+    .hall-tag {
+      background: var(--ivory-dark);
+      border: 1px solid var(--ivory-deeper);
+      color: var(--text-mid);
+      font-family: var(--font-ui);
+      font-size: 0.72rem;
+      padding: 5px 14px;
+      border-radius: 20px;
+      letter-spacing: 0.05em;
+    }
+    .hall-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .overview-strip {
+      background: var(--text-dark);
+      padding: 0;
+      border-bottom: 2px solid var(--gold);
+    }
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+    }
+    .overview-item {
+      padding: 24px 20px;
+      text-align: center;
+      border-right: 1px solid rgba(201,168,76,0.2);
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .overview-item:last-child { border-right: none; }
+    .overview-item:hover { background: var(--crimson-dark); }
+    .overview-item .ov-num {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      color: var(--gold-light);
+      font-weight: 700;
+      display: block;
+      line-height: 1;
+    }
+    .overview-item .ov-name {
+      font-family: var(--font-ui);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      display: block;
+      margin-top: 6px;
+      text-transform: uppercase;
+    }
+    .overview-item .ov-sub {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.45);
+      display: block;
+      margin-top: 4px;
+    }
+    @media (max-width: 768px) {
+      .hall-grid, .hall-grid.reverse { grid-template-columns: 1fr; direction: ltr; }
+      .overview-grid { grid-template-columns: repeat(2,1fr); }
+      .hall-specs { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="container">
+    <div class="top-bar-info">
+      <a href="tel:+919841608160"><i class="fas fa-phone"></i> +91 98416 08160</a>
+      <a href="mailto:sreeganesamahal@gmail.com"><i class="fas fa-envelope"></i> sreeganesamahal@gmail.com</a>
+      <span><i class="fas fa-map-marker-alt"></i> 51/4A,4B Ambai Road, Palayamkottai, Tirunelveli</span>
+    </div>
+    <div class="top-bar-social">
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://wa.me/919841608160" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">IGS</div>
+      <div class="nav-logo-text">
+        <span class="name">IGS Convention Centre</span>
+        <span class="tagline">Tirunelveli's Premier Convention Venue</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="halls.html" class="active">Halls</a>
+      <a href="events.html">Events</a>
+      <a href="facilities.html">Facilities</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="enquiry.html" class="btn btn-crimson nav-cta">Enquire Now</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container">
+    <div class="page-hero-content">
+      <span class="label"><i class="fas fa-building-columns"></i> Our Venues</span>
+      <h1>Our Four Grand Halls</h1>
+      <p>Every hall is designed with traditional grandeur, modern comfort and built to make your celebration extraordinary.</p>
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>Our Halls</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OVERVIEW STRIP -->
+<div class="overview-strip">
+  <div class="container" style="padding:0;">
+    <div class="overview-grid">
+      <a href="#shree-ganesha-mahal" class="overview-item">
+        <span class="ov-num">500</span>
+        <span class="ov-name">Shree Ganesha Mahal</span>
+        <span class="ov-sub">Flagship Hall</span>
+      </a>
+      <a href="#kaveri-hall" class="overview-item">
+        <span class="ov-num">350</span>
+        <span class="ov-name">Kaveri Hall</span>
+        <span class="ov-sub">Premium Hall</span>
+      </a>
+      <a href="#vaigai-hall" class="overview-item">
+        <span class="ov-num">200</span>
+        <span class="ov-name">Vaigai Hall</span>
+        <span class="ov-sub">Elegant Hall</span>
+      </a>
+      <a href="#thamirabarani-hall" class="overview-item">
+        <span class="ov-num">100</span>
+        <span class="ov-name">Thamirabarani Hall</span>
+        <span class="ov-sub">Intimate Hall</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- HALL 1 — SHREE GANESHA MAHAL -->
+<section class="hall-section" id="shree-ganesha-mahal">
+  <div class="container">
+    <div class="hall-grid">
+      <div class="hall-image-box reveal-left">
+        <span class="hall-name-bg">Shree Ganesha Mahal</span>
+        <i class="fas fa-gopuram"></i>
+        <span style="font-family:var(--font-heading);font-size:1rem;letter-spacing:0.15em;color:var(--gold-pale);text-transform:uppercase;">Grand Flagship Hall</span>
+        <div class="hall-pax-badge">500 PAX</div>
+      </div>
+      <div class="hall-info reveal-right">
+        <span class="section-tag">Flagship Hall</span>
+        <h2>Shree Ganesha Mahal</h2>
+        <div class="ornament" style="justify-content:flex-start;"><span>✦</span></div>
+        <p>Our grandest and most iconic hall. With soaring ceilings, Italian marble flooring, and a grand elevated stage, Shree Ganesha Mahal is the perfect setting for weddings and receptions that demand nothing less than magnificence.</p>
+        <div class="hall-specs">
+          <div class="spec-box">
+            <span class="spec-val">500</span>
+            <span class="spec-key">Seating Capacity</span>
+          </div>
+          <div class="spec-box">
+            <span class="spec-val">150×90 ft</span>
+            <span class="spec-key">Hall Dimensions</span>
+          </div>
+          <div class="spec-box">
+            <span class="spec-val"><i class="fas fa-snowflake" style="font-size:1rem;"></i></span>
+            <span class="spec-key">Fully Air-Conditioned</span>
+          </div>
+          <div class="spec-box">
+            <span class="spec-val">Marble</span>
+            <span class="spec-key">Italian Marble Floor</span>
+          </div>
+        </div>
+        <div class="hall-tags">
+          <span class="hall-tag">Grand Weddings</span>
+          <span class="hall-tag">Receptions</span>
+          <span class="hall-tag">Engagements</span>
+          <span class="hall-tag">Corporate Events</span>
+        </div>
+        <div class="hall-btns">
+          <a href="enquiry.html?hall=Shree+Ganesha+Mahal" class="btn btn-crimson"><i class="fas fa-calendar-check"></i> Book This Hall</a>
+          <a href="contact.html" class="btn btn-outline" style="color:var(--crimson);border-color:var(--crimson);"><i class="fas fa-phone"></i> Enquire</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HALL 2 — KAVERI HALL -->
+<section class="hall-section" id="kaveri-hall">
+  <div class="container">
+    <div class="hall-grid reverse">
+      <div class="hall-info reveal-left">
+        <span class="section-tag">Premium Hall</span>
+        <h2>Kaveri Hall</h2>
+        <div class="ornament" style="justify-content:flex-start;"><span>✦</span></div>
+        <p>Named after the sacred river Kaveri, this hall combines elegance with practicality. Ideal for mid-size celebrations, Kaveri Hall offers a warm atmosphere while providing ample space for up to 350 guests with full air-conditioning and premium amenities.</p>
+        <div class="hall-specs">
+          <div class="spec-box">
+            <span class="spec-val">350</span>
+            <span class="spec-key">Seating Capacity</span>
+          </div>
+          <div class="spec-box">
+            <span class="spec-val">110×70 ft</span>
+            <span class="spec-key">Hall Dimensions</span>
+          </div>
+          <div class="spec-box">
+            <span class="spec-val"><i class="fas fa-snowflake" style="font-size:1rem;"></i></span>
+            <span class="spec-key">Fully Air-Conditioned</span>
+          </div>
+          <div class="spec-box">
+            <span class="spec-val">Granite</span>
+            <span class="spec-key">Granite Flooring</span>
+          </div>
+        </div>
+        <div class="hall-tags">
+          <span class="hall-tag">Weddings</span>
+          <span class="hall-tag">Upanayanam</span>
+          <span class="hall-tag">Seemantham</span>
+          <span class="hall-tag">Birthday Parties</span>
+        </div>
+        <div class="hall-btns">
+          <a href="enquiry.html?hall=Kaveri+Hall" class="btn btn-crimson"><i class="fas fa-calendar-check"></i> Book This Hall</a>
+          <a href="contact.html" class="btn btn-outline" style="color:var(--crimson);border-color:var(--crimson);"><i class="fas fa-phone"></i> Enquire</a>
+        </div>
+      </div>
+      <div class="hall-image-box reveal-right">
+        <span class="hall-name-bg">Kaveri Hall</span>
+        <i class="fas fa-water"></i>
+        <span style="font-family:var(--font-heading);font-size:1rem;letter-spacing:0.15em;color:var(--gold-pale);text-transform:uppercase;">Premium Mid-Size Hall</span>
+        <div class="hall-pax-badge">350 PAX</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HALL 3 — VAIGAI HALL -->
+<section class="hall-section" id="vaigai-hall">
+  <div class="container">
+    <div class="hall-grid">
+      <div class="hall-image-box reveal-left">
+        <span class="hall-name-bg">Vaigai Hall</span>
+        <i class="fas fa-seedling"></i>
+        <span style="font-family:var(--font-heading);font-size:1rem;letter-spacing:0.15em;color:var(--gold-pale);text-transform:uppercase;">Elegant Medium Hall</span>
+        <div class="hall-pax-badge">200 PAX</div>
+      </div>
+      <div class="hall-info reveal-right">
+        <span class="section-tag">Elegant Hall</span>
+        <h2>Vaigai Hall</h2>
+        <div class="ornament" style="justify-content:flex-start;"><span>✦</span></div>
+        <p>Inspired by the gentle Vaigai river, this hall is perfect for intimate yet elegant celebrations. With capacity for up to 200 guests and full air-conditioning, it provides a cozy personal atmosphere that makes every guest feel special.</p>
+        <div class="hall-specs">
+          <div class="spec-box">
+            <span class="spec-val">200</span>
+            <span class="spec-key">Seating Capacity</span>
+          </div>
+          <div class="spec-box">
+            <span class="spec-val">80×55 ft</span>
+            <span class="spec-key">Hall Dimensions</span>
+          </div>
+          <div class="spec-box">
+            <span class="spec-val"><i class="fas fa-snowflake" style="font-size:1rem;"></i></span>
+            <span class="spec-key">Fully Air-Conditioned</span>
+          </div>
+          <div class="spec-box">
+            <span class="spec-val">Vitrified</span>
+            <span class="spec-key">Vitrified Tiles</span>
+          </div>
+        </div>
+        <div class="hall-tags">
+          <span class="hall-tag">Engagements</span>
+          <span class="hall-tag">Baby Showers</span>
+          <span class="hall-tag">Naming Ceremony</span>
+          <span class="hall-tag">Anniversaries</span>
+        </div>
+        <div class="hall-btns">
+          <a href="enquiry.html?hall=Vaigai+Hall" class="btn btn-crimson"><i class="fas fa-calendar-check"></i> Book This Hall</a>
+          <a href="contact.html" class="btn btn-outline" style="color:var(--crimson);border-color:var(--crimson);"><i class="fas fa-phone"></i> Enquire</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HALL 4 — THAMIRABARANI HALL -->
+<section class="hall-section" id="thamirabarani-hall">
+  <div class="container">
+    <div class="hall-grid reverse">
+      <div class="hall-info reveal-left">
+        <span class="section-tag">Intimate Hall</span>
+        <h2>Thamirabarani Hall</h2>
+        <div class="ornament" style="justify-content:flex-start;"><span>✦</span></div>
+        <p>Named after the pristine Thamirabarani river of Tirunelveli, this intimate hall is perfect for smaller focused gatherings. Fully air-conditioned and flexibly arranged — ideal for corporate meetings, conferences, and private family functions.</p>
+        <div class="hall-specs">
+          <div class="spec-box">
+            <span class="spec-val">100</span>
+            <span class="spec-key">Seating Capacity</span>
+          </div>
+          <div class="spec-box">
+            <span class="spec-val">50×40 ft</span>
+            <span class="spec-key">Hall Dimensions</span>
+          </div>
+          <div class="spec-box">
+            <span class="spec-val"><i class="fas fa-snowflake" style="font-size:1rem;"></i></span>
+            <span class="spec-key">Fully Air-Conditioned</span>
+          </div>
+          <div class="spec-box">
+            <span class="spec-val"><i class="fas fa-display" style="font-size:1rem;"></i></span>
+            <span class="spec-key">AV & Projector</span>
+          </div>
+        </div>
+        <div class="hall-tags">
+          <span class="hall-tag">Conferences</span>
+          <span class="hall-tag">Corporate Meets</span>
+          <span class="hall-tag">Pooja Functions</span>
+          <span class="hall-tag">Family Get-togethers</span>
+        </div>
+        <div class="hall-btns">
+          <a href="enquiry.html?hall=Thamirabarani+Hall" class="btn btn-crimson"><i class="fas fa-calendar-check"></i> Book This Hall</a>
+          <a href="contact.html" class="btn btn-outline" style="color:var(--crimson);border-color:var(--crimson);"><i class="fas fa-phone"></i> Enquire</a>
+        </div>
+      </div>
+      <div class="hall-image-box reveal-right">
+        <span class="hall-name-bg">Thamirabarani Hall</span>
+        <i class="fas fa-person-shelter"></i>
+        <span style="font-family:var(--font-heading);font-size:1rem;letter-spacing:0.15em;color:var(--gold-pale);text-transform:uppercase;">Intimate Gathering Hall</span>
+        <div class="hall-pax-badge">100 PAX</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner">
+      <span class="label"><i class="fas fa-sparkles"></i> Ready to Book?</span>
+      <h2>Not Sure Which Hall Suits You?</h2>
+      <div class="ornament"><span>✦</span></div>
+      <p>Tell us your guest count and event type — we'll help you choose the perfect hall.</p>
+      <div class="cta-btns">
+        <a href="enquiry.html" class="btn btn-primary btn-lg"><i class="fas fa-calendar-check"></i> Send Enquiry</a>
+        <a href="https://wa.me/919841608160?text=Hello, I would like to enquire about hall booking at IGS Convention Centre." target="_blank" class="btn btn-outline btn-lg"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo-name">IGS Convention Centre</span>
+        <span class="logo-tagline">Tirunelveli's Premier Convention Venue</span>
+        <p>Four grand halls, 15 AC rooms, and the warmth of genuine Tamil hospitality in the heart of Tirunelveli.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/919841608160" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+          <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+          <li><a href="halls.html"><i class="fas fa-chevron-right"></i> Our Halls</a></li>
+          <li><a href="facilities.html"><i class="fas fa-chevron-right"></i> Facilities</a></li>
+          <li><a href="pricing.html"><i class="fas fa-chevron-right"></i> Pricing</a></li>
+          <li><a href="enquiry.html"><i class="fas fa-chevron-right"></i> Enquire Now</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Our Halls</h4>
+        <ul>
+          <li><a href="#shree-ganesha-mahal"><i class="fas fa-chevron-right"></i> Shree Ganesha Mahal — 500</a></li>
+          <li><a href="#kaveri-hall"><i class="fas fa-chevron-right"></i> Kaveri Hall — 350</a></li>
+          <li><a href="#vaigai-hall"><i class="fas fa-chevron-right"></i> Vaigai Hall — 200</a></li>
+          <li><a href="#thamirabarani-hall"><i class="fas fa-chevron-right"></i> Thamirabarani Hall — 100</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <div class="footer-contact-item">
+          <i class="fas fa-phone"></i>
+          <span><a href="tel:+919841608160" style="color:rgba(255,255,255,0.65);">+91 98416 08160</a></span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-envelope"></i>
+          <span><a href="mailto:sreeganesamahal@gmail.com" style="color:rgba(255,255,255,0.65);">sreeganesamahal@gmail.com</a></span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-location-dot"></i>
+          <span>51/4A,4B Ambai Road, Palayamkottai, Tirunelveli – 627002</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="footer-bottom">
+      <p>© 2026 IGS Convention Centre. All Rights Reserved.</p>
+      <p>Made with <span style="color:var(--gold);">♥</span> for Tirunelveli's finest celebrations</p>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/919841608160?text=Hello, I would like to enquire about hall booking at IGS Convention Centre."
+   class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+  <span class="whatsapp-tooltip">Chat with us!</span>
+</a>
+
+<script src="js/main.js"></script>
+</body>
+</html>
