@@ -1,66 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pricing & Packages | Sree Ganesha Mahal</title>
-  <meta name="description" content="Transparent pricing for weddings, receptions and events at Sree Ganesha Mahal Tirunelveli. Starting from ₹40,000.">
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing & Packages | IGS Convention Centre Tirunelveli</title>
+  <meta name="description" content="Transparent pricing for all 4 halls at IGS Convention Centre Tirunelveli. Shree Ganesha Mahal, Kaveri, Vaigai, Thamirabarani. Use our price calculator for instant estimates.">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
+
 <div class="top-bar"><div class="container">
   <div class="top-bar-info">
     <a href="tel:+919841608160"><i class="fas fa-phone"></i> +91 98416 08160</a>
     <a href="mailto:sreeganesamahal@gmail.com"><i class="fas fa-envelope"></i> sreeganesamahal@gmail.com</a>
+    <span><i class="fas fa-map-marker-alt"></i> 51/4A,4B Ambai Road, Palayamkottai, Tirunelveli</span>
   </div>
   <div class="top-bar-social">
-    <a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
     <a href="https://wa.me/919841608160"><i class="fab fa-whatsapp"></i></a>
   </div>
 </div></div>
+
 <nav class="navbar"><div class="container">
   <a href="index.html" class="nav-logo">
-    <div class="nav-logo-icon">SG</div>
-    <div class="nav-logo-text"><span class="name">Sree Ganesha Mahal</span><span class="tagline">Tirunelveli's Premier Venue</span></div>
+    <div class="nav-logo-icon">IGS</div>
+    <div class="nav-logo-text">
+      <span class="name">IGS Convention Centre</span>
+      <span class="tagline">Tirunelveli's Premier Convention Venue</span>
+    </div>
   </a>
   <div class="nav-links">
-    <a href="index.html">Home</a><a href="about.html">About</a><a href="events.html">Events</a>
-    <a href="facilities.html">Facilities</a><a href="gallery.html">Gallery</a>
-    <a href="pricing.html" class="active">Pricing</a><a href="blog.html">Blog</a>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="halls.html">Halls</a>
+    <a href="events.html">Events</a>
+    <a href="facilities.html">Facilities</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="pricing.html" class="active">Pricing</a>
+    <a href="blog.html">Blog</a>
     <a href="contact.html">Contact</a>
-    <a href="booking.html" class="btn btn-crimson nav-cta">Book Now</a>
+    <a href="enquiry.html" class="btn btn-crimson nav-cta">Enquire Now</a>
   </div>
   <button class="nav-toggle"><span></span><span></span><span></span></button>
 </div></nav>
 
+<!-- PAGE HERO -->
 <section class="page-hero">
   <div class="page-hero-content container">
     <span class="label"><i class="fas fa-tags"></i> Transparent Pricing</span>
     <h1>Packages & Pricing</h1>
-    <p>Simple, transparent pricing with no hidden charges. Choose the package that suits your celebration.</p>
-    <nav class="breadcrumb"><a href="index.html">Home</a><i class="fas fa-chevron-right"></i><span>Pricing</span></nav>
+    <p>Simple, transparent pricing with no hidden charges. Choose the hall that suits your celebration.</p>
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <i class="fas fa-chevron-right"></i>
+      <span>Pricing</span>
+    </nav>
   </div>
 </section>
 
-<!-- PRICING PACKAGES -->
+<!-- HALL PACKAGES -->
 <section class="section-pad" style="background:var(--ivory);">
   <div class="container">
     <div class="section-header reveal">
-      <span class="label"><i class="fas fa-star"></i> Our Packages</span>
-      <h2>Choose Your Perfect Package</h2>
+      <span class="label"><i class="fas fa-star"></i> Our Halls</span>
+      <h2>Choose Your Perfect Hall</h2>
       <div class="ornament"><span>✦</span></div>
-      <!-- HOW TO EDIT PACKAGES: Update /data/pricing.json -->
       <p>All packages include generator backup, security, and cleaning. Prices are for hall rental only.</p>
     </div>
-    <div class="pricing-grid" id="pricingGrid">
-      <!-- Loaded by JS below -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:40px;">
+
+      <!-- Shree Ganesha Mahal -->
+      <div class="pricing-card popular reveal stagger-1">
+        <div class="pricing-header gold-bg">
+          <span class="popular-badge">⭐ Most Popular</span>
+          <h3 style="color:var(--white);">Shree Ganesha Mahal</h3>
+          <p>Grand Flagship Hall</p>
+        </div>
+        <div class="pricing-price">
+          <span class="amount" style="font-size:1.6rem;">Contact for Quote</span>
+          <span class="capacity">500 Guests · Full Day</span>
+        </div>
+        <ul class="pricing-features">
+          <li><i class="fas fa-check"></i> 150 × 90 ft hall</li>
+          <li><i class="fas fa-check"></i> Full AC</li>
+          <li><i class="fas fa-check"></i> Italian Marble flooring</li>
+          <li><i class="fas fa-check"></i> Grand elevated stage</li>
+          <li><i class="fas fa-check"></i> Crystal chandeliers + LED</li>
+          <li><i class="fas fa-check"></i> Professional sound system</li>
+          <li><i class="fas fa-check"></i> Generator backup</li>
+        </ul>
+        <div class="pricing-footer">
+          <a href="enquiry.html?hall=Shree+Ganesha+Mahal" class="btn btn-crimson" style="width:100%;justify-content:center;">
+            <i class="fas fa-calendar-check"></i> Book This Hall
+          </a>
+        </div>
+      </div>
+
+      <!-- Kaveri Hall -->
+      <div class="pricing-card reveal stagger-2">
+        <div class="pricing-header">
+          <h3 style="color:var(--crimson);">Kaveri Hall</h3>
+          <p>Premium Mid-Size Hall</p>
+        </div>
+        <div class="pricing-price">
+          <span class="amount" style="font-size:1.6rem;">Contact for Quote</span>
+          <span class="capacity">350 Guests · Full Day</span>
+        </div>
+        <ul class="pricing-features">
+          <li><i class="fas fa-check"></i> 110 × 70 ft hall</li>
+          <li><i class="fas fa-check"></i> Full AC</li>
+          <li><i class="fas fa-check"></i> Granite flooring</li>
+          <li><i class="fas fa-check"></i> Decorated stage</li>
+          <li><i class="fas fa-check"></i> LED chandeliers + spotlights</li>
+          <li><i class="fas fa-check"></i> Hi-fi stereo system</li>
+          <li><i class="fas fa-check"></i> Generator backup</li>
+        </ul>
+        <div class="pricing-footer">
+          <a href="enquiry.html?hall=Kaveri+Hall" class="btn btn-primary" style="width:100%;justify-content:center;">
+            <i class="fas fa-calendar-check"></i> Book This Hall
+          </a>
+        </div>
+      </div>
+
+      <!-- Vaigai Hall -->
+      <div class="pricing-card reveal stagger-3">
+        <div class="pricing-header">
+          <h3 style="color:var(--crimson);">Vaigai Hall</h3>
+          <p>Elegant Medium Hall</p>
+        </div>
+        <div class="pricing-price">
+          <span class="amount" style="font-size:1.6rem;">Contact for Quote</span>
+          <span class="capacity">200 Guests · Full Day</span>
+        </div>
+        <ul class="pricing-features">
+          <li><i class="fas fa-check"></i> 80 × 55 ft hall</li>
+          <li><i class="fas fa-check"></i> Full AC</li>
+          <li><i class="fas fa-check"></i> Vitrified tile flooring</li>
+          <li><i class="fas fa-check"></i> Compact stage</li>
+          <li><i class="fas fa-check"></i> LED panel lighting</li>
+          <li><i class="fas fa-check"></i> Stereo sound system</li>
+          <li><i class="fas fa-check"></i> Generator backup</li>
+        </ul>
+        <div class="pricing-footer">
+          <a href="enquiry.html?hall=Vaigai+Hall" class="btn btn-primary" style="width:100%;justify-content:center;">
+            <i class="fas fa-calendar-check"></i> Book This Hall
+          </a>
+        </div>
+      </div>
+
+      <!-- Thamirabarani Hall -->
+      <div class="pricing-card reveal stagger-4">
+        <div class="pricing-header">
+          <h3 style="color:var(--crimson);">Thamirabarani Hall</h3>
+          <p>Intimate Gathering Hall</p>
+        </div>
+        <div class="pricing-price">
+          <span class="amount" style="font-size:1.6rem;">Contact for Quote</span>
+          <span class="capacity">100 Guests · Full Day</span>
+        </div>
+        <ul class="pricing-features">
+          <li><i class="fas fa-check"></i> 50 × 40 ft hall</li>
+          <li><i class="fas fa-check"></i> Full AC</li>
+          <li><i class="fas fa-check"></i> Ceramic tile flooring</li>
+          <li><i class="fas fa-check"></i> Flexible stage / podium</li>
+          <li><i class="fas fa-check"></i> Projector & screen</li>
+          <li><i class="fas fa-check"></i> PA system + Wi-Fi</li>
+          <li><i class="fas fa-check"></i> Generator backup</li>
+        </ul>
+        <div class="pricing-footer">
+          <a href="enquiry.html?hall=Thamirabarani+Hall" class="btn btn-primary" style="width:100%;justify-content:center;">
+            <i class="fas fa-calendar-check"></i> Book This Hall
+          </a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- LIVE PRICE CALCULATOR -->
+<!-- PRICE CALCULATOR -->
 <section class="section-pad" style="background:var(--ivory-dark);">
   <div class="container">
     <div class="section-header reveal">
@@ -72,16 +192,24 @@
     <div class="calculator-wrap reveal">
       <div class="calc-row">
         <div class="calc-field">
-          <label>Expected Number of Guests</label>
-          <input type="number" id="calc-guests" class="calc-input" min="50" max="900" value="200" placeholder="Enter guest count">
-          <small style="color:var(--text-light);font-family:var(--font-ui);font-size:0.78rem;display:block;margin-top:6px;" id="calc-tier-label">Up to 200 guests — Basic tier</small>
+          <label>Select Hall</label>
+          <select id="calc-hall" class="calc-input" onchange="calculatePrice()">
+            <option value="thamirabarani">Thamirabarani Hall (100 Guests)</option>
+            <option value="vaigai">Vaigai Hall (200 Guests)</option>
+            <option value="kaveri" selected>Kaveri Hall (350 Guests)</option>
+            <option value="ganesha">Shree Ganesha Mahal (500 Guests)</option>
+          </select>
         </div>
         <div class="calc-field">
           <label>Event Type</label>
-          <select id="calc-event" class="calc-input">
-            <option>Wedding</option><option>Reception</option><option>Engagement</option>
-            <option>Religious Function</option><option>Birthday Party</option>
-            <option>Corporate Event</option><option>Other</option>
+          <select id="calc-event" class="calc-input" onchange="calculatePrice()">
+            <option>Wedding</option>
+            <option>Reception</option>
+            <option>Engagement</option>
+            <option>Religious Function</option>
+            <option>Birthday Party</option>
+            <option>Corporate Event</option>
+            <option>Other</option>
           </select>
         </div>
       </div>
@@ -90,7 +218,7 @@
         <label style="display:block;font-family:var(--font-ui);font-size:0.8rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-mid);margin-bottom:16px;">Add-ons</label>
         <div class="addons-grid">
           <label class="addon-item">
-            <input type="checkbox" value="decoration" class="addon-check calc-input">
+            <input type="checkbox" id="addon-decor" onchange="calculatePrice()">
             <label style="font-family:var(--font-ui);font-size:0.88rem;color:var(--text-mid);cursor:pointer;">
               <strong>Premium Decoration</strong><br>
               <small>Stage, floral, lighting setup</small>
@@ -98,48 +226,47 @@
             <span class="addon-price">+₹20,000</span>
           </label>
           <label class="addon-item">
-            <input type="checkbox" value="dining" class="addon-check calc-input">
+            <input type="checkbox" id="addon-dining" onchange="calculatePrice()">
             <label style="font-family:var(--font-ui);font-size:0.88rem;color:var(--text-mid);cursor:pointer;">
               <strong>Dining Hall</strong><br>
-              <small>Seats 300 guests</small>
+              <small>Seats 180 guests · Veg & Non-Veg</small>
             </label>
             <span class="addon-price">+₹10,000</span>
           </label>
           <label class="addon-item">
-            <input type="checkbox" value="rooms" class="addon-check calc-input">
+            <input type="checkbox" id="addon-rooms" onchange="toggleRooms()">
             <label style="font-family:var(--font-ui);font-size:0.88rem;color:var(--text-mid);cursor:pointer;">
-              <strong>Guest Rooms</strong><br>
-              <small>Well-furnished rooms</small>
+              <strong>AC Guest Rooms</strong><br>
+              <small>Up to 15 rooms available</small>
             </label>
             <span class="addon-price">₹2,000/room</span>
           </label>
           <label class="addon-item">
-            <input type="checkbox" value="catering" class="addon-check calc-input">
+            <input type="checkbox" id="addon-catering" onchange="toggleCatering()">
             <label style="font-family:var(--font-ui);font-size:0.88rem;color:var(--text-mid);cursor:pointer;">
               <strong>Catering</strong><br>
-              <small>Full South Indian meals</small>
+              <small>Veg & Non-Veg South Indian meals</small>
             </label>
             <span class="addon-price">₹350/plate</span>
           </label>
         </div>
         <div id="rooms-input-wrap" style="display:none;margin-top:16px;">
-          <label style="font-family:var(--font-ui);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-mid);">Number of Rooms</label>
-          <input type="number" id="calc-rooms" class="calc-input" min="1" max="5" value="1" style="width:120px;padding:10px 14px;border:1px solid var(--ivory-deeper);border-radius:4px;margin-top:8px;font-family:var(--font-body);font-size:1rem;">
+          <label style="font-family:var(--font-ui);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-mid);">Number of Rooms (max 15)</label>
+          <input type="number" id="calc-rooms" min="1" max="15" value="2" onchange="calculatePrice()" style="width:120px;padding:10px 14px;border:1px solid var(--ivory-deeper);border-radius:4px;margin-top:8px;font-family:var(--font-body);font-size:1rem;">
         </div>
         <div id="plates-input-wrap" style="display:none;margin-top:16px;">
-          <label style="font-family:var(--font-ui);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-mid);">Number of Plates (defaults to guest count)</label>
-          <input type="number" id="calc-plates" class="calc-input" min="0" style="width:160px;padding:10px 14px;border:1px solid var(--ivory-deeper);border-radius:4px;margin-top:8px;font-family:var(--font-body);font-size:1rem;" placeholder="Auto">
+          <label style="font-family:var(--font-ui);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-mid);">Number of Plates</label>
+          <input type="number" id="calc-plates" min="50" value="200" onchange="calculatePrice()" style="width:160px;padding:10px 14px;border:1px solid var(--ivory-deeper);border-radius:4px;margin-top:8px;font-family:var(--font-body);font-size:1rem;">
         </div>
       </div>
 
       <div class="calc-result">
         <span class="total-label"><i class="fas fa-indian-rupee-sign"></i> Estimated Total</span>
-        <span class="total-amount" id="calc-total">₹40,000</span>
+        <span class="total-amount" id="calc-total">₹50,000</span>
         <p class="total-note">*Estimate only. Final price based on confirmed requirements. GST applicable as per norms.</p>
-        <div class="calc-breakdown" id="calc-breakdown"></div>
         <div style="margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-          <a href="booking.html" class="btn btn-primary"><i class="fas fa-calendar-check"></i> Book Now</a>
-          <a href="https://wa.me/919841608160?text=Hello, I need a price quote for my event at Sree Ganesha Mahal." target="_blank" class="btn btn-outline"><i class="fab fa-whatsapp"></i> Get Custom Quote</a>
+          <a href="enquiry.html" class="btn btn-primary"><i class="fas fa-calendar-check"></i> Enquire Now</a>
+          <a href="https://wa.me/919841608160?text=Hello, I need a price quote for my event at IGS Convention Centre." target="_blank" class="btn btn-outline"><i class="fab fa-whatsapp"></i> Get Custom Quote</a>
         </div>
       </div>
     </div>
@@ -174,99 +301,95 @@
   </div>
 </section>
 
+<!-- CTA -->
 <section class="cta-section">
-  <div class="container">
-    <div class="cta-inner">
-      <span class="label">Ready to Book?</span>
-      <h2>Secure Your Date Today</h2>
-      <div class="ornament"><span>✦</span></div>
-      <p>Popular auspicious dates fill up fast. Don't miss your preferred muhurtham.</p>
-      <div class="cta-btns">
-        <a href="booking.html" class="btn btn-primary btn-lg"><i class="fas fa-calendar-check"></i> Book Now</a>
-        <a href="contact.html" class="btn btn-outline btn-lg"><i class="fas fa-phone"></i> Talk to Us</a>
-      </div>
+  <div class="container"><div class="cta-inner">
+    <span class="label"><i class="fas fa-sparkles"></i> Ready to Book?</span>
+    <h2>Secure Your Date Today</h2>
+    <div class="ornament"><span>✦</span></div>
+    <p>Popular auspicious dates fill up fast. Don't miss your preferred muhurtham.</p>
+    <div class="cta-btns">
+      <a href="enquiry.html" class="btn btn-primary btn-lg"><i class="fas fa-calendar-check"></i> Enquire Now</a>
+      <a href="contact.html" class="btn btn-outline btn-lg"><i class="fas fa-phone"></i> Talk to Us</a>
     </div>
-  </div>
+  </div></div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <span class="logo-name">Sree Ganesha Mahal</span>
-        <span class="logo-tagline">Tirunelveli's Premier Wedding Venue</span>
-        <p>Creating magical moments for over 15 years in Tirunelveli.</p>
-        <div class="footer-social">
-          <a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a><a href="https://wa.me/919841608160"><i class="fab fa-whatsapp"></i></a>
-        </div>
-      </div>
-      <div class="footer-col"><h4>Quick Links</h4><ul>
-        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
-        <li><a href="events.html"><i class="fas fa-chevron-right"></i> Events</a></li>
-        <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
-        <li><a href="booking.html"><i class="fas fa-chevron-right"></i> Book Now</a></li>
-        <li><a href="faq.html"><i class="fas fa-chevron-right"></i> FAQ</a></li>
-      </ul></div>
-      <div class="footer-col"><h4>Events</h4><ul>
-        <li><a href="events.html"><i class="fas fa-chevron-right"></i> Wedding</a></li>
-        <li><a href="events.html"><i class="fas fa-chevron-right"></i> Reception</a></li>
-        <li><a href="events.html"><i class="fas fa-chevron-right"></i> Religious</a></li>
-        <li><a href="events.html"><i class="fas fa-chevron-right"></i> Corporate</a></li>
-      </ul></div>
-      <div class="footer-col"><h4>Contact</h4>
-        <div class="footer-contact-item"><i class="fas fa-phone"></i><span><a href="tel:+919841608160" style="color:rgba(255,255,255,0.65);">+91 98416 08160</a></span></div>
-        <div class="footer-contact-item"><i class="fas fa-location-dot"></i><span>51/4A,4B Ambai Road,Palayamkottai, Tirunelveli, Tirunelveli – 627002</span></div>
-        <div class="footer-contact-item"><i class="fas fa-clock"></i><span>Mon–Sat, 9 AM – 7 PM</span></div>
+  <div class="container"><div class="footer-grid">
+    <div class="footer-brand">
+      <span class="logo-name">IGS Convention Centre</span>
+      <span class="logo-tagline">Tirunelveli's Premier Convention Venue</span>
+      <p>Creating magical moments for over 15 years in Tirunelveli.</p>
+      <div class="footer-social">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="https://wa.me/919841608160"><i class="fab fa-whatsapp"></i></a>
       </div>
     </div>
-  </div>
+    <div class="footer-col"><h4>Quick Links</h4><ul>
+      <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+      <li><a href="halls.html"><i class="fas fa-chevron-right"></i> Our Halls</a></li>
+      <li><a href="events.html"><i class="fas fa-chevron-right"></i> Events</a></li>
+      <li><a href="enquiry.html"><i class="fas fa-chevron-right"></i> Enquire Now</a></li>
+      <li><a href="faq.html"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Our Halls</h4><ul>
+      <li><a href="halls.html#shree-ganesha-mahal"><i class="fas fa-chevron-right"></i> Shree Ganesha Mahal</a></li>
+      <li><a href="halls.html#kaveri-hall"><i class="fas fa-chevron-right"></i> Kaveri Hall</a></li>
+      <li><a href="halls.html#vaigai-hall"><i class="fas fa-chevron-right"></i> Vaigai Hall</a></li>
+      <li><a href="halls.html#thamirabarani-hall"><i class="fas fa-chevron-right"></i> Thamirabarani Hall</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Contact</h4>
+      <div class="footer-contact-item"><i class="fas fa-phone"></i><span><a href="tel:+919841608160" style="color:rgba(255,255,255,0.65);">+91 98416 08160</a></span></div>
+      <div class="footer-contact-item"><i class="fas fa-envelope"></i><span><a href="mailto:sreeganesamahal@gmail.com" style="color:rgba(255,255,255,0.65);">sreeganesamahal@gmail.com</a></span></div>
+      <div class="footer-contact-item"><i class="fas fa-location-dot"></i><span>51/4A,4B Ambai Road, Palayamkottai, Tirunelveli – 627002</span></div>
+      <div class="footer-contact-item"><i class="fas fa-clock"></i><span>Mon–Sat: 9 AM – 7 PM</span></div>
+    </div>
+  </div></div>
   <div class="container"><div class="footer-bottom">
-    <p>© 2026 Sree Ganesha Mahal. All Rights Reserved.</p>
+    <p>© 2026 IGS Convention Centre. All Rights Reserved.</p>
+    <p>Made with <span style="color:var(--gold);">♥</span> for Tirunelveli's finest celebrations</p>
   </div></div>
 </footer>
 
-<a href="https://wa.me/919841608160" class="whatsapp-float" target="_blank">
+<a href="https://wa.me/919841608160?text=Hello, I would like to get a price quote for IGS Convention Centre."
+   class="whatsapp-float" target="_blank" rel="noopener noreferrer">
   <i class="fab fa-whatsapp"></i><span class="whatsapp-tooltip">Get a Quote</span>
 </a>
-<div id="toast" class="toast"></div>
 
 <script src="js/main.js"></script>
-<script src="js/price-calculator.js"></script>
 <script>
-// Load pricing packages from JSON
-async function loadPricingPackages() {
-  const grid = document.getElementById('pricingGrid');
-  if (!grid) return;
-  try {
-    const res = await fetch('data/pricing.json');
-    const data = await res.json();
-    grid.innerHTML = data.packages.map(pkg => `
-      <div class="pricing-card ${pkg.popular ? 'popular' : ''} reveal">
-        <div class="pricing-header ${pkg.popular ? 'gold-bg' : ''}">
-          ${pkg.popular ? '<span class="popular-badge">⭐ Most Popular</span>' : ''}
-          <h3 style="${pkg.popular ? 'color:var(--white)' : 'color:var(--crimson)'}">${pkg.name}</h3>
-          <p>${pkg.subtitle}</p>
-        </div>
-        <div class="pricing-price">
-          <span class="amount">₹${pkg.price.toLocaleString('en-IN')}</span>
-          <span class="capacity">${pkg.capacity} · ${pkg.duration}</span>
-        </div>
-        <ul class="pricing-features">
-          ${pkg.inclusions.map(f => `<li><i class="fas fa-check"></i> ${f}</li>`).join('')}
-          ${pkg.exclusions.map(f => `<li style="opacity:0.5;text-decoration:line-through;"><i class="fas fa-times"></i> ${f}</li>`).join('')}
-        </ul>
-        <div class="pricing-footer">
-          <a href="booking.html" class="btn ${pkg.popular ? 'btn-crimson' : 'btn-primary'}" style="width:100%;justify-content:center;">
-            <i class="fas fa-calendar-check"></i> Book ${pkg.name}
-          </a>
-        </div>
-      </div>
-    `).join('');
-    if (window.initScrollReveal) window.initScrollReveal();
-  } catch(e) { console.warn('Could not load pricing', e); }
+const hallPrices = { thamirabarani: 25000, vaigai: 35000, kaveri: 50000, ganesha: 70000 };
+
+function toggleRooms() {
+  const checked = document.getElementById('addon-rooms').checked;
+  document.getElementById('rooms-input-wrap').style.display = checked ? 'block' : 'none';
+  calculatePrice();
 }
-document.addEventListener('DOMContentLoaded', loadPricingPackages);
+function toggleCatering() {
+  const checked = document.getElementById('addon-catering').checked;
+  document.getElementById('plates-input-wrap').style.display = checked ? 'block' : 'none';
+  calculatePrice();
+}
+function calculatePrice() {
+  const hall = document.getElementById('calc-hall').value;
+  let total = hallPrices[hall] || 50000;
+  if (document.getElementById('addon-decor').checked) total += 20000;
+  if (document.getElementById('addon-dining').checked) total += 10000;
+  if (document.getElementById('addon-rooms').checked) {
+    const rooms = parseInt(document.getElementById('calc-rooms').value) || 1;
+    total += rooms * 2000;
+  }
+  if (document.getElementById('addon-catering').checked) {
+    const plates = parseInt(document.getElementById('calc-plates').value) || 200;
+    total += plates * 350;
+  }
+  document.getElementById('calc-total').textContent = '₹' + total.toLocaleString('en-IN');
+}
+document.addEventListener('DOMContentLoaded', calculatePrice);
 </script>
 </body>
 </html>

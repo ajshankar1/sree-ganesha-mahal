@@ -2,122 +2,141 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FAQ | Sree Ganesha Mahal Tirunelveli</title>
-  <meta name="description" content="Frequently asked questions about booking Sree Ganesha Mahal — capacity, pricing, catering, parking and more.">
+  <title>FAQ | IGS Convention Centre Tirunelveli</title>
+  <meta name="description" content="Frequently asked questions about booking IGS Convention Centre — 4 halls, capacity, pricing, catering, parking and more.">
   <link rel="stylesheet" href="css/styles.css"><link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
+
 <div class="top-bar"><div class="container">
   <div class="top-bar-info">
     <a href="tel:+919841608160"><i class="fas fa-phone"></i> +91 98416 08160</a>
     <a href="mailto:sreeganesamahal@gmail.com"><i class="fas fa-envelope"></i> sreeganesamahal@gmail.com</a>
   </div>
   <div class="top-bar-social">
-    <a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
     <a href="https://wa.me/919841608160"><i class="fab fa-whatsapp"></i></a>
   </div>
 </div></div>
+
 <nav class="navbar"><div class="container">
   <a href="index.html" class="nav-logo">
-    <div class="nav-logo-icon">SG</div>
-    <div class="nav-logo-text"><span class="name">Sree Ganesha Mahal</span><span class="tagline">Tirunelveli's Premier Venue</span></div>
+    <div class="nav-logo-icon">IGS</div>
+    <div class="nav-logo-text">
+      <span class="name">IGS Convention Centre</span>
+      <span class="tagline">Tirunelveli's Premier Convention Venue</span>
+    </div>
   </a>
   <div class="nav-links">
-    <a href="index.html">Home</a><a href="about.html">About</a><a href="events.html">Events</a>
-    <a href="facilities.html">Facilities</a><a href="gallery.html">Gallery</a>
-    <a href="pricing.html">Pricing</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a>
-    <a href="booking.html" class="btn btn-crimson nav-cta">Book Now</a>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="halls.html">Halls</a>
+    <a href="events.html">Events</a>
+    <a href="facilities.html">Facilities</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    <a href="enquiry.html" class="btn btn-crimson nav-cta">Enquire Now</a>
   </div>
   <button class="nav-toggle"><span></span><span></span><span></span></button>
 </div></nav>
 
+<!-- PAGE HERO -->
 <section class="page-hero">
   <div class="page-hero-content container">
     <span class="label"><i class="fas fa-circle-question"></i> Help Center</span>
     <h1>Frequently Asked Questions</h1>
-    <p>Everything you need to know before booking your event at Sree Ganesha Mahal</p>
-    <nav class="breadcrumb"><a href="index.html">Home</a><i class="fas fa-chevron-right"></i><span>FAQ</span></nav>
+    <p>Everything you need to know before booking your event at IGS Convention Centre</p>
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <i class="fas fa-chevron-right"></i>
+      <span>FAQ</span>
+    </nav>
   </div>
 </section>
 
 <section class="section-pad" style="background:var(--ivory);">
   <div class="container">
-    <!-- FAQ CATEGORY FILTERS -->
+
+    <!-- FILTER BUTTONS -->
     <div class="gallery-filters reveal" id="faqFilters">
       <button class="filter-btn active" data-cat="all">All Questions</button>
-      <button class="filter-btn" data-cat="Capacity & Facilities">Facilities</button>
-      <button class="filter-btn" data-cat="Booking & Payment">Booking</button>
-      <button class="filter-btn" data-cat="Catering & Food">Catering</button>
-      <button class="filter-btn" data-cat="Decoration & Setup">Decoration</button>
-      <button class="filter-btn" data-cat="Location & Access">Location</button>
+      <button class="filter-btn" data-cat="halls">Halls & Capacity</button>
+      <button class="filter-btn" data-cat="booking">Booking & Payment</button>
+      <button class="filter-btn" data-cat="catering">Catering & Food</button>
+      <button class="filter-btn" data-cat="facilities">Facilities</button>
+      <button class="filter-btn" data-cat="location">Location & Access</button>
     </div>
 
-    <!-- HOW TO EDIT FAQs: Update /data/faq.json -->
-    <div class="faq-list reveal" id="faqList">
-      <div style="text-align:center;padding:48px;">
-        <div class="spinner"></div>
-        <p style="margin-top:16px;color:var(--text-light);">Loading FAQs...</p>
-      </div>
-    </div>
+    <!-- FAQ LIST -->
+    <div class="faq-list reveal" id="faqList"></div>
 
-    <!-- STILL HAVE QUESTIONS? -->
+    <!-- STILL HAVE QUESTIONS -->
     <div class="reveal" style="margin-top:56px;background:var(--white);border:1px solid var(--ivory-deeper);border-radius:var(--radius-lg);padding:48px;text-align:center;box-shadow:var(--shadow);">
       <i class="fas fa-headset" style="font-size:3rem;color:var(--gold);margin-bottom:20px;display:block;"></i>
       <h3 style="font-family:var(--font-heading);color:var(--crimson);margin-bottom:12px;">Still Have Questions?</h3>
-      <p style="color:var(--text-mid);max-width:500px;margin:0 auto 28px;font-size:1.05rem;">Our team is happy to answer any question you have. Reach us on phone or WhatsApp for instant replies.</p>
+      <p style="color:var(--text-mid);max-width:500px;margin:0 auto 28px;font-size:1.05rem;">Our team is happy to answer any question. Reach us on phone or WhatsApp for instant replies.</p>
       <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
         <a href="tel:+919841608160" class="btn btn-crimson"><i class="fas fa-phone"></i> Call Now</a>
-        <a href="https://wa.me/919841608160?text=Hello, I have a question about Sree Ganesha Mahal." target="_blank" class="btn btn-primary"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a href="https://wa.me/919841608160?text=Hello, I have a question about IGS Convention Centre." target="_blank" class="btn btn-primary"><i class="fab fa-whatsapp"></i> WhatsApp</a>
         <a href="contact.html" class="btn" style="border:2px solid var(--ivory-deeper);color:var(--text-mid);"><i class="fas fa-envelope"></i> Send Email</a>
       </div>
     </div>
+
   </div>
 </section>
 
+<!-- CTA -->
 <section class="cta-section">
   <div class="container"><div class="cta-inner">
-    <span class="label">Ready to Book?</span>
-    <h2>Start Your Booking Today</h2>
+    <span class="label"><i class="fas fa-sparkles"></i> Ready to Book?</span>
+    <h2>Start Your Enquiry Today</h2>
     <div class="ornament"><span>✦</span></div>
-    <p>Check available dates and reserve your celebration at Sree Ganesha Mahal.</p>
+    <p>Check available dates and reserve your celebration at IGS Convention Centre.</p>
     <div class="cta-btns">
-      <a href="booking.html" class="btn btn-primary btn-lg"><i class="fas fa-calendar-check"></i> Book Now</a>
-      <a href="availability.html" class="btn btn-outline btn-lg"><i class="fas fa-calendar"></i> Check Availability</a>
+      <a href="enquiry.html" class="btn btn-primary btn-lg"><i class="fas fa-calendar-check"></i> Enquire Now</a>
+      <a href="halls.html" class="btn btn-outline btn-lg"><i class="fas fa-building-columns"></i> View Our Halls</a>
     </div>
   </div></div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <span class="logo-name">Sree Ganesha Mahal</span><span class="logo-tagline">Tirunelveli's Premier Wedding Venue</span>
-        <p>Creating magical moments for over 15 years in Tirunelveli.</p>
-        <div class="footer-social">
-          <a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a><a href="https://wa.me/919841608160"><i class="fab fa-whatsapp"></i></a>
-        </div>
-      </div>
-      <div class="footer-col"><h4>Quick Links</h4><ul>
-        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
-        <li><a href="pricing.html"><i class="fas fa-chevron-right"></i> Pricing</a></li>
-        <li><a href="booking.html"><i class="fas fa-chevron-right"></i> Book Now</a></li>
-        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
-      </ul></div>
-      <div class="footer-col"><h4>FAQ Categories</h4><ul>
-        <li><a href="faq.html"><i class="fas fa-chevron-right"></i> Capacity</a></li>
-        <li><a href="faq.html"><i class="fas fa-chevron-right"></i> Booking & Payment</a></li>
-        <li><a href="faq.html"><i class="fas fa-chevron-right"></i> Catering</a></li>
-        <li><a href="faq.html"><i class="fas fa-chevron-right"></i> Decoration</a></li>
-      </ul></div>
-      <div class="footer-col"><h4>Contact</h4>
-        <div class="footer-contact-item"><i class="fas fa-phone"></i><span><a href="tel:+919841608160" style="color:rgba(255,255,255,0.65);">+91 98416 08160</a></span></div>
-        <div class="footer-contact-item"><i class="fas fa-location-dot"></i><span>51/4A,4B Ambai Road,Palayamkottai, Tirunelveli, Tirunelveli</span></div>
+  <div class="container"><div class="footer-grid">
+    <div class="footer-brand">
+      <span class="logo-name">IGS Convention Centre</span>
+      <span class="logo-tagline">Tirunelveli's Premier Convention Venue</span>
+      <p>Creating magical moments for over 15 years in Tirunelveli.</p>
+      <div class="footer-social">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="https://wa.me/919841608160"><i class="fab fa-whatsapp"></i></a>
       </div>
     </div>
-  </div>
-  <div class="container"><div class="footer-bottom"><p>© 2026 Sree Ganesha Mahal. All Rights Reserved.</p></div></div>
+    <div class="footer-col"><h4>Quick Links</h4><ul>
+      <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+      <li><a href="halls.html"><i class="fas fa-chevron-right"></i> Our Halls</a></li>
+      <li><a href="pricing.html"><i class="fas fa-chevron-right"></i> Pricing</a></li>
+      <li><a href="enquiry.html"><i class="fas fa-chevron-right"></i> Enquire Now</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>FAQ Categories</h4><ul>
+      <li><a href="faq.html"><i class="fas fa-chevron-right"></i> Halls & Capacity</a></li>
+      <li><a href="faq.html"><i class="fas fa-chevron-right"></i> Booking & Payment</a></li>
+      <li><a href="faq.html"><i class="fas fa-chevron-right"></i> Catering</a></li>
+      <li><a href="faq.html"><i class="fas fa-chevron-right"></i> Facilities</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Contact</h4>
+      <div class="footer-contact-item"><i class="fas fa-phone"></i><span><a href="tel:+919841608160" style="color:rgba(255,255,255,0.65);">+91 98416 08160</a></span></div>
+      <div class="footer-contact-item"><i class="fas fa-location-dot"></i><span>51/4A,4B Ambai Road, Palayamkottai, Tirunelveli – 627002</span></div>
+    </div>
+  </div></div>
+  <div class="container"><div class="footer-bottom">
+    <p>© 2026 IGS Convention Centre. All Rights Reserved.</p>
+  </div></div>
 </footer>
 
 <a href="https://wa.me/919841608160" class="whatsapp-float" target="_blank">
@@ -126,31 +145,43 @@
 
 <script src="js/main.js"></script>
 <script>
-let allFaqs = [];
+const faqs = [
+  { cat: 'halls', q: 'How many halls does IGS Convention Centre have?', a: 'We have 4 halls — Shree Ganesha Mahal (500 guests), Kaveri Hall (350 guests), Vaigai Hall (200 guests), and Thamirabarani Hall (100 guests). All halls are fully air-conditioned.' },
+  { cat: 'halls', q: 'What is the maximum capacity?', a: 'Shree Ganesha Mahal, our flagship hall, accommodates up to 500 guests. For larger events, please contact us to discuss combining dining areas and other spaces.' },
+  { cat: 'halls', q: 'Can I book multiple halls together?', a: 'Yes, you can book multiple halls for the same date subject to availability. Contact us for combined hall pricing and arrangements.' },
+  { cat: 'booking', q: 'How do I book a hall?', a: 'Fill out our enquiry form on the website, or call/WhatsApp us at +91 98416 08160. Our team will confirm availability and guide you through the booking process.' },
+  { cat: 'booking', q: 'How much advance is required to confirm booking?', a: 'A minimum advance of ₹25,000 is required to confirm your booking. This amount is adjusted in your final bill.' },
+  { cat: 'booking', q: 'What is the cancellation policy?', a: '60+ days before event: 80% refund. 30–60 days: 50% refund. 15–30 days: 25% refund. Under 15 days: no refund.' },
+  { cat: 'booking', q: 'Can I change my booking date?', a: 'Yes, one date change is allowed subject to availability, with a ₹5,000 rescheduling fee.' },
+  { cat: 'booking', q: 'What payment methods do you accept?', a: 'We accept Cash, UPI (GPay/PhonePe/Paytm), NEFT/RTGS, and Cheque. Receipts are issued for all payments.' },
+  { cat: 'catering', q: 'Do you provide catering?', a: 'Yes! We provide full in-house catering for both vegetarian and non-vegetarian South Indian meals. Our traditional wood stove kitchen ensures authentic flavours for your wedding feast.' },
+  { cat: 'catering', q: 'Can we bring our own caterer?', a: 'Yes, outside caterers are allowed with prior arrangement and a nominal kitchen usage fee.' },
+  { cat: 'catering', q: 'How many guests can the dining hall seat at once?', a: 'Our dining hall seats 180 guests at a time. For larger gatherings, we arrange multiple sittings.' },
+  { cat: 'catering', q: 'Do you serve non-vegetarian food?', a: 'Yes, we serve both vegetarian and non-vegetarian menus. Separate cooking zones ensure full hygiene for both.' },
+  { cat: 'facilities', q: 'Are the halls air-conditioned?', a: 'Yes, all four halls — Shree Ganesha Mahal, Kaveri, Vaigai, and Thamirabarani — are fully air-conditioned with industrial-grade units and backup systems.' },
+  { cat: 'facilities', q: 'How many AC guest rooms are available?', a: 'We have 15 fully air-conditioned guest rooms for the wedding party and out-of-town guests. Each room has clean linen, hot water, and modern amenities.' },
+  { cat: 'facilities', q: 'Is there a bridal suite?', a: 'Yes, we have an elegantly furnished bridal suite with a full-length mirror, professional makeup area, comfortable seating, and a private attached bathroom.' },
+  { cat: 'facilities', q: 'Is there parking available?', a: 'Yes, we have a large common parking area for both cars and two-wheelers, supervised by security with 24/7 CCTV coverage.' },
+  { cat: 'location', q: 'Where is IGS Convention Centre located?', a: 'We are located at 51/4A, 4B Ambai Road, Palayamkottai, Tirunelveli – 627002, Tamil Nadu.' },
+  { cat: 'location', q: 'How far is the venue from Tirunelveli Railway Station?', a: 'We are approximately 5 km from Tirunelveli Junction Railway Station and 3 km from Palayamkottai Bus Stand.' },
+];
 
-async function loadFaqs(filter = 'all') {
-  const container = document.getElementById('faqList');
-  if (!container) return;
-  if (!allFaqs.length) {
-    try {
-      const res = await fetch('data/faq.json');
-      allFaqs = await res.json();
-    } catch(e) { container.innerHTML = '<p style="color:var(--text-light);text-align:center;">Could not load FAQs.</p>'; return; }
-  }
-  const shown = filter === 'all' ? allFaqs : allFaqs.filter(f => f.category === filter);
-  container.innerHTML = shown.map(faq => `
+let currentCat = 'all';
+
+function renderFaqs(cat) {
+  currentCat = cat;
+  const list = document.getElementById('faqList');
+  const shown = cat === 'all' ? faqs : faqs.filter(f => f.cat === cat);
+  list.innerHTML = shown.map(f => `
     <div class="faq-item">
       <div class="faq-question">
-        <span>${faq.question}</span>
+        <span>${f.q}</span>
         <i class="fas fa-plus faq-icon"></i>
       </div>
-      <div class="faq-answer"><p>${faq.answer}</p></div>
+      <div class="faq-answer"><p>${f.a}</p></div>
     </div>
   `).join('');
-  initFaq();
-}
-
-function initFaq() {
+  // Re-init accordion
   document.querySelectorAll('.faq-question').forEach(q => {
     q.onclick = () => {
       const item = q.closest('.faq-item');
@@ -165,11 +196,11 @@ document.querySelectorAll('#faqFilters .filter-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('#faqFilters .filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    loadFaqs(btn.dataset.cat);
+    renderFaqs(btn.dataset.cat);
   });
 });
 
-document.addEventListener('DOMContentLoaded', () => loadFaqs('all'));
+document.addEventListener('DOMContentLoaded', () => renderFaqs('all'));
 </script>
 </body>
 </html>
