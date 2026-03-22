@@ -632,7 +632,7 @@
           <div class="form-row">
             <div class="form-group">
               <label>Catering</label>
-              <select id="b-catering">
+              <select id="b-catering" onchange="showCateringNote()">
                 <option>Not Required</option>
                 <option>Vegetarian</option>
                 <option>Non-Vegetarian</option>
@@ -642,7 +642,7 @@
             </div>
             <div class="form-group">
               <label>Guest Rooms Required</label>
-              <input type="number" id="b-rooms" placeholder="Number of rooms" min="0" max="15">
+              <input type="number" id="b-rooms" placeholder="Number of rooms" min="0" max="15" oninput="showCateringNote()">
             </div>
           </div>
           <div class="form-group">
@@ -670,10 +670,7 @@
                 <span>Generator (Ambica Mahal)</span><span style="color:var(--crimson);font-weight:600;">Rs. 5,000 / hr</span>
               </div>
               <div style="font-family:var(--font-ui);font-size:0.8rem;color:var(--text-mid);display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px dashed var(--ivory-deeper);">
-                <span>Guest Room — Standard AC</span><span style="color:var(--crimson);font-weight:600;">Rs. 1,500 / room</span>
-              </div>
-              <div style="font-family:var(--font-ui);font-size:0.8rem;color:var(--text-mid);display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px dashed var(--ivory-deeper);">
-                <span>Guest Room — Deluxe AC</span><span style="color:var(--crimson);font-weight:600;">Rs. 1,750 / room</span>
+                <span>Guest Rooms (AC)</span><span style="color:var(--crimson);font-weight:600;">Contact for rates</span>
               </div>
               <div style="font-family:var(--font-ui);font-size:0.8rem;color:var(--text-mid);display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px dashed var(--ivory-deeper);">
                 <span>Cleaning — Half Day</span><span style="color:var(--crimson);font-weight:600;">Rs. 7,500</span>
@@ -699,6 +696,18 @@
             </div>
             <p style="font-family:var(--font-ui);font-size:0.78rem;color:var(--text-light);margin-top:12px;font-style:italic;">
               * GST @ 18% applicable on all additional charges. Final bill will be settled on the day of the event based on actual usage.
+            </p>
+          </div>
+
+          <!-- DYNAMIC CATERING + ROOMS NOTE -->
+          <div id="cateringRoomsNote" style="display:none;background:var(--white);border:1px solid var(--ivory-deeper);border-left:4px solid var(--crimson);border-radius:var(--radius);padding:16px 20px;margin-top:12px;">
+            <p style="font-family:var(--font-ui);font-size:0.82rem;font-weight:700;color:var(--crimson);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.06em;">
+              <i class="fas fa-receipt" style="margin-right:6px;color:var(--crimson);"></i>
+              Your Selected Additional Services
+            </p>
+            <div id="cateringNoteContent"></div>
+            <p style="font-family:var(--font-ui);font-size:0.75rem;color:var(--text-light);margin-top:10px;font-style:italic;">
+              * Above are estimated charges. Final amount based on actual guest count and usage. GST @ 18% applicable.
             </p>
           </div>
 
@@ -1322,7 +1331,7 @@ function downloadPDF() {
     doc.setTextColor(80, 60, 50);
     doc.setFontSize(7);
     const addCharges = [
-      'EB: Rs.30/unit  |  Generator: Rs.5,000-7,500/hr  |  Room AC: Rs.1,500  |  Deluxe AC: Rs.1,750',
+      'EB: Rs.30/unit  |  Generator: Rs.5,000-7,500/hr  |  Guest Rooms: Charges applicable per room per night (contact for rates)',
       'Cleaning: Rs.7,500 (Half Day) / Rs.12,000 (Full Day)  |  Kitchen: Rs.10,000/day  |  Extra Time: Rs.10,000/hr',
       'Chair Cover: Rs.30/chair  |  Extra Bed: Rs.350  |  Gas: Rs.2,850/cylinder  |  GST 18% on all above',
     ];
@@ -1381,6 +1390,78 @@ if (params.get('event')) {
     }
   }
 }
+
+// ── DYNAMIC CATERING + ROOMS NOTE ──
+function showCateringNote() {
+  const catering = document.getElementById('b-catering').value;
+  const rooms = parseInt(document.getElementById('b-rooms').value) || 0;
+  const noteDiv = document.getElementById('cateringRoomsNote');
+  const contentDiv = document.getElementById('cateringNoteContent');
+
+  const lines = [];
+
+  // Catering charges
+  if (catering && catering !== 'Not Required') {
+    const guestCount = parseInt(document.getElementById('b-guests').value) || 0;
+
+    if (catering === 'Vegetarian') {
+      lines.push({
+        label: 'Vegetarian Catering',
+        detail: 'Full South Indian meals — Veg menu',
+        note: 'Catering charges applicable per plate. Contact us for current rates.'
+      });
+    } else if (catering === 'Non-Vegetarian') {
+      lines.push({
+        label: 'Non-Vegetarian Catering',
+        detail: 'Full South Indian meals — Non-Veg menu',
+        note: 'Catering charges applicable per plate. Contact us for current rates.'
+      });
+    } else if (catering === 'Both Veg & Non-Veg') {
+      lines.push({
+        label: 'Veg & Non-Veg Catering',
+        detail: 'Separate cooking zones — Full South Indian meals',
+        note: 'Catering charges applicable per plate. Contact us for current rates.'
+      });
+    } else if (catering === 'Outside Caterer') {
+      lines.push({
+        label: 'Outside Caterer',
+        detail: 'Kitchen usage charges applicable',
+        note: 'Kitchen: Rs. 10,000/day + Gas: Rs. 2,850/cylinder + GST 18%'
+      });
+    }
+  }
+
+  // Room charges
+  if (rooms > 0) {
+    lines.push({
+      label: rooms + ' Guest Room' + (rooms > 1 ? 's' : '') + ' Required',
+      detail: 'Fully AC rooms — subject to availability',
+      note: 'Charges applicable per room per night. Contact us for current rates.'
+    });
+  }
+
+  if (lines.length === 0) {
+    noteDiv.style.display = 'none';
+    return;
+  }
+
+  contentDiv.innerHTML = lines.map(l => `
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;border-bottom:1px dashed var(--ivory-deeper);gap:12px;">
+      <div>
+        <div style="font-family:var(--font-ui);font-size:0.85rem;font-weight:600;color:var(--text-dark);">${l.label}</div>
+        <div style="font-family:var(--font-ui);font-size:0.78rem;color:var(--text-mid);margin-top:2px;">${l.detail}</div>
+      </div>
+      <div style="font-family:var(--font-ui);font-size:0.78rem;color:var(--crimson);font-weight:500;text-align:right;white-space:nowrap;flex-shrink:0;">${l.note}</div>
+    </div>
+  `).join('');
+
+  noteDiv.style.display = 'block';
+}
+
+// Also trigger when guest count changes
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('b-guests')?.addEventListener('input', showCateringNote);
+});
 
 // Auto-fill rent on page load
 document.addEventListener('DOMContentLoaded', function() {
