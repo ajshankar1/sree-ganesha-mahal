@@ -6,6 +6,7 @@
   <meta name="description" content="Transparent pricing for all 4 halls at IGS Convention Centre Tirunelveli. Shree Ganesha Mahal, Kaveri, Vaigai, Thamirabarani. Use our price calculator for instant estimates.">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/igs-fixes.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
@@ -13,7 +14,7 @@
 <div class="top-bar"><div class="container">
   <div class="top-bar-info">
     <a href="tel:+919841608160"><i class="fas fa-phone"></i> +91 98416 08160</a>
-    <a href="mailto:sreeganesamahal@gmail.com"><i class="fas fa-envelope"></i> sreeganesamahal@gmail.com</a>
+    <a href="/cdn-cgi/l/email-protection#07747562626066696274666a666f666b47606a666e6b2964686a"><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="394a4b5c5c5e58575c4a585458515855795e54585055175a5654">[email&#160;protected]</span></a>
     <span><i class="fas fa-map-marker-alt"></i> 51/4A,4B Ambai Road, Palayamkottai, Tirunelveli</span>
   </div>
   <div class="top-bar-social">
@@ -456,7 +457,7 @@
     </ul></div>
     <div class="footer-col"><h4>Contact</h4>
       <div class="footer-contact-item"><i class="fas fa-phone"></i><span><a href="tel:+919841608160" style="color:rgba(255,255,255,0.65);">+91 98416 08160</a></span></div>
-      <div class="footer-contact-item"><i class="fas fa-envelope"></i><span><a href="mailto:sreeganesamahal@gmail.com" style="color:rgba(255,255,255,0.65);">sreeganesamahal@gmail.com</a></span></div>
+      <div class="footer-contact-item"><i class="fas fa-envelope"></i><span><a href="/cdn-cgi/l/email-protection#a9dadbcccccec8c7ccdac8c4c8c1c8c5e9cec4c8c0c587cac6c4" style="color:rgba(255,255,255,0.65);"><span class="__cf_email__" data-cfemail="8ffcfdeaeae8eee1eafceee2eee7eee3cfe8e2eee6e3a1ece0e2">[email&#160;protected]</span></a></span></div>
       <div class="footer-contact-item"><i class="fas fa-location-dot"></i><span>51/4A,4B Ambai Road, Palayamkottai, Tirunelveli – 627002</span></div>
       <div class="footer-contact-item"><i class="fas fa-clock"></i><span>Mon–Sat: 9 AM – 7 PM</span></div>
     </div>
@@ -472,7 +473,7 @@
   <i class="fab fa-whatsapp"></i><span class="whatsapp-tooltip">Get a Quote</span>
 </a>
 
-<script src="js/main.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/main.js"></script>
 <script>
 const hallPrices = { thamirabarani: 25000, vaigai: 35000, kaveri: 50000, ganesha: 70000 };
 
@@ -492,16 +493,4 @@ function calculatePrice() {
   if (document.getElementById('addon-decor').checked) total += 20000;
   if (document.getElementById('addon-dining').checked) total += 10000;
   if (document.getElementById('addon-rooms').checked) {
-    const rooms = parseInt(document.getElementById('calc-rooms').value) || 1;
-    total += rooms * 2000;
-  }
-  if (document.getElementById('addon-catering').checked) {
-    const plates = parseInt(document.getElementById('calc-plates').value) || 200;
-    total += plates * 350;
-  }
-  document.getElementById('calc-total').textContent = '₹' + total.toLocaleString('en-IN');
-}
-document.addEventListener('DOMContentLoaded', calculatePrice);
-</script>
-</body>
-</html>
+    const rooms = parseInt(document.getElementById('calc-rooms'
