@@ -37,9 +37,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-<!-- ── PAGE LOADER ── -->
-
-  <div class="loader-tagline">Tirunelveli's Premier Convention Venue</div>
   <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
   <div class="loader-dots"><span></span><span></span><span></span></div>
 </div>
@@ -49,7 +46,7 @@
   <div class="container">
     <div class="top-bar-info">
       <a href="tel:+919841608160"><i class="fas fa-phone"></i> +91 98416 08160</a>
-      <a href="/cdn-cgi/l/email-protection#423130272725232c2731232f232a232e02252f232b2e6c212d2f"><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="6a19180f0f0d0b040f190b070b020b062a0d070b030644090507">sreeganesamahal@gmail.com</span></a>
+      <a href="/cdn-cgi/l/email-protection#423130272725232c2731232f232a232e02252f232b2e6c212d2f"><i class="fas fa-envelope"></i> sreeganesamahal@gmail.com</span></a>
       <span><i class="fas fa-map-marker-alt"></i> 51/4A,4B Ambai Road, Palayamkottai, Tirunelveli</span>
     </div>
     <div class="top-bar-social">
@@ -74,13 +71,10 @@
     <div class="nav-links">
     <a href="index.html" class="active">Home</a>
     <a href="about.html">About</a>
-    <a href="halls.html">Halls</a>
-    <a href="events.html">Events</a>
     <a href="facilities.html">Facilities</a>
-    <a href="gallery.html">Gallery</a>
     <a href="pricing.html">Pricing</a>
     <a href="availability.html">Availability</a>
-    <a href="blog.html">Blog</a>
+    <a href="booking.html">Booking</a>
     <a href="contact.html">Contact</a>
     <a href="enquiry.html" class="btn btn-crimson nav-cta" style="color:#fff!important;">Enquire Now</a>
   </div>
@@ -510,7 +504,7 @@
         </div>
         <div class="footer-contact-item">
           <i class="fas fa-envelope"></i>
-          <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2a59584f4f4d4b444f594b474b424b466a4d474b434604494547">sreeganesamahal@gmail.com</a></span>
+          <span>sreeganesamahal@gmail.com</span>
         </div>
         <div class="footer-contact-item">
           <i class="fas fa-location-dot"></i>
@@ -577,7 +571,7 @@
 
 <div id="toast" class="toast"></div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/main.js"></script>
+<script src="js/main.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var muhuratDates = ["2026-01-28","2026-02-06","2026-02-08","2026-02-13","2026-02-15","2026-02-16","2026-02-20","2026-03-05","2026-03-06","2026-03-08","2026-03-15","2026-03-16","2026-03-25","2026-04-06","2026-04-12","2026-04-13","2026-04-16","2026-04-20","2026-04-23","2026-04-30","2026-05-08","2026-05-13","2026-05-14","2026-05-18","2026-05-28","2026-05-29","2026-06-04","2026-06-07","2026-06-17","2026-06-18","2026-06-24","2026-06-25","2026-07-02","2026-07-05","2026-07-12","2026-08-23","2026-08-30","2026-08-31","2026-09-07","2026-09-13","2026-09-17","2026-10-25","2026-10-30","2026-11-01","2026-11-11","2026-11-13","2026-11-15","2026-11-16","2026-11-20","2026-11-29","2026-12-04","2026-12-06","2026-12-10","2026-12-13","2026-12-14"];
@@ -604,16 +598,4 @@ document.addEventListener('DOMContentLoaded', function() {
       html += '<div class="'+cls+'" data-date="'+dateStr+'">'+d+'</div>';
     }
     calEl.innerHTML = html;
-    calEl.querySelectorAll('.cal-day.available').forEach(function(day) {
-      day.style.cursor = 'pointer';
-      day.addEventListener('click', function() {
-        window.location.href = 'enquiry.html?date=' + day.getAttribute('data-date');
-      });
-    });
-  }
-
-  renderCal(calYear, calMonth);
-
-  var prev = document.getElementById('calPrev');
-  var next = do
-
+    calEl.querySelectorAll('.cal-day.available').forEach(
