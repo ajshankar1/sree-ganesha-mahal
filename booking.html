@@ -203,7 +203,7 @@
 <div class="top-bar"><div class="container">
   <div class="top-bar-info">
     <a href="tel:+919841608160"><i class="fas fa-phone"></i> +91 98416 08160</a>
-    <a href="mailto:sreeganesamahal@gmail.com"><i class="fas fa-envelope"></i> sreeganesamahal@gmail.com</a>
+    <a href="/cdn-cgi/l/email-protection#7c0f0e19191b1d12190f1d111d141d103c1b111d1510521f1311"><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="c7b4b5a2a2a0a6a9a2b4a6aaa6afa6ab87a0aaa6aeabe9a4a8aa">[email&#160;protected]</span></a>
     <span><i class="fas fa-map-marker-alt"></i> 51/4A,4B Ambai Road, Palayamkottai, Tirunelveli</span>
   </div>
   <div class="top-bar-social">
@@ -551,7 +551,7 @@
     </ul></div>
     <div class="footer-col"><h4>Contact</h4>
       <div class="footer-contact-item"><i class="fas fa-phone"></i><span><a href="tel:+919841608160" style="color:rgba(255,255,255,0.65);">+91 98416 08160</a></span></div>
-      <div class="footer-contact-item"><i class="fas fa-envelope"></i><span><a href="mailto:sreeganesamahal@gmail.com" style="color:rgba(255,255,255,0.65);">sreeganesamahal@gmail.com</a></span></div>
+      <div class="footer-contact-item"><i class="fas fa-envelope"></i><span><a href="/cdn-cgi/l/email-protection#93e0e1f6f6f4f2fdf6e0f2fef2fbf2ffd3f4fef2faffbdf0fcfe" style="color:rgba(255,255,255,0.65);"><span class="__cf_email__" data-cfemail="deadacbbbbb9bfb0bbadbfb3bfb6bfb29eb9b3bfb7b2f0bdb1b3">[email&#160;protected]</span></a></span></div>
       <div class="footer-contact-item"><i class="fas fa-location-dot"></i><span>51/4A,4B Ambai Road, Palayamkottai, Tirunelveli – 627002</span></div>
     </div>
   </div></div>
@@ -576,19 +576,19 @@
   <i class="fab fa-whatsapp"></i><span class="whatsapp-tooltip">Quick Enquiry</span>
 </a>
 
-<script src="js/main.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/main.js"></script>
 <script>
 // ── BOOKING ID GENERATOR ──
 function generateBookingId() {
   const year = new Date().getFullYear();
-  const existing = JSON.parse(localStorage.getItem('igs_bookings') || '[]');
-  const count = existing.length + 1;
-  return 'IGS-' + year + '-' + String(count).padStart(4, '0');
+  const ts = Date.now().toString().slice(-5);
+  const rand = Math.floor(Math.random() * 90 + 10);
+  return 'IGS-' + year + '-' + ts + rand;
 }
 
-const bookingId = generateBookingId();
-document.getElementById('bookingId').value = bookingId;
-document.getElementById('displayBookingId').textContent = bookingId;
+// Show placeholder until form is submitted
+document.getElementById('displayBookingId').textContent = 'Will be generated on submission';
+let bookingId = '';
 
 // ── GST TOGGLE ──
 function toggleGST() {
@@ -628,6 +628,10 @@ let bookingData = {};
 
 document.getElementById('bookingForm').addEventListener('submit', function(e) {
   e.preventDefault();
+
+  // Generate unique booking ID at submission time
+  bookingId = generateBookingId();
+  document.getElementById('bookingId').value = bookingId;
 
   const name = document.getElementById('b-name').value.trim();
   const phone = document.getElementById('b-phone').value.trim();
@@ -936,21 +940,3 @@ if (params.get('hall')) {
   const hallSelect = document.getElementById('b-hall');
   for (let o of hallSelect.options) {
     if (o.value.toLowerCase().includes(params.get('hall').toLowerCase())) {
-      o.selected = true; break;
-    }
-  }
-}
-if (params.get('date')) {
-  document.getElementById('b-date').value = params.get('date');
-}
-if (params.get('event')) {
-  const evSelect = document.getElementById('b-event');
-  for (let o of evSelect.options) {
-    if (o.value.toLowerCase().includes(params.get('event').toLowerCase())) {
-      o.selected = true; break;
-    }
-  }
-}
-</script>
-</body>
-</html>
