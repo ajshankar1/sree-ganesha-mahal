@@ -13,7 +13,7 @@ p { font-size: 1.05rem !important; line-height: 1.85 !important; }
 .top-bar-info a[href^="mailto"] {
   color: var(--gold, #C9A84C) !important;
 }
-.top-bar-info a[href^="mailto"]::before {
+.top-bar-info a[href^="mailto"]:before {
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
   content: "\f0e0"; /* envelope icon */
