@@ -9,16 +9,10 @@ p { font-size: 1.05rem !important; line-height: 1.85 !important; }
 .top-bar { font-size: 0.88rem !important; padding: 10px 0 !important; }
 .top-bar a, .top-bar span { font-size: 0.88rem !important; }
 
-/* TOP BAR — Email gold color + envelope icon (all pages) */
-.top-bar-info a[href^="mailto"] {
+/* TOP BAR — Email gold color (all pages) */
+.top-bar-info a[href^="mailto"],
+.top-bar-info a[href^="mailto"] i {
   color: var(--gold, #C9A84C) !important;
-}
-.top-bar-info a[href^="mailto"]:before {
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
-  content: "\f0e0"; /* envelope icon */
-  margin-right: 6px;
-  color: var(--gold, #C9A84C);
 }
 
 /* NAVBAR */
