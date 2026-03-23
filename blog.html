@@ -10,9 +10,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-<!-- ── PAGE LOADER ── -->
-
-  <div class="loader-tagline">Tirunelveli's Premier Convention Venue</div>
   <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
   <div class="loader-dots"><span></span><span></span><span></span></div>
 </div>
@@ -35,12 +32,10 @@
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="halls.html">Halls</a>
-    <a href="events.html">Events</a>
     <a href="facilities.html">Facilities</a>
-    <a href="gallery.html">Gallery</a>
     <a href="pricing.html">Pricing</a>
     <a href="availability.html">Availability</a>
-    <a href="blog.html" class="active">Blog</a>
+    <a href="booking.html">Booking</a>
     <a href="contact.html">Contact</a>
     <a href="enquiry.html" class="btn btn-crimson nav-cta" style="color:#fff!important;">Enquire Now</a>
   </div>
@@ -141,7 +136,7 @@
   <i class="fab fa-whatsapp"></i><span class="whatsapp-tooltip">Chat with us</span>
 </a>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/main.js"></script>
+<script src="js/main.js"></script>
 <script>
 let allPosts = [];
 
@@ -164,10 +159,4 @@ async function loadBlog(filter = 'all') {
       <div class="blog-card-body">
         <div class="blog-meta">
           <span><i class="fas fa-calendar-alt"></i> ${new Date(post.date).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}</span>
-          <span><i class="fas fa-user"></i> ${post.author}</span>
-        </div>
-        <h3>${post.title}</h3>
-        <p>${post.short_description}</p>
-        <span class="read-more">Read More <i class="fas fa-arrow-right"></i></sp
-
-
+          <span><i class="fas fa
