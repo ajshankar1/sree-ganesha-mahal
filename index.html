@@ -46,7 +46,7 @@
   <div class="container">
     <div class="top-bar-info">
       <a href="tel:+919841608160"><i class="fas fa-phone"></i> +91 98416 08160</a>
-      sreeganesamahal@gmail.com
+      <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="92e1e0f7f7f5f3fcf7e1f3fff3faf3fed2f5fff3fbfebcf1fdff">[email&#160;protected]</a>
       <span><i class="fas fa-map-marker-alt"></i> 51/4A,4B Ambai Road, Palayamkottai, Tirunelveli</span>
     </div>
     <div class="top-bar-social">
@@ -533,7 +533,7 @@
         </div>
         <div class="footer-contact-item">
           <i class="fas fa-envelope"></i>
-          <span>sreeganesamahal@gmail.com</span>
+          <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="06757463636167686375676b676e676a46616b676f6a2865696b">[email&#160;protected]</a></span>
         </div>
         <div class="footer-contact-item">
           <i class="fas fa-location-dot"></i>
@@ -600,10 +600,12 @@
 
 <div id="toast" class="toast"></div>
 
-<script src="js/main.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/main.js"></script>
 <script>
+/* ===== HOMEPAGE CALENDAR — INLINE, NO EXTERNAL DEPS ===== */
 document.addEventListener('DOMContentLoaded', function() {
   var muhuratDates = ["2026-01-28","2026-02-06","2026-02-08","2026-02-13","2026-02-15","2026-02-16","2026-02-20","2026-03-05","2026-03-06","2026-03-08","2026-03-15","2026-03-16","2026-03-25","2026-04-06","2026-04-12","2026-04-13","2026-04-16","2026-04-20","2026-04-23","2026-04-30","2026-05-08","2026-05-13","2026-05-14","2026-05-18","2026-05-28","2026-05-29","2026-06-04","2026-06-07","2026-06-17","2026-06-18","2026-06-24","2026-06-25","2026-07-02","2026-07-05","2026-07-12","2026-08-23","2026-08-30","2026-08-31","2026-09-07","2026-09-13","2026-09-17","2026-10-25","2026-10-30","2026-11-01","2026-11-11","2026-11-13","2026-11-15","2026-11-16","2026-11-20","2026-11-29","2026-12-04","2026-12-06","2026-12-10","2026-12-13","2026-12-14"];
+
   var calYear = new Date().getFullYear();
   var calMonth = new Date().getMonth();
 
@@ -611,10 +613,83 @@ document.addEventListener('DOMContentLoaded', function() {
     var calEl = document.getElementById('calendarGrid');
     var calTitle = document.getElementById('calendarTitle');
     if (!calEl) return;
+
     var monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
     var dayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
     if (calTitle) calTitle.textContent = monthNames[month] + ' ' + year;
+
     var firstDay = new Date(year, month, 1).getDay();
-    var daysInMonth = new Date(year, month+1, 0).getDate();
+    var daysInMonth = new Date(year, month + 1, 0).getDate();
     var today = new Date();
-    var html = dayNames.map(function(d){ return '<div class="cal-day-name">'+d+'<
+    var todayY = today.getFullYear();
+    var todayM = today.getMonth();
+    var todayD = today.getDate();
+
+    var html = dayNames.map(function(d){ return '<div class="cal-day-name">' + d + '</div>'; }).join('');
+
+    for (var i = 0; i < firstDay; i++) {
+      html += '<div class="cal-day empty"></div>';
+    }
+
+    for (var d = 1; d <= daysInMonth; d++) {
+      var mm = String(month + 1).padStart(2, '0');
+      var dd = String(d).padStart(2, '0');
+      var dateStr = year + '-' + mm + '-' + dd;
+
+      var isToday = (d === todayD && month === todayM && year === todayY);
+      var isPast = new Date(year, month, d) < new Date(todayY, todayM, todayD);
+      var isMuhurat = muhuratDates.indexOf(dateStr) !== -1;
+
+      var cls = 'cal-day';
+      var title = '';
+      if (isPast) {
+        cls += ' past';
+        title = '';
+      } else if (isMuhurat) {
+        cls += ' muhurat available';
+        title = 'Auspicious Date — Available';
+      } else {
+        cls += ' available';
+        title = 'Available';
+      }
+      if (isToday) cls += ' today';
+
+      html += '<div class="' + cls + '" title="' + title + '" data-date="' + dateStr + '">' + d + '</div>';
+    }
+
+    calEl.innerHTML = html;
+
+    calEl.querySelectorAll('.cal-day.available').forEach(function(day) {
+      day.style.cursor = 'pointer';
+      day.addEventListener('click', function() {
+        var dateInput = document.getElementById('event-date');
+        if (dateInput) dateInput.value = day.dataset.date;
+      });
+    });
+  }
+
+  // Nav buttons
+  var prevBtn = document.getElementById('calPrev');
+  var nextBtn = document.getElementById('calNext');
+  if (prevBtn) {
+    prevBtn.addEventListener('click', function() {
+      calMonth--;
+      if (calMonth < 0) { calMonth = 11; calYear--; }
+      renderCal(calYear, calMonth);
+    });
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener('click', function() {
+      calMonth++;
+      if (calMonth > 11) { calMonth = 0; calYear++; }
+      renderCal(calYear, calMonth);
+    });
+  }
+
+  // Render immediately
+  renderCal(calYear, calMonth);
+});
+</script>
+</body>
+</html>
